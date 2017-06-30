@@ -1,0 +1,76 @@
+<program>		<form>*
+<form>		<definition> | <expression>
+
+<definition>		<variable definition>
+	|	<syntax definition>
+	|	(begin <definition>*)
+	|	(let-syntax (<syntax binding>*) <definition>*)
+	|	(letrec-syntax (<syntax binding>*) <definition>*)
+	|	<derived definition>
+<variable definition>		(define <variable> <expression>)
+	|	(define (<variable> <variable>*) <body>)
+	|	(define (<variable> <variable>* . <variable>) <body>)
+<variable>		<identifier>
+<body>		<definition>* <expression>+
+<syntax definition>		(define-syntax <keyword> <transformer expression>)
+<keyword>		<identifier>
+<syntax binding>		(<keyword> <transformer expression>)
+
+<expression>		<constant>
+	|	<variable>
+	|	(quote <datum>) | ' <datum>
+	|	(lambda <formals> <body>)
+	|	(if <expression> <expression> <expression>) | (if <expression> <expression>)
+	|	(set! <variable> <expression>)
+	|	<application>
+	|	(let-syntax (<syntax binding>*) <expression>+)
+	|	(letrec-syntax (<syntax binding>*) <expression>+)
+	|	<derived expression>
+<constant>		<boolean> | <number> | <character> | <string>
+<formals>		<variable> | (<variable>*) | (<variable>+ . <variable>)
+<application>		(<expression> <expression>*)
+
+<identifier>		<initial> <subsequent>* | + | - | ...
+<initial>		<letter> | ! | $ | % | & | * | / | : | < | = | > | ? | ~ | _ | ^
+<subsequent>		<initial> | <digit> | . | + | -
+<letter>		a | b | ... | z
+<digit>		0 | 1 | ... | 9
+
+<datum>		<boolean> | <number> | <character> | <string> | <symbol> | <list> | <vector>
+<boolean>		#t | #f
+<number>		<num 2> | <num 8> | <num 10> | <num 16>
+<character>		#\ <any character> | #\newline | #\space
+<string>		" <string character>* "
+<string character>		\" | \\ | <any character other than " or \>
+<symbol>		<identifier>
+<list>		(<datum>*) | (<datum>+ . <datum>) | <abbreviation>
+<abbreviation>		' <datum> | ` <datum> | , <datum> | ,@ <datum>
+<vector>		#(<datum>*)
+
+
+<num r>		<prefix r> <complex r>
+<complex r>		<real r> | <real r> @ <real r>
+	|	<real r> + <imag r> | <real r> - <imag r>
+	|	+ <imag r> | - <imag r>
+<imag r>		i | <ureal r> i
+<real r>		<sign> <ureal r>
+<ureal r>		<uinteger r> | <uinteger r> / <uinteger r> | <decimal r>
+<uinteger r>		<digit r>+ #*
+<prefix r>		<radix r> <exactness> | <exactness> <radix r>
+<decimal 10>		<uinteger 10> <exponent>
+	|	. <digit 10>+ #* <suffix>
+	|	<digit 10>+ . <digit 10>* #* <suffix>
+	|	<digit 10>+ #+ . #* <suffix>
+<suffix>		<empty> | <exponent>
+<exponent>		<exponent marker> <sign> <digit 10>+
+<exponent marker>		e | s | f | d | l
+<sign>		<empty> | + | -
+<exactness>		<empty> | #i | #e
+<radix 2>		#b
+<radix 8>		#o
+<radix 10>		<empty> | #d
+<radix 16>		#x
+<digit 2>		0 | 1
+<digit 8>		0 | 1 | ... | 7
+<digit 10>		<digit>
+<digit 16>		<digit> | a | b | c | d | e | f
