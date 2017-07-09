@@ -8,13 +8,14 @@
 
 #include "../global_aliases.h"
 #include "paren_stack.h"
+#include "token_vector.h"
 #include "lexer_input.h"
 
 namespace Atrium {
 	namespace LexicalAnalysis {
 		class Lexer {
 			ParenStack paren_stack;
-			std::vector<std::string> token_array;
+			TokenVector token_vector;
 
 			int current_line_number {1};
 			char previous_char {-1};

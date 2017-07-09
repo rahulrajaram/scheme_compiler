@@ -22,7 +22,7 @@ namespace Atrium {
 				previous_char = ch;
 			}
 
-			print_token_array();
+			token_vector.print();
 		}
 
 		int Lexer::increment_line_number() {
@@ -53,15 +53,15 @@ namespace Atrium {
 			if (inside_string) {
 				present_token += ch;
 				if (ch == '"') {
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token.clear();
 					inside_string = false;
 				}
 			} else if (inside_quoted_expression) {
 				if (ch == ')') {
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token = std::string(1, ch);
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token.clear();
 					inside_quoted_expression = false;
 					paren_stack.handle_closed_paren(current_line_number);
@@ -76,31 +76,31 @@ namespace Atrium {
 		void Lexer::handle_uncommented_and_non_string_code(char ch) {
 			switch(ch) {
 				case '(':
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token += ch;
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token.clear();
 					paren_stack.handle_open_paren();
 					break;
 				case ')':
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token += ch;
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token.clear();
 					paren_stack.handle_closed_paren(this->current_line_number);
 					break;
 				case '\n':
 					increment_line_number();
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token.clear();
 					increment_line_number();	
 					break;
 				case ' ':
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token.clear();
 					break;
 				case '\t':
-					token_array.push_back(present_token);
+					token_vector.push_back(present_token);
 					present_token.clear();
 					break;
 				case '#':
@@ -134,12 +134,6 @@ namespace Atrium {
 
 		bool Lexer::previous_character_was_vertical_dash() {
 			return (previous_char == '|');
-		}
-
-		void Lexer::print_token_array() {
-			for (auto token : token_array) {
-				std::cout << token << "\n";
-			}
 		}
 	}
 }
