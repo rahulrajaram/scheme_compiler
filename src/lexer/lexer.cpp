@@ -11,15 +11,13 @@ namespace Atrium {
 		) {
 			spdlog_console->info("... Begin parsing");
 
-			char ch;
-
-			while ((ch = lexer_input.source_file.get()) != EOF) {
+			while ((present_character = lexer_input.source_file.get()) != EOF) {
 				if (inside_comment()) {
-					handle_commented_code(ch);
+					handle_commented_code();
 				} else {
-					handle_uncommented_code(ch);
+					handle_uncommented_code();
 				}
-				previous_char = ch;
+				previous_char = present_character;
 			}
 
 			token_vector.print();
@@ -35,82 +33,82 @@ namespace Atrium {
 			return (inside_single_line_comment || inside_multiline_comment);
 		}
 
-		void Lexer::handle_commented_code(char ch) {
-			if (inside_single_line_comment && ch == '\n') {
+		void Lexer::handle_commented_code() {
+			if (inside_single_line_comment && present_character == '\n') {
 				inside_single_line_comment = false;
 			}
-			if (
-				inside_multiline_comment
-					&& ch == '#'
+			if (inside_multiline_comment
+					&& present_character == '#'
 					&& previous_character_was_vertical_dash()
 				) {
-					present_token += ch;
 					inside_multiline_comment = false;
 			}
 		}
 
-		void Lexer::handle_uncommented_code(char ch) {
+		void Lexer::handle_uncommented_code() {
 			if (inside_string) {
-				present_token += ch;
-				if (ch == '"') {
-					token_vector.push_back(present_token);
-					present_token.clear();
+				present_token += present_character;
+				if (present_character == '"') {
 					inside_string = false;
+
+					push_back_and_clear_present_token();
 				}
 			} else if (inside_quoted_expression) {
-				if (ch == ')') {
-					token_vector.push_back(present_token);
-					present_token = std::string(1, ch);
-					token_vector.push_back(present_token);
-					present_token.clear();
+				if (present_character == ')') {
 					inside_quoted_expression = false;
+
 					paren_stack.handle_closed_paren(current_line_number);
+
+					push_back_current_token_and_tokenize_present_character();
+					push_back_and_clear_present_token();
 				}	else {
-					present_token += ch;
+					present_token += present_character;
 				}
 			}	else {
-				handle_uncommented_and_non_string_code(ch);
+				handle_uncommented_and_non_string_code();
 			}
 		}
 
-		void Lexer::handle_uncommented_and_non_string_code(char ch) {
-			switch(ch) {
+		void Lexer::handle_uncommented_and_non_string_code() {
+			switch(present_character) {
 				case '(':
-					token_vector.push_back(present_token);
-					present_token += ch;
-					token_vector.push_back(present_token);
-					present_token.clear();
 					paren_stack.handle_open_paren();
+
+					push_back_current_token_and_tokenize_present_character();
+					push_back_and_clear_present_token();
+
 					break;
 				case ')':
-					token_vector.push_back(present_token);
-					present_token += ch;
-					token_vector.push_back(present_token);
-					present_token.clear();
 					paren_stack.handle_closed_paren(this->current_line_number);
+
+					push_back_current_token_and_tokenize_present_character();
+					push_back_and_clear_present_token();
+
 					break;
 				case '\n':
 					increment_line_number();
-					token_vector.push_back(present_token);
-					present_token.clear();
-					increment_line_number();	
+
+					push_back_and_clear_present_token();
+
 					break;
 				case ' ':
-					token_vector.push_back(present_token);
-					present_token.clear();
+					push_back_and_clear_present_token();
+
 					break;
 				case '\t':
-					token_vector.push_back(present_token);
-					present_token.clear();
+					push_back_and_clear_present_token();
 					break;
 				case '#':
 					break;
 				case ';':
 					inside_single_line_comment = true;
+
 					break;
 				case '\'':
-					present_token += ch;
 					inside_quoted_expression = true;
+
+					present_token = std::string(1, present_character);
+
 					break;
 				case '|':
 					if (previous_character_was_hash()) {
@@ -118,13 +116,14 @@ namespace Atrium {
 					}
 					break;
 				case '"':
-					present_token += ch;
+					present_token = std::string(1, present_character);
+
 					if (!inside_comment()) {
 						inside_string = true;
 					}
 					break;
 				default:
-					present_token += ch;
+					present_token += present_character;
 			}
 		}
 
@@ -134,6 +133,16 @@ namespace Atrium {
 
 		bool Lexer::previous_character_was_vertical_dash() {
 			return (previous_char == '|');
+		}
+
+		void Lexer::push_back_current_token_and_tokenize_present_character() {
+			token_vector.push_back(present_token);
+			present_token = std::string(1, present_character);
+		}
+
+		void Lexer::push_back_and_clear_present_token() {
+			token_vector.push_back(present_token);
+			present_token.clear();
 		}
 	}
 }

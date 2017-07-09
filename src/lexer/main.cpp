@@ -17,7 +17,7 @@ int main () {
 	SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
 	print_welcome_message (spdlog_console);
 
-	IfStream source_file("../../config/prog1.sc");
+	IfStream source_file("../../config/fib.sc");
 	IfStream lang_spec_file("../../config/syntax.txt");
 	
 	auto lexer_input = Atrium::LexicalAnalysis::LexerInput(source_file, lang_spec_file);

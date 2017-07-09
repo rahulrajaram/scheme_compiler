@@ -18,8 +18,12 @@ namespace Atrium {
 			TokenVector token_vector;
 
 			int current_line_number {1};
+			char present_character;
 			char previous_char {-1};
 			std::string present_token {""};
+
+			void push_back_current_token_and_tokenize_present_character();
+			void push_back_and_clear_present_token();
 
 			int increment_line_number ();
 			void print_token_array();
@@ -42,9 +46,9 @@ namespace Atrium {
 			bool inside_comment();
 			bool previous_character_was_hash();
 			bool previous_character_was_vertical_dash();
-			void handle_commented_code(char ch);
-			void handle_uncommented_code(char ch);
-			void handle_uncommented_and_non_string_code(char ch);
+			void handle_commented_code();
+			void handle_uncommented_code();
+			void handle_uncommented_and_non_string_code();
 		};
 	}
 }
