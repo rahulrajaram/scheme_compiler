@@ -1,5 +1,6 @@
 #include <spdlog/spdlog.h>
 
+#include "lexer_input.h"
 #include "lexer.h"
 
 void print_welcome_message (SpdlogLogger spdlog_console) {
@@ -18,9 +19,9 @@ int main () {
 
 	IfStream source_file("../../config/prog1.sc");
 	IfStream lang_spec_file("../../config/syntax.txt");
-
-	auto lexer_input = Atrium::Lexer::LexerInput(source_file, lang_spec_file);
-	auto lexer = Atrium::Lexer::Lexer(lexer_input);
+	
+	auto lexer_input = Atrium::LexicalAnalysis::LexerInput(source_file, lang_spec_file);
+	auto lexer = Atrium::LexicalAnalysis::Lexer(lexer_input);
 
 	lexer.parse(spdlog_console);
 

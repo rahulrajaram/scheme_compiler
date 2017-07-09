@@ -6,13 +6,12 @@
 #include "../global_aliases.h"
 
 namespace Atrium {
-	namespace Lexer {
+	namespace LexicalAnalysis {
 
 		class LexerInput {
+		public:
 			IfStream& source_file;
 			IfStream& language_specification_file;
-
-		public:
 			LexerInput(
 				IfStream& source_file,
 				IfStream& lang_spec_file
