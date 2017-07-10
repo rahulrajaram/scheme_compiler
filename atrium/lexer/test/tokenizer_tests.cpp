@@ -7,15 +7,8 @@
 Atrium::TestCase test_case;
 
 void test_assertion_violation_scm__expected_and_actual_equal() {
-	std::vector <std::string> expected {
-		"(", "define", "reciprocal", "(", "lambda", 
-		"(", "n", ")", "(", "if", "(", "and", "(",
-		"number?", "n", ")", "(", "not", "(", "=",
-		"n", "0", ")", ")", ")", "(", "/", "1",
-		"n", ")", "(", "assertion-violation", "'",
-		"reciprocal", "\"improper argument\"", "n",
-		")", ")", ")"
-	};
+	std::vector <std::string> expected =
+ 		test_case.load_expected_token_vector("../../../config/assertion-violation.tok");
 
 	IfStream source_file("../../../config/assertion-violation.scm");
 
@@ -32,15 +25,8 @@ void test_assertion_violation_scm__expected_and_actual_equal() {
 }
 
 void test_assertion_violation_scm__expected_and_actual_are_not_equal() {
-	std::vector <std::string> expected {
-		"(", "define", "reciprocal", "(", "lambda", 
-		"(", "n", ")", "(", "if", "(", "and", "(",
-		"number?", "n", ")", "(", "not", "(", "=",
-		"n", "0", ")", ")", ")", "(", "/", "1",
-		"n", ")", "(", "assertion-violation", "'",
-		"reciprocal", "\"improper argument\"", "n",
-		")", ")", ")"
-	};
+	std::vector <std::string> expected =
+ 		test_case.load_expected_token_vector("../../../config/assertion-violation.tok");
 
 	std::vector <std::string> actual {"(", "define", "yolo"};
 

@@ -25,6 +25,7 @@ namespace Atrium {
 		std::string test_name;
 
 		// test run-related methods
+		std::vector<std::string> load_expected_token_vector (const char*);
 		inline void print_colorized_error_message (const std::string&);
 		inline void print_colorized_success_message ();
 		void run (void (*test_method)());

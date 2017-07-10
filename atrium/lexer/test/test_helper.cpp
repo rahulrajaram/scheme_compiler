@@ -26,6 +26,18 @@ namespace Atrium {
 		test_failed = false;
 	}
 
+	std::vector<std::string> TestCase::load_expected_token_vector (const char* tokens_file_path) {
+		std::ifstream tokens_file(tokens_file_path);
+		std::vector<std::string> token_vector;
+		std::string token;
+
+		while (getline(tokens_file, token)) {
+			token_vector.push_back(token);	
+		}
+
+		return token_vector;
+	}
+
 	void TestCase::assert_vectors_equal(
 		const std::vector<std::string>& expected_vector,
 		const std::vector<std::string>& actual_vector
