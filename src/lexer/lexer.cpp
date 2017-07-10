@@ -53,17 +53,6 @@ namespace Atrium {
 
 					push_back_and_clear_present_token();
 				}
-			} else if (inside_quoted_expression) {
-				if (present_character == ')') {
-					inside_quoted_expression = false;
-
-					paren_stack.handle_closed_paren(current_line_number);
-
-					push_back_current_token_and_tokenize_present_character();
-					push_back_and_clear_present_token();
-				}	else {
-					present_token += present_character;
-				}
 			}	else {
 				handle_uncommented_and_non_string_code();
 			}
@@ -99,19 +88,22 @@ namespace Atrium {
 					push_back_and_clear_present_token();
 					break;
 				case '#':
+					present_token = std::string(1, present_character);
+
 					break;
 				case ';':
 					inside_single_line_comment = true;
 
 					break;
 				case '\'':
-					inside_quoted_expression = true;
-
 					present_token = std::string(1, present_character);
+					push_back_and_clear_present_token();
 
 					break;
 				case '|':
 					if (previous_character_was_hash()) {
+						present_token.clear();
+
 						inside_multiline_comment = true;
 					}
 					break;
