@@ -44,7 +44,7 @@ namespace Atrium {
 	}
 
 	SourceFile::SourceFile(const std::string&	source_file_name) {
-		std::ifstream source_file("../../config/" + source_file_name);
+		std::ifstream source_file("../../../config/" + source_file_name);
 		Atrium::TestCase test_case;
 
 		try {

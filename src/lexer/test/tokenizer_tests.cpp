@@ -1,7 +1,7 @@
 #include <spdlog/spdlog.h>
 
-#include "../../src/lexer/lexer_input.h"
-#include "../../src/lexer/lexer.h"
+#include "../lexer_input.h"
+#include "../lexer.h"
 #include "test_helper.h"
 
 Atrium::TestCase test_case;
@@ -30,7 +30,7 @@ void test_assertion_violation_scm__expected_and_actual_equal() {
 		")", ")", ")"
 	};
 
-	IfStream source_file1("../../config/assertion-violation.scm");
+	IfStream source_file1("../../../config/assertion-violation.scm");
 	IfStream lang_spec_file("");
 	
 	auto lexer_input = Atrium::LexicalAnalysis::LexerInput(

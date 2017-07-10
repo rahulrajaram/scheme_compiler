@@ -1,5 +1,5 @@
 OBJS = bin/test_helper.o bin/tokenizer_tests.o
-SRC_REL_PATH = ../../src/lexer
+SRC_REL_PATH = ..
 SOBJS = bin/lexer.o bin/lexer_input.o bin/token_vector.o bin/paren_stack.o
 CC = g++
 DEBUG = -g
