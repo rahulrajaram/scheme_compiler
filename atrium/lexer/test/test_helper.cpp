@@ -19,6 +19,11 @@ namespace Atrium {
 		Atrium::SourceFile source_file1(source_file);
 
 		test_method();
+
+		if (!test_failed) {
+			print_colorized_success_message();
+		}
+		test_failed = false;
 	}
 
 	void TestCase::assert_vectors_equal(
@@ -35,7 +40,8 @@ namespace Atrium {
 		}	catch (const VectorsNotOfEqualSizeException& e) {
 				TestCase::print_colorized_error_message(e.what());
 				TestCase::print_vector_difference(expected_vector, actual_vector);
-
+	
+				test_failed = true;
 				return;
 		}
 			
@@ -53,6 +59,7 @@ namespace Atrium {
 				TestCase::print_colorized_error_message(e.what());
 				TestCase::print_vector_difference(expected_vector, actual_vector);
 
+				test_failed = true;
 				return;
 			}
 		}
@@ -106,9 +113,23 @@ namespace Atrium {
 	}
 
 	inline void TestCase::print_colorized_error_message (const std::string& error_message) {
-		std::cout <<		
-			"\033[1;31m"
-				+ error_message
-				+ "\033[0m\n";
+		std::cout << "\033[1;31m" + error_message + "\033[0m\n";
 	}
+
+	inline void TestCase::print_colorized_success_message () {
+		std::cout << "\033[1;32mSUCCESS !\033[0m\n";
+	}
+	
+	/*inline std::string color_code(const char color) {*/
+		//switch(color) {
+			//'b' : return "30";
+			//'r' : return "31";
+			//'g' : return "32";
+			//'b' : return "33";
+			//'b' : return "34";
+			//'m' : return "35";
+			//'c' : return "36";
+			//'l' : return "37";
+		//}
+	/*}*/
 }

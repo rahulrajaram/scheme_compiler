@@ -19,12 +19,14 @@ namespace Atrium {
 		);
 		void print_test_details ();
 	public:
+		bool test_failed {0};
 		int test_number {1};
 		std::string source_file;
 		std::string test_name;
 
 		// test run-related methods
 		inline void print_colorized_error_message (const std::string&);
+		inline void print_colorized_success_message ();
 		void run (void (*test_method)());
 
 		// assertion methods
