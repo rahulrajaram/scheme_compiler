@@ -17,19 +17,11 @@ void test_assertion_violation_scm__expected_and_actual_equal() {
 		")", ")", ")"
 	};
 
-	IfStream source_file1("../../../config/assertion-violation.scm");
-	IfStream lang_spec_file("");
-	
-	auto lexer_input = Atrium::LexicalAnalysis::LexerInput(
-		source_file1,
-		lang_spec_file
-	);
+	IfStream source_file("../../../config/assertion-violation.scm");
 
 	SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
 
-	auto lexer = Atrium::LexicalAnalysis::Lexer(
-		lexer_input
-	);
+	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
 
 	auto actual_token_vector = lexer.parse(spdlog_console);
 

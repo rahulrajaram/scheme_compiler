@@ -11,7 +11,7 @@ namespace Atrium {
 		) {
 			spdlog_console->info("... Begin parsing");
 
-			while ((present_character = lexer_input.source_file.get()) != EOF) {
+			while ((present_character = source_file.get()) != EOF) {
 				if (inside_comment()) {
 					handle_commented_code();
 				} else {

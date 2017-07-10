@@ -9,7 +9,6 @@
 #include "../global_aliases.h"
 #include "paren_stack.h"
 #include "token_vector.h"
-#include "lexer_input.h"
 
 namespace Atrium {
 	namespace LexicalAnalysis {
@@ -30,17 +29,14 @@ namespace Atrium {
 		public:
 			// member variables
 			SpdlogLogger console;
-
-			LexerInput& lexer_input;
+			IfStream& source_file;
 
 			bool inside_string {false};
 			bool inside_quoted_expression {false};
 			bool inside_single_line_comment {false};
 			bool inside_multiline_comment {false};
 
-			// member methods
-			Lexer(LexerInput& lexer_input) : lexer_input { lexer_input } {}
-
+			Lexer(IfStream& source_file) : source_file { source_file } {}
 			TokenVector parse (SpdlogLogger);
 
 			bool inside_comment();
