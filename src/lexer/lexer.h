@@ -41,7 +41,7 @@ namespace Atrium {
 			// member methods
 			Lexer(LexerInput& lexer_input) : lexer_input { lexer_input } {}
 
-			void parse (SpdlogLogger);
+			TokenVector parse (SpdlogLogger);
 
 			bool inside_comment();
 			bool previous_character_was_hash();
