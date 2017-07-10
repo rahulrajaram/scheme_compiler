@@ -5,21 +5,8 @@
 #include "test_helper.h"
 
 Atrium::TestCase test_case;
-int test_number = 1;
-
-void print_test_details (const std::string& test_name) {
-	std::cout << "\n\n";
-	std::cout << "*******************************************************************\n";
-	std::cout << "Test " << std::to_string(test_number ++) <<":: ";
-	std::cout << test_name + "\n";
-	std::cout << "*******************************************************************\n";
-}
 
 void test_assertion_violation_scm__expected_and_actual_equal() {
-	print_test_details("test_assertion_violation_scm__expected_and_actual_are_equal");
-
-	Atrium::SourceFile source_file("assertion-violation.scm");
-
 	std::vector <std::string> expected {
 		"(", "define", "reciprocal", "(", "lambda", 
 		"(", "n", ")", "(", "if", "(", "and", "(",
@@ -53,10 +40,6 @@ void test_assertion_violation_scm__expected_and_actual_equal() {
 }
 
 void test_assertion_violation_scm__expected_and_actual_are_not_equal() {
-	print_test_details("test_assertion_violation_scm__expected_and_actual_are_not_equal");
-
-	Atrium::SourceFile source_file1("assertion-violation.scm");
-
 	std::vector <std::string> expected {
 		"(", "define", "reciprocal", "(", "lambda", 
 		"(", "n", ")", "(", "if", "(", "and", "(",
@@ -75,8 +58,13 @@ void test_assertion_violation_scm__expected_and_actual_are_not_equal() {
 int main () {
 	test_case = Atrium::TestCase();
 
-	test_assertion_violation_scm__expected_and_actual_are_not_equal();
-	test_assertion_violation_scm__expected_and_actual_equal();
+	test_case.test_name = "test_assertion_violation_scm__expected_and_actual_are_equal";
+	test_case.source_file = "assertion-violation.scm";
+	test_case.run(test_assertion_violation_scm__expected_and_actual_are_not_equal);
+
+	test_case.test_name = "test_assertion_violation_scm__expected_and_actual_equal";
+	test_case.source_file = "assertion-violation.scm";
+	test_case.run(test_assertion_violation_scm__expected_and_actual_equal);
 
 	return 0;
 }

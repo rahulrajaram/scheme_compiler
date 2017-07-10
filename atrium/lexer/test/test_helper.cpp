@@ -6,6 +6,21 @@
 #include "test_helper.h"
 
 namespace Atrium {
+	void TestCase::print_test_details () {
+		std::cout << "\n\n";
+		std::cout << "*******************************************************************\n";
+		std::cout << "Test " << std::to_string(test_number ++) <<":: ";
+		std::cout << test_name + "\n";
+		std::cout << "*******************************************************************\n";
+	}
+
+	void TestCase::run (void (*test_method)()) {
+		print_test_details();
+		Atrium::SourceFile source_file1(source_file);
+
+		test_method();
+	}
+
 	void TestCase::assert_vectors_equal(
 		const std::vector<std::string>& expected_vector,
 		const std::vector<std::string>& actual_vector
