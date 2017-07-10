@@ -13,12 +13,12 @@ void print_welcome_message (SpdlogLogger spdlog_console) {
 	spdlog_console->info("");
 }
 
-int main () {
+int main (int argc, char* argv[]) {
 	SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
 	print_welcome_message (spdlog_console);
 
-	IfStream source_file("../../config/assertion-violation.sc");
-	IfStream lang_spec_file("../../config/syntax.txt");
+	IfStream source_file(argv[1]);
+	IfStream lang_spec_file(argv[2]);
 	
 	if (!source_file.is_open()) {
 		std::cout << "File not present!\n";
