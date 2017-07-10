@@ -8,9 +8,8 @@ namespace Atrium {
 	namespace LexicalAnalysis {
 		
 		class TokenVector {
-			std::vector<std::string> token_vector;	
-
 			public:
+			std::vector<std::string> token_vector;
 			void push_back(const std::string& token);
 			void print();
 		};

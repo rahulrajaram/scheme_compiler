@@ -44,7 +44,7 @@ namespace Atrium {
 	}
 
 	SourceFile::SourceFile(const std::string&	source_file_name) {
-		std::ifstream source_file(source_file_name);
+		std::ifstream source_file("../../config/" + source_file_name);
 		Atrium::TestCase test_case;
 
 		try {
@@ -53,6 +53,8 @@ namespace Atrium {
 			}
 		} catch (const SourceFileNotFoundException& e) {
 			test_case.print_colorized_error_message(e.what());
+
+			return;
 		}
 	}
 
