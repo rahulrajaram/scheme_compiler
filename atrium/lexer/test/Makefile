@@ -1,6 +1,6 @@
 OBJS = bin/test_helper.o bin/tokenizer_tests.o
 SRC_REL_PATH = ..
-SOBJS = bin/lexer.o bin/token_vector.o bin/paren_stack.o
+SOBJS = bin/lexer.o bin/token_vector.o bin/bracket_stack.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
@@ -20,8 +20,8 @@ bin/tokenizer_tests.o: $(SRC_REL_PATH)/../global_aliases.h test_helper.h tokeniz
 bin/lexer.o: $(SRC_REL_PATH)/../global_aliases.h $(SRC_REL_PATH)/lexer.h $(SRC_REL_PATH)/lexer.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/lexer.cpp -o bin/lexer.o
 
-bin/paren_stack.o: $(SRC_REL_PATH)/paren_stack.h $(SRC_REL_PATH)/paren_stack.cpp
-	$(CC) $(CFLAGS) $(SRC_REL_PATH)/paren_stack.cpp -o bin/paren_stack.o
+bin/bracket_stack.o: $(SRC_REL_PATH)/bracket_stack.h $(SRC_REL_PATH)/bracket_stack.cpp
+	$(CC) $(CFLAGS) $(SRC_REL_PATH)/bracket_stack.cpp -o bin/bracket_stack.o
 
 bin/token_vector.o: $(SRC_REL_PATH)/token_vector.h $(SRC_REL_PATH)/token_vector.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/token_vector.cpp -o bin/token_vector.o

@@ -7,13 +7,14 @@
 #include <spdlog/spdlog.h>
 
 #include "../global_aliases.h"
-#include "paren_stack.h"
+#include "bracket_stack.h"
 #include "token_vector.h"
 
 namespace Atrium {
 	namespace LexicalAnalysis {
 		class Lexer {
-			ParenStack paren_stack;
+
+			BracketStack bracket_stack;
 			TokenVector token_vector;
 
 			int current_line_number {1};

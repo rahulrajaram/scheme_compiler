@@ -65,19 +65,34 @@ namespace Atrium {
 		void Lexer::handle_uncommented_and_non_string_code() {
 			switch(present_character) {
 				case '(':
-					paren_stack.handle_open_paren();
+					bracket_stack.handle_open_bracket(present_character);
 
 					push_back_current_token_and_tokenize_present_character();
 					push_back_and_clear_present_token();
 
 					break;
 				case ')':
-					paren_stack.handle_closed_paren(this->current_line_number);
+					bracket_stack.handle_closed_bracket(present_character, this->current_line_number);
 
 					push_back_current_token_and_tokenize_present_character();
 					push_back_and_clear_present_token();
 
 					break;
+				case '[':
+					bracket_stack.handle_open_bracket(present_character);
+
+					push_back_current_token_and_tokenize_present_character();
+					push_back_and_clear_present_token();
+
+					break;
+				case ']':
+					bracket_stack.handle_closed_bracket(present_character, this->current_line_number);
+
+					push_back_current_token_and_tokenize_present_character();
+					push_back_and_clear_present_token();
+
+					break;
+
 				case '\n':
 					increment_line_number();
 
