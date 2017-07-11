@@ -29,6 +29,8 @@ namespace Atrium {
 		public:
 			// member variables
 			SpdlogLogger console;
+			bool suppress_output {true};
+
 			IfStream& source_file;
 
 			bool inside_string {false};

@@ -20,7 +20,9 @@ namespace Atrium {
 				previous_char = present_character;
 			}
 
-			token_vector.print();
+			if (!suppress_output) {
+				token_vector.print();
+			}
 
 			return token_vector;
 		}
