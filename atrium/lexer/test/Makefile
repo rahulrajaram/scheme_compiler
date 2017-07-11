@@ -14,7 +14,7 @@ bin/test_all: $(OBJS) $(SOBJS)
 bin/test_helper.o: test_case_exceptions.h test_helper.h test_helper.cpp
 	$(CC) $(CFLAGS) test_helper.cpp -o bin/test_helper.o
 
-bin/tokenizer_tests.o: test_helper.h tokenizer_tests.cpp
+bin/tokenizer_tests.o: $(SRC_REL_PATH)/../global_aliases.h test_helper.h tokenizer_tests.cpp
 	$(CC) $(CFLAGS) tokenizer_tests.cpp -o bin/tokenizer_tests.o
 
 bin/lexer.o: $(SRC_REL_PATH)/../global_aliases.h $(SRC_REL_PATH)/lexer.h $(SRC_REL_PATH)/lexer.cpp
