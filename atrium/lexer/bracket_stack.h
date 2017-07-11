@@ -5,6 +5,20 @@
 
 namespace Atrium {
 	namespace LexicalAnalysis {
+		class UnbalancedBracketsException : public std::exception {
+			std::string exception_message;
+		public:
+
+			UnbalancedBracketsException(int line_number) { 
+				exception_message =
+					"UnbalancedBracketsException:: Irrevocable Papentheses imbalance at line "
+						 + std::to_string(line_number);
+				}
+
+			virtual const char* what() const throw() {
+				return exception_message.c_str();
+			}
+		};
 
 		class BracketStack {
 			std::stack <char> bracket_stack;
