@@ -25,6 +25,7 @@ int main (int argc, char* argv[]) {
 	}
 
 	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
+	lexer.suppress_output = false;
 
 	Atrium::LexicalAnalysis::TokenVector token_vector = lexer.parse(spdlog_console);
 
