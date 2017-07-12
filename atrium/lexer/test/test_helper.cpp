@@ -2,6 +2,8 @@
 #include <iomanip>
 #include <vector>
 
+#include "../token_vector.h"
+
 #include "test_case_exceptions.h"
 #include "test_helper.h"
 
@@ -9,14 +11,17 @@ namespace Atrium {
 	void TestCase::print_test_details () {
 		std::cout << "\n\n";
 		std::cout << "*******************************************************************\n";
+		std::cout << "\033[1;34m";
 		std::cout << "Test " << std::to_string(test_number ++) <<":: ";
+		std::cout << "\033[0m\n";
+
 		std::cout << test_name + "\n";
 		std::cout << "*******************************************************************\n";
 	}
 
 	void TestCase::run (void (*test_method)()) {
 		print_test_details();
-		Atrium::SourceFile source_file1(source_file);
+		Atrium::SourceFile source_file1("../../../config/" + source_file + ".scm");
 
 		test_method();
 
@@ -26,9 +31,11 @@ namespace Atrium {
 		test_failed = false;
 	}
 
-	std::vector<std::string> TestCase::load_expected_token_vector (const char* tokens_file_path) {
+const Atrium::LexicalAnalysis::TokenVector TestCase::load_expected_token_vector (
+		const std::string& tokens_file_path
+		) {
 		std::ifstream tokens_file(tokens_file_path);
-		std::vector<std::string> token_vector;
+		Atrium::LexicalAnalysis::TokenVector token_vector;
 		std::string token;
 
 		while (getline(tokens_file, token)) {
@@ -39,9 +46,11 @@ namespace Atrium {
 	}
 
 	void TestCase::assert_vectors_equal(
-		const std::vector<std::string>& expected_vector,
-		const std::vector<std::string>& actual_vector
+		const Atrium::LexicalAnalysis::TokenVector& expected_token_vector,
+		const Atrium::LexicalAnalysis::TokenVector& actual_token_vector
 	) {
+		const std::vector <std::string> expected_vector = expected_token_vector.token_vector;
+		const std::vector <std::string> actual_vector = actual_token_vector.token_vector;
 		try {
 			if (expected_vector.size() != actual_vector.size()) {
 				throw VectorsNotOfEqualSizeException(
@@ -57,7 +66,7 @@ namespace Atrium {
 				return;
 		}
 			
-		for (int i = 0; i < expected_vector.size(); i ++) {
+		for (std::size_t i = 0; i < expected_vector.size(); i ++) {
 			try {
 				if (expected_vector.size() != actual_vector.size()) {
 					throw VectorsNotOfEqualSizeException(
@@ -78,7 +87,7 @@ namespace Atrium {
 	}
 
 	SourceFile::SourceFile(const std::string&	source_file_name) {
-		std::ifstream source_file("../../../config/" + source_file_name);
+		std::ifstream source_file(source_file_name);
 		Atrium::TestCase test_case;
 
 		try {
@@ -106,7 +115,7 @@ namespace Atrium {
 		std::cout << "----------------------------------";
 		std::cout << "----------------------------------\n";
 		for (
-			int i = 0, j = 0;
+			std::size_t i = 0, j = 0;
 			i < expected_vector.size(), j < actual_vector.size();
 			i ++, j ++
 		) {
