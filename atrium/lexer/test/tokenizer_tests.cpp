@@ -50,6 +50,22 @@ void test_prog1_scm() {
 	test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
 }
 
+void test_unbalanced_brackets_scm() {
+	try {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+	} catch (const Atrium::LexicalAnalysis::UnbalancedBracketsException& e) {
+		std::cout << e.what() << "\n";
+	}
+}
+
+void test_unbalanced_brackets_1_scm() {
+	try {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+	} catch (const Atrium::LexicalAnalysis::UnbalancedBracketsException& e) {
+		std::cout << e.what() << "\n";
+	}
+}
+
 int main () {
 	test_case = Atrium::TestCase();
 
@@ -76,6 +92,15 @@ int main () {
 	test_case.test_name = "test_identifier_name_with_question_mark_scm";
 	test_case.source_file = "identifier_name_with_question_mark";
 	test_case.run(test_identifier_name_with_question_mark_scm);
+
+	test_case.test_name = "test_unbalanced_brackets_scm";
+	test_case.source_file = "unbalanced_brackets";
+	test_case.run(test_unbalanced_brackets_scm);
+
+	test_case.test_name = "test_unbalanced_brackets_1_scm";
+	test_case.source_file = "unbalanced_brackets_1";
+	test_case.run(test_unbalanced_brackets_1_scm);
+
 
 	return 0;
 }

@@ -12,9 +12,9 @@ namespace Atrium {
 		}
 
 		void BracketStack::handle_closed_bracket(const char bracket, int line_number) {
-			if ((bracket_stack.top()	== '(') && (bracket == ')')) {
+			if (bracket_stack.size() && (bracket_stack.top()	== '(') && (bracket == ')')) {
 				bracket_stack.pop();
-			} else if ((bracket_stack.top()	== '[') && (bracket == ']')) {
+			} else if (bracket_stack.size() && (bracket_stack.top()	== '[') && (bracket == ']')) {
 				bracket_stack.pop();
 			} else {
 				throw UnbalancedBracketsException(line_number);
