@@ -1,16 +1,11 @@
-OBJS = bin/lexer.o bin/token_vector.o bin/bracket_stack.o bin/main.o
+OBJS = bin/lexer.o bin/token_vector.o bin/bracket_stack.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/main
-
-bin/main: $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o bin/main
-
-bin/main.o: main.cpp
-	$(CC) $(CFLAGS) main.cpp -o bin/main.o
+bin/lexer: $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o bin/lexer
 
 bin/lexer.o: ../global_aliases.h lexer.h lexer.cpp
 	$(CC) $(CFLAGS) lexer.cpp -o bin/lexer.o

@@ -2,8 +2,8 @@
 
 #include <spdlog/spdlog.h>
 
-#include "bracket_stack.h"
-#include "lexer.h"
+#include "lexer/bracket_stack.h"
+#include "lexer/lexer.h"
 
 void print_welcome_message (SpdlogLogger spdlog_console) {
 	spdlog_console->info("**************************************");
