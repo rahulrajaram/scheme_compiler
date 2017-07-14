@@ -66,6 +66,14 @@ void test_unbalanced_brackets_1_scm() {
 	}
 }
 
+void test_letrec_scm() {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+}
+
+void test_call_cc_scm() {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+}
+
 int main () {
 	test_case = Atrium::TestCase();
 
@@ -101,6 +109,13 @@ int main () {
 	test_case.source_file = "unbalanced_brackets_1";
 	test_case.run(test_unbalanced_brackets_1_scm);
 
+	test_case.test_name = "test_letrec_scm";
+	test_case.source_file = "letrec";
+	test_case.run(test_letrec_scm);
+
+	test_case.test_name = "test_call_cc_scm";
+	test_case.source_file = "call_cc";
+	test_case.run(test_call_cc_scm);
 
 	return 0;
 }
