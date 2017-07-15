@@ -6,7 +6,7 @@
 
 namespace Atrium {
 	namespace LexicalAnalysis {
-		TokenVector Lexer::parse(
+		TokenVector Lexer::tokenize(
 			SpdlogLogger spdlog_console
 		) {
 			spdlog_console->info("... Begin parsing");

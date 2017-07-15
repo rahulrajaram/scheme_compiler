@@ -40,7 +40,7 @@ namespace Atrium {
 			bool inside_multiline_comment {false};
 
 			Lexer(IfStream& source_file) : source_file { source_file } {}
-			TokenVector parse (SpdlogLogger);
+			TokenVector tokenize (SpdlogLogger);
 
 			bool inside_comment();
 			bool previous_character_was_hash();

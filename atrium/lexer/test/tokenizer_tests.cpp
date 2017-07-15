@@ -17,7 +17,7 @@ Atrium::LexicalAnalysis::TokenVector actual_token_vector() {
 
 	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
 
-	return lexer.parse(spdlog_console);
+	return lexer.tokenize(spdlog_console);
 }
 
 Atrium::LexicalAnalysis::TokenVector expected_token_vector() {

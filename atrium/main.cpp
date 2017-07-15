@@ -31,7 +31,7 @@ int main (int argc, char* argv[]) {
 	lexer.suppress_output = false;
 
 	try {
-		Atrium::LexicalAnalysis::TokenVector token_vector = lexer.parse(spdlog_console);
+		Atrium::LexicalAnalysis::TokenVector token_vector = lexer.tokenize(spdlog_console);
 	} catch (Atrium::LexicalAnalysis::UnbalancedBracketsException e) {
 		std::cout << e.what() << "\n";
 	}
