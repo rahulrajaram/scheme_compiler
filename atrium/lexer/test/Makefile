@@ -1,4 +1,4 @@
-OBJS = bin/test_helper.o bin/tokenizer_tests.o
+OBJS = bin/test_helper.o bin/test_lexer.o
 SRC_REL_PATH = ..
 SOBJS = bin/lexer.o bin/token_vector.o bin/bracket_stack.o
 CC = g++
@@ -14,8 +14,8 @@ bin/test_all: $(OBJS) $(SOBJS)
 bin/test_helper.o: test_case_exceptions.h test_helper.h test_helper.cpp
 	$(CC) $(CFLAGS) test_helper.cpp -o bin/test_helper.o
 
-bin/tokenizer_tests.o: $(SRC_REL_PATH)/../global_aliases.h test_helper.h tokenizer_tests.cpp
-	$(CC) $(CFLAGS) tokenizer_tests.cpp -o bin/tokenizer_tests.o
+bin/test_lexer.o: $(SRC_REL_PATH)/../global_aliases.h test_helper.h test_lexer.cpp
+	$(CC) $(CFLAGS) test_lexer.cpp -o bin/test_lexer.o
 
 bin/lexer.o: $(SRC_REL_PATH)/../global_aliases.h $(SRC_REL_PATH)/lexer.h $(SRC_REL_PATH)/lexer.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/lexer.cpp -o bin/lexer.o
