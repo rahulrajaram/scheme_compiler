@@ -9,7 +9,7 @@ namespace Atrium {
 		TokenVector Lexer::tokenize(
 			SpdlogLogger spdlog_console
 		) {
-			spdlog_console->info("... Begin parsing");
+			spdlog_console->info("Begin tokenizing ...");
 
 			while ((present_character = source_file.get()) != EOF) {
 				if (inside_comment()) {
