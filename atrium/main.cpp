@@ -4,6 +4,7 @@
 
 #include "lexer/bracket_stack.h"
 #include "lexer/lexer.h"
+#include "parser/parser.h"
 
 void print_welcome_message (SpdlogLogger spdlog_console) {
 	spdlog_console->info("**************************************");
@@ -30,11 +31,16 @@ int main (int argc, char* argv[]) {
 	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
 	lexer.suppress_output = false;
 
+	Atrium::LexicalAnalysis::TokenVector token_vector;
+
 	try {
-		Atrium::LexicalAnalysis::TokenVector token_vector = lexer.tokenize(spdlog_console);
+		token_vector = lexer.tokenize(spdlog_console);
 	} catch (Atrium::LexicalAnalysis::UnbalancedBracketsException e) {
 		std::cout << e.what() << "\n";
 	}
+
+	Atrium::Parsing::Parser parser(std::move(token_vector), spdlog_console);
+	parser.parse();
 
 	return 0;
 }
