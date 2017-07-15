@@ -28,13 +28,13 @@ int main (int argc, char* argv[]) {
 		std::exit(1);
 	}
 
-	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
+	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file, spdlog_console);
 	lexer.suppress_output = false;
 
 	Atrium::LexicalAnalysis::TokenVector token_vector;
 
 	try {
-		token_vector = lexer.tokenize(spdlog_console);
+		token_vector = lexer.tokenize();
 	} catch (Atrium::LexicalAnalysis::UnbalancedBracketsException e) {
 		std::cout << e.what() << "\n";
 

@@ -29,18 +29,25 @@ namespace Atrium {
 			void print_token_array();
 		public:
 			// member variables
-			SpdlogLogger console;
+			IfStream& source_file;
+			SpdlogLogger& spdlog_console;
 			bool suppress_output {true};
 
-			IfStream& source_file;
 
 			bool inside_string {false};
 			bool inside_quoted_expression {false};
 			bool inside_single_line_comment {false};
 			bool inside_multiline_comment {false};
 
-			Lexer(IfStream& source_file) : source_file { source_file } {}
-			TokenVector tokenize (SpdlogLogger);
+			Lexer(
+				IfStream& source_file,
+				SpdlogLogger spdlog_console
+			) :
+				source_file { source_file },
+		 		spdlog_console { spdlog_console }
+				{}
+
+			TokenVector tokenize ();
 
 			bool inside_comment();
 			bool previous_character_was_hash();
