@@ -11,6 +11,8 @@ namespace Atrium {
 		class Parser {
 			Atrium::LexicalAnalysis::TokenVector token_vector;
 			SpdlogLogger spdlog_console;
+
+			std::ssize_t token_vector_index {0};
 		public:
 			Parser(
 				const Atrium::LexicalAnalysis::TokenVector&& token_vector,
