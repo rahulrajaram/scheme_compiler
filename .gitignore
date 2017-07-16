@@ -2,3 +2,5 @@ tags
 bin
 *.swp
 *.o
+production_examples
+generators
