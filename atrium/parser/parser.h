@@ -1,6 +1,9 @@
 #ifndef ATRIUM_PARSER_H
 #define ATRIUM_PARSER_H
 
+#include <iostream>
+#include <cstddef>
+
 #include <spdlog/spdlog.h>
 
 #include "../global_aliases.h"
@@ -12,7 +15,7 @@ namespace Atrium {
 			Atrium::LexicalAnalysis::TokenVector token_vector;
 			SpdlogLogger spdlog_console;
 
-			std::ssize_t token_vector_index {0};
+			std::size_t token_vector_index {0};
 		public:
 			Parser(
 				const Atrium::LexicalAnalysis::TokenVector&& token_vector,

@@ -13,15 +13,15 @@ SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
 using SVector = std::vector <std::string>;
 
 Atrium::LexicalAnalysis::TokenVector actual_token_vector() {
-	IfStream source_file("../../../config/" + test_case.source_file + ".scm");
+	IfStream source_file("../../../config/sample_applications" + test_case.source_file + ".scm");
 
-	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
+	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file, spdlog_console);
 
-	return lexer.tokenize(spdlog_console);
+	return lexer.tokenize();
 }
 
 Atrium::LexicalAnalysis::TokenVector expected_token_vector() {
-	const std::string& test_source_path = "../../../config/" + test_case.source_file + ".tok";
+	const std::string& test_source_path = "../../../config/sample_applications" + test_case.source_file + ".tok";
 
  	return test_case.load_expected_token_vector(test_source_path);
 }
@@ -74,6 +74,10 @@ void test_call_cc_scm() {
 		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
 }
 
+void test_vector_scm() {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+}
+
 int main () {
 	test_case = Atrium::TestCase();
 
@@ -116,6 +120,10 @@ int main () {
 	test_case.test_name = "test_call_cc_scm";
 	test_case.source_file = "call_cc";
 	test_case.run(test_call_cc_scm);
+
+	test_case.test_name = "test_vector_scm";
+	test_case.source_file = "vector";
+	test_case.run(test_vector_scm);
 
 	return 0;
 }

@@ -21,7 +21,7 @@ namespace Atrium {
 
 	void TestCase::run (void (*test_method)()) {
 		print_test_details();
-		Atrium::SourceFile source_file1("../../../config/" + source_file + ".scm");
+		Atrium::SourceFile source_file1("../../../config/sample_applications/" + source_file + ".scm");
 
 		test_method();
 
