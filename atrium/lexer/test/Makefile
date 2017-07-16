@@ -1,5 +1,6 @@
 OBJS = bin/test_helper.o bin/test_lexer.o
-SRC_REL_PATH = ..
+LEXER_SRC_REL_PATH = ..
+TOKENS_SRC_REL_PATH = ../../tokens
 SOBJS = bin/lexer.o bin/token_vector.o bin/bracket_stack.o
 CC = g++
 DEBUG = -g
@@ -14,17 +15,17 @@ bin/test_all: $(OBJS) $(SOBJS)
 bin/test_helper.o: test_case_exceptions.h test_helper.h test_helper.cpp
 	$(CC) $(CFLAGS) test_helper.cpp -o bin/test_helper.o
 
-bin/test_lexer.o: $(SRC_REL_PATH)/../global_aliases.h test_helper.h test_lexer.cpp
+bin/test_lexer.o: $(LEXER_SRC_REL_PATH)/../global_aliases.h test_helper.h test_lexer.cpp
 	$(CC) $(CFLAGS) test_lexer.cpp -o bin/test_lexer.o
 
-bin/lexer.o: $(SRC_REL_PATH)/../global_aliases.h $(SRC_REL_PATH)/lexer.h $(SRC_REL_PATH)/lexer.cpp
-	$(CC) $(CFLAGS) $(SRC_REL_PATH)/lexer.cpp -o bin/lexer.o
+bin/lexer.o: $(LEXER_SRC_REL_PATH)/../global_aliases.h $(LEXER_SRC_REL_PATH)/lexer.h $(LEXER_SRC_REL_PATH)/lexer.cpp
+	$(CC) $(CFLAGS) $(LEXER_SRC_REL_PATH)/lexer.cpp -o bin/lexer.o
 
-bin/bracket_stack.o: $(SRC_REL_PATH)/bracket_stack.h $(SRC_REL_PATH)/bracket_stack.cpp
-	$(CC) $(CFLAGS) $(SRC_REL_PATH)/bracket_stack.cpp -o bin/bracket_stack.o
+bin/bracket_stack.o: $(LEXER_SRC_REL_PATH)/bracket_stack.h $(LEXER_SRC_REL_PATH)/bracket_stack.cpp
+	$(CC) $(CFLAGS) $(LEXER_SRC_REL_PATH)/bracket_stack.cpp -o bin/bracket_stack.o
 
-bin/token_vector.o: $(SRC_REL_PATH)/token_vector.h $(SRC_REL_PATH)/token_vector.cpp
-	$(CC) $(CFLAGS) $(SRC_REL_PATH)/token_vector.cpp -o bin/token_vector.o
+bin/token_vector.o: $(TOKENS_SRC_REL_PATH)/token_vector.h $(TOKENS_SRC_REL_PATH)/token_vector.cpp
+	$(CC) $(CFLAGS) $(TOKENS_SRC_REL_PATH)/token_vector.cpp -o bin/token_vector.o
 
 clean:
 	rm bin/*

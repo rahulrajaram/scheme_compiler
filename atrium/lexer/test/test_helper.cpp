@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <vector>
 
-#include "../token_vector.h"
+#include "../../tokens/token_vector.h"
 
 #include "test_case_exceptions.h"
 #include "test_helper.h"
@@ -31,11 +31,11 @@ namespace Atrium {
 		test_failed = false;
 	}
 
-const Atrium::LexicalAnalysis::TokenVector TestCase::load_expected_token_vector (
+const Atrium::TokenVector TestCase::load_expected_token_vector (
 		const std::string& tokens_file_path
 		) {
 		std::ifstream tokens_file(tokens_file_path);
-		Atrium::LexicalAnalysis::TokenVector token_vector;
+		Atrium::TokenVector token_vector;
 		std::string token;
 
 		while (getline(tokens_file, token)) {
@@ -46,8 +46,8 @@ const Atrium::LexicalAnalysis::TokenVector TestCase::load_expected_token_vector 
 	}
 
 	void TestCase::assert_vectors_equal(
-		const Atrium::LexicalAnalysis::TokenVector& expected_token_vector,
-		const Atrium::LexicalAnalysis::TokenVector& actual_token_vector
+		const Atrium::TokenVector& expected_token_vector,
+		const Atrium::TokenVector& actual_token_vector
 	) {
 		const std::vector <std::string> expected_vector = expected_token_vector.token_vector;
 		const std::vector <std::string> actual_vector = actual_token_vector.token_vector;

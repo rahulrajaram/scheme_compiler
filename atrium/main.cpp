@@ -31,7 +31,7 @@ int main (int argc, char* argv[]) {
 	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file, spdlog_console);
 	lexer.suppress_output = false;
 
-	Atrium::LexicalAnalysis::TokenVector token_vector;
+	Atrium::TokenVector token_vector;
 
 	try {
 		token_vector = lexer.tokenize();
