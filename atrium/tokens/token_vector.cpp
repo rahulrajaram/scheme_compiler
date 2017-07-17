@@ -3,13 +3,13 @@
 namespace Atrium {
 	void TokenVector::push_back(const std::string& token) {
 		if (!token.empty()) {
-			token_vector.push_back(token);
+			token_vector.push_back(Token(token, ""));
 		}
 	}
 
-	void TokenVector::print() {
+	void TokenVector::print_token_strings() {
 		for (auto token : token_vector) {
-			std::cout << token << "\n";
+			std::cout << token.token << "\n";
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace Atrium {
 			}
 
 			if (!suppress_output) {
-				token_vector.print();
+				token_vector.print_token_strings();
 			}
 
 			return token_vector;

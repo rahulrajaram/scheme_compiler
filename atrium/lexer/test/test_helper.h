@@ -14,8 +14,8 @@ namespace Atrium {
 
 	class TestCase {
 		void print_vector_difference (
-			const std::vector <std::string>& expected_vector,
-			const std::vector <std::string>& actual_vector
+			const std::vector <Token>& expected_vector,
+			const std::vector <Token>& actual_vector
 		);
 		void print_test_details ();
 	public:

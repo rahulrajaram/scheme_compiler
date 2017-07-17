@@ -24,7 +24,7 @@ bin/lexer.o: $(LEXER_SRC_REL_PATH)/../global_aliases.h $(LEXER_SRC_REL_PATH)/lex
 bin/bracket_stack.o: $(LEXER_SRC_REL_PATH)/bracket_stack.h $(LEXER_SRC_REL_PATH)/bracket_stack.cpp
 	$(CC) $(CFLAGS) $(LEXER_SRC_REL_PATH)/bracket_stack.cpp -o bin/bracket_stack.o
 
-bin/token_vector.o: $(TOKENS_SRC_REL_PATH)/token_vector.h $(TOKENS_SRC_REL_PATH)/token_vector.cpp
+bin/token_vector.o: $(TOKENS_SRC_REL_PATH)/token_vector.h $(TOKENS_SRC_REL_PATH)/token.h $(TOKENS_SRC_REL_PATH)/token_vector.cpp
 	$(CC) $(CFLAGS) $(TOKENS_SRC_REL_PATH)/token_vector.cpp -o bin/token_vector.o
 
 clean:

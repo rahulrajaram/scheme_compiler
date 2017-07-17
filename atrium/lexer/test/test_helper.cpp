@@ -49,8 +49,8 @@ const Atrium::TokenVector TestCase::load_expected_token_vector (
 		const Atrium::TokenVector& expected_token_vector,
 		const Atrium::TokenVector& actual_token_vector
 	) {
-		const std::vector <std::string> expected_vector = expected_token_vector.token_vector;
-		const std::vector <std::string> actual_vector = actual_token_vector.token_vector;
+		const std::vector <Atrium::Token> expected_vector = expected_token_vector.token_vector;
+		const std::vector <Atrium::Token> actual_vector = actual_token_vector.token_vector;
 		try {
 			if (expected_vector.size() != actual_vector.size()) {
 				throw VectorsNotOfEqualSizeException(
@@ -103,8 +103,8 @@ const Atrium::TokenVector TestCase::load_expected_token_vector (
 
 	// private
 	void TestCase::print_vector_difference (
-		const std::vector <std::string>& expected_vector,
-		const std::vector <std::string>& actual_vector
+		const std::vector <Atrium::Token>& expected_vector,
+		const std::vector <Atrium::Token>& actual_vector
 	) {
 		
 		std::cout << "----------------------------------";
@@ -120,13 +120,13 @@ const Atrium::TokenVector TestCase::load_expected_token_vector (
 			i ++, j ++
 		) {
 			if (i < expected_vector.size()) {
-				std::cout << std::setw(40) << expected_vector[i];
+				std::cout << std::setw(40) << expected_vector[i].token;
 			}
 			
 			std::cout << " | ";
 
 			if (j < expected_vector.size()) {
-				std::cout << actual_vector[j];
+				std::cout << actual_vector[j].token;
 			}
 
 			std::cout << "\n";

@@ -4,12 +4,14 @@
 #include <iostream>
 #include <vector>
 
+#include "token.h"
+
 namespace Atrium {
 	class TokenVector {
 		public:
-		std::vector<std::string> token_vector;
+		std::vector<Atrium::Token> token_vector;
 		void push_back(const std::string& token);
-		void print();
+		void print_token_strings();
 	};
 }
 
