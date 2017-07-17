@@ -14,8 +14,8 @@ namespace Atrium {
 
 	class TestCase {
 		void print_vector_difference (
-			const std::vector <std::string>& expected_vector,
-			const std::vector <std::string>& actual_vector
+			const std::vector <Token>& expected_vector,
+			const std::vector <Token>& actual_vector
 		);
 		void print_test_details ();
 	public:
@@ -25,15 +25,15 @@ namespace Atrium {
 		std::string test_name;
 
 		// test run-related methods
-		const Atrium::LexicalAnalysis::TokenVector load_expected_token_vector (const std::string& tokens_file_path);
+		const Atrium::TokenVector load_expected_token_vector (const std::string& tokens_file_path);
 		inline void print_colorized_error_message (const std::string&);
 		inline void print_colorized_success_message ();
 		void run (void (*test_method)());
 
 		// assertion methods
 		void assert_vectors_equal(
-			const Atrium::LexicalAnalysis::TokenVector& expected,
-			const Atrium::LexicalAnalysis::TokenVector& actual
+			const Atrium::TokenVector& expected,
+			const Atrium::TokenVector& actual
 		);
 	};
 

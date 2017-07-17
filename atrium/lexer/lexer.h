@@ -8,7 +8,7 @@
 
 #include "../global_aliases.h"
 #include "bracket_stack.h"
-#include "token_vector.h"
+#include "../tokens/token_vector.h"
 
 namespace Atrium {
 	namespace LexicalAnalysis {

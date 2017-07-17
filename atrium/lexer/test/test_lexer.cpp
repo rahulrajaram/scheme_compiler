@@ -12,7 +12,7 @@ SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
 
 using SVector = std::vector <std::string>;
 
-Atrium::LexicalAnalysis::TokenVector actual_token_vector() {
+Atrium::TokenVector actual_token_vector() {
 	IfStream source_file("../../../config/sample_applications" + test_case.source_file + ".scm");
 
 	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file, spdlog_console);
@@ -20,7 +20,7 @@ Atrium::LexicalAnalysis::TokenVector actual_token_vector() {
 	return lexer.tokenize();
 }
 
-Atrium::LexicalAnalysis::TokenVector expected_token_vector() {
+Atrium::TokenVector expected_token_vector() {
 	const std::string& test_source_path = "../../../config/sample_applications" + test_case.source_file + ".tok";
 
  	return test_case.load_expected_token_vector(test_source_path);

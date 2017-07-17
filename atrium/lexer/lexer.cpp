@@ -6,7 +6,7 @@
 
 namespace Atrium {
 	namespace LexicalAnalysis {
-		TokenVector Lexer::tokenize() {
+		Atrium::TokenVector Lexer::tokenize() {
 			spdlog_console->info("Begin tokenizing ...");
 
 			while ((present_character = source_file.get()) != EOF) {
@@ -19,7 +19,7 @@ namespace Atrium {
 			}
 
 			if (!suppress_output) {
-				token_vector.print();
+				token_vector.print_token_strings();
 			}
 
 			return token_vector;
