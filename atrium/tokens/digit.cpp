@@ -2,7 +2,7 @@
 
 namespace Atrium {
 	namespace Parsing {
-		bool Parser::digit(char ch) {
+		bool Parser::is_digit(char ch) {
 			switch (ch) {
 				case '0': break;
 				case '1': break;
@@ -20,11 +20,11 @@ namespace Atrium {
 			return true;
 		}
 
-		bool Parser::digit10(char ch) {
+		bool Parser::is_digit_10(char ch) {
 			return digit(ch);
 		}
 
-		bool Parser::digit16(char ch) {
+		bool Parser::is_digit_16(char ch) {
 			if (digit(ch)) {
 				return true;
 			}
@@ -41,7 +41,7 @@ namespace Atrium {
 			return true;
 		}
 
-		bool Parser::digit8(char ch) {
+		bool Parser::is_digit_8(char ch) {
 			switch (ch) {
 				case '0': break;
 				case '1': break;
@@ -57,7 +57,7 @@ namespace Atrium {
 			return true;
 		}
 
-		bool Parser::digit2(char ch) {
+		bool Parser::is_digit_2(char ch) {
 			switch (ch) {
 				case '0': break;
 				case '1': break;
@@ -67,30 +67,30 @@ namespace Atrium {
 			return true;
 		}
 
-		bool Parser::radix2(int& token_vector_index) {
+		bool Parser::is_radix_2(int& token_vector_index) {
 			return (token_vector[token_vector_index] == "#b");
 		}
 
-		bool Parser::radix2(int& token_vector_index) {
+		bool Parser::is_radix_8(int& token_vector_index) {
 			return (token_vector[token_vector_index] == "#o");
 		}
 		
-		bool Parser::radix10(int& token_vector_index) {
+		bool Parser::is_radix_10(int& token_vector_index) {
 			return (token_vector[token_vector_index] == "#d");
 		}
 
-		bool Parser::radix10(int& token_vector_index) {
+		bool Parser::is_radix_16(int& token_vector_index) {
 			return (token_vector[token_vector_index] == "#x");
 		}
 		
-		bool Parser::exactness(int& token_vector_index) {
+		bool Parser::is_exactness(int& token_vector_index) {
 			return (
 				token_vector[token_vector_index] == "#i"
 				|| token_vector[token_vector_index] == "#e"
 			);
 		}	
 
-		bool Parser::sign(char ch) {
+		bool Parser::is_sign(char ch) {
 			return (
 				ch == '+' || ch == '-'
 			);
