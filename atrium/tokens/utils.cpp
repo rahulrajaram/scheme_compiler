@@ -1,4 +1,24 @@
 namespace Atrium {
+	bool Token::is_all_digits() {
+		for (auto c : token) {
+			if (!is_digit(c)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	bool Token::contains_only(char ch) {
+		for (auto c : token) {
+			if (c != ch)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	bool Token::starts_with_prefix(const std::string& prefix) {
 		if (prefix.length() > token.length()) {
 			return false;
@@ -32,7 +52,32 @@ namespace Atrium {
 		}
 
 		Token first_part_1 = Token(token.substr(0, split_location));
-		Token second_part_1 = Token(token.substr(split_location + 1)); 
+		Token second_part_1;
+
+		if (include_split_point) {
+			second_part_1 = Token(token.substr(split_location + 1)); 
+		} else {
+			second_part_1 = Token(token.substr(split_location + 1)); 
+		}
+
+		return std::pair(first_part_1, second_part_1);
+	}
+
+	std::pair<Token, Token>
+	Token::split_at_discontinuity(
+		const char continuity_character
+	) {
+		std::size_t index = 0;
+
+		while (index < token.length()) {
+			if (token[index] != continuity_character) {
+				break;
+			}
+			index ++;
+		}
+
+		Token first_part_1 = Token(token.substr(0, split_location));
+		Token second_part_1 = Token(token.substr(split_location)); 
 
 		return std::pair(first_part_1, second_part_1);
 	}
