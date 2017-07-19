@@ -1,3 +1,5 @@
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_num_2() {
 		int offset = 0;

@@ -1,5 +1,7 @@
 #include <string>
 
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_decimal_10 () {
 		// <uinteger 10> <exponent>

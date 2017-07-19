@@ -1,5 +1,7 @@
 #include <string>
 
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_uinteger_2() {
 		std::pair<Token, Token> splits = token.split_around_pivot("#", true);

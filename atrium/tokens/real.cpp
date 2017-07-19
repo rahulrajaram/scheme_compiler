@@ -1,3 +1,5 @@
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_real_2() {
 		if (starts_with_prefix("+") || starts_with_prefix("-")) {

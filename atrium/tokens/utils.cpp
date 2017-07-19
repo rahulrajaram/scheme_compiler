@@ -1,3 +1,5 @@
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_all_digits() {
 		for (auto c : token) {
@@ -11,7 +13,7 @@ namespace Atrium {
 
 	bool Token::contains_only(char ch) {
 		for (auto c : token) {
-			if (c != ch)) {
+			if (c != ch) {
 				return false;
 			}
 		}

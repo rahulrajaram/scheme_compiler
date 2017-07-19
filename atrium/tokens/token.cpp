@@ -1,3 +1,5 @@
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_number() {
 		if (is_num2()) {

@@ -1,5 +1,7 @@
 #include <string>
 
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_ureal_2() {
 		if (token.find("/") != std::string::npos) {

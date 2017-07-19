@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+#include "token.h"
+
 namespace Atrium {
 	/*
 	 * complex_2

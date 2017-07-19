@@ -1,3 +1,5 @@
+#include "token.h"
+
 namespace Atrium {
 	bool Token::is_imag_2() {
 		if (token == "i") {
