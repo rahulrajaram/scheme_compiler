@@ -40,21 +40,21 @@ namespace Atrium {
 	std::pair<Token, Token>
 	Token::split_around_pivot(
 		const std::string& pivot,
-		bool include_split_point=false
+		bool include_split_point
 	) {
 		std::size_t split_location = token.find(pivot);
 
 		// Return original token as the only string
 		if (split_location == std::string::npos) {
-			return std::pair(Token(token), Token(""));
+			return std::make_pair(Token(token), Token(""));
 		}
 
 		if ((split_location + pivot.length()) == token.length()) {
-			return std::pair(Token(token), Token(""));
+			return std::make_pair(Token(token), Token(""));
 		}
 
 		Token first_part_1 = Token(token.substr(0, split_location));
-		Token second_part_1;
+		Token second_part_1("");
 
 		if (include_split_point) {
 			second_part_1 = Token(token.substr(split_location + 1)); 
@@ -62,25 +62,25 @@ namespace Atrium {
 			second_part_1 = Token(token.substr(split_location + 1)); 
 		}
 
-		return std::pair(first_part_1, second_part_1);
+		return std::make_pair(first_part_1, second_part_1);
 	}
 
 	std::pair<Token, Token>
 	Token::split_at_discontinuity(
 		const char continuity_character
 	) {
-		std::size_t index = 0;
+		std::size_t split_location = 0;
 
-		while (index < token.length()) {
-			if (token[index] != continuity_character) {
+		while (split_location < token.length()) {
+			if (token[split_location] != continuity_character) {
 				break;
 			}
-			index ++;
+			split_location ++;
 		}
 
 		Token first_part_1 = Token(token.substr(0, split_location));
 		Token second_part_1 = Token(token.substr(split_location)); 
 
-		return std::pair(first_part_1, second_part_1);
+		return std::make_pair(first_part_1, second_part_1);
 	}
 }

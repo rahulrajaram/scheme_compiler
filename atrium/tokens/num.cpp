@@ -10,7 +10,7 @@ namespace Atrium {
 			}
 		}
 
-		if (possible_complex_2.is_complex_2()) {
+		if (is_complex_2()) {
 			return true;
 		}
 
@@ -26,7 +26,7 @@ namespace Atrium {
 			}
 		}
 
-		if (possible_complex_8.is_complex_8()) {
+		if (is_complex_8()) {
 			return true;
 		}
 
@@ -42,7 +42,7 @@ namespace Atrium {
 			}
 		}
 
-		if (possible_complex_10.is_complex_10()) {
+		if (is_complex_10()) {
 			return true;
 		}
 
@@ -58,7 +58,7 @@ namespace Atrium {
 			}
 		}
 
-		if (possible_complex_16.is_complex_16()) {
+		if (is_complex_16()) {
 			return true;
 		}
 

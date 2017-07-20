@@ -1,5 +1,5 @@
 #include "token.h"
--qe
+
 namespace Atrium {
 	bool Token::is_exponent() {
 		if (!is_exponent_marker(token[0])) {

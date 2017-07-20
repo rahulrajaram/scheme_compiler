@@ -7,7 +7,7 @@ namespace Atrium {
 		}
 
 		if (token[token.size() - 1] == 'i') {
-			if (token.is_ureal_2()) {
+			if (is_ureal_2()) {
 				return true;
 			}
 		}
@@ -21,7 +21,7 @@ namespace Atrium {
 		}
 
 		if (token[token.size() - 1] == 'i') {
-			if (token.is_ureal_8()) {
+			if (is_ureal_8()) {
 				return true;
 			}
 		}
@@ -35,7 +35,7 @@ namespace Atrium {
 		}
 
 		if (token[token.size() - 1] == 'i') {
-			if (token.is_ureal_10()) {
+			if (is_ureal_10()) {
 				return true;
 			}
 		}
@@ -49,7 +49,7 @@ namespace Atrium {
 		}
 
 		if (token[token.size() - 1] == 'i') {
-			if (token.is_ureal_16()) {
+			if (is_ureal_16()) {
 				return true;
 			}
 		}

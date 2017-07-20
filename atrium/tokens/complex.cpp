@@ -16,7 +16,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_2() && last_part.is_real_2()) {
+			if (first_part.is_real_2() && second_part.is_real_2()) {
 				return true;
 			}
 
@@ -24,11 +24,11 @@ namespace Atrium {
 		}
 
 		// <real 2> - <imag 2>
-		if ((separator_location = position_of_minux_sign()) != std::string::npos) {
+		if ((separator_location = position_of_minus_sign()) != std::string::npos) {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_2() && last_part.is_imag_2()) {
+			if (first_part.is_real_2() && second_part.is_imag_2()) {
 				return true;
 			}
 
@@ -40,7 +40,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_2() && last_part.is_imag_2()) {
+			if (first_part.is_real_2() && second_part.is_imag_2()) {
 				return true;
 			}
 
@@ -89,7 +89,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_8() && last_part.is_real_8()) {
+			if (first_part.is_real_8() && second_part.is_real_8()) {
 				return true;
 			}
 
@@ -97,11 +97,11 @@ namespace Atrium {
 		}
 
 		// <real 8> - <imag 8>
-		if ((separator_location = position_of_minux_sign()) != std::string::npos) {
+		if ((separator_location = position_of_minus_sign()) != std::string::npos) {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_8() && last_part.is_imag_8()) {
+			if (first_part.is_real_8() && second_part.is_imag_8()) {
 				return true;
 			}
 
@@ -113,7 +113,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_8() && last_part.is_imag_8()) {
+			if (first_part.is_real_8() && second_part.is_imag_8()) {
 				return true;
 			}
 
@@ -153,7 +153,7 @@ namespace Atrium {
 	/*
 	 * complex 10
 	 */
-	bool Token::is_complex_8() {
+	bool Token::is_complex_10() {
 		int separator_location = 0;
 
 		// <real 10> @ <real 10>
@@ -161,7 +161,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_10() && last_part.is_real_10()) {
+			if (first_part.is_real_10() && second_part.is_real_10()) {
 				return true;
 			}
 
@@ -169,11 +169,11 @@ namespace Atrium {
 		}
 
 		// <real 10> - <imag 10>
-		if ((separator_location = position_of_minux_sign()) != std::string::npos) {
+		if ((separator_location = position_of_minus_sign()) != std::string::npos) {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_10() && last_part.is_imag_10()) {
+			if (first_part.is_real_10() && second_part.is_imag_10()) {
 				return true;
 			}
 
@@ -185,7 +185,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_10() && last_part.is_imag_10()) {
+			if (first_part.is_real_10() && second_part.is_imag_10()) {
 				return true;
 			}
 
@@ -225,7 +225,7 @@ namespace Atrium {
 	/*
 	 * complex 16
 	 */
-	bool Token::is_complex_8() {
+	bool Token::is_complex_16() {
 		int separator_location = 0;
 
 		// <real 16> @ <real 16>
@@ -233,7 +233,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_16() && last_part.is_real_16()) {
+			if (first_part.is_real_16() && second_part.is_real_16()) {
 				return true;
 			}
 
@@ -241,11 +241,11 @@ namespace Atrium {
 		}
 
 		// <real 16> - <imag 16>
-		if ((separator_location = position_of_minux_sign()) != std::string::npos) {
+		if ((separator_location = position_of_minus_sign()) != std::string::npos) {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_16() && last_part.is_imag_16()) {
+			if (first_part.is_real_16() && second_part.is_imag_16()) {
 				return true;
 			}
 
@@ -257,7 +257,7 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_16() && last_part.is_imag_16()) {
+			if (first_part.is_real_16() && second_part.is_imag_16()) {
 				return true;
 			}
 

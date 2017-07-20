@@ -7,13 +7,18 @@
 namespace Atrium {
 	class Token {
 
-	std::size_t Token::position_of_at_sign();
-	std::size_t Token::position_of_minus_sign();
-	std::size_t Token::position_of_plus_sign();
+	std::size_t position_of_at_sign();
+	std::size_t position_of_minus_sign();
+	std::size_t position_of_plus_sign();
 
 	public:
 		std::string token;
 		std::string type;
+
+		Token(
+			const std::string& token
+		) : token { token }
+				{ }
 
 		Token(
 			const std::string& token,
@@ -47,7 +52,7 @@ namespace Atrium {
 		bool is_real_2 ();
 		bool is_real_8 ();
 		bool is_real_10 ();
-		bool is_real_10 ();
+		bool is_real_16 ();
 
 		bool is_imag_2 ();
 		bool is_imag_8 ();
@@ -74,8 +79,8 @@ namespace Atrium {
 
 		bool is_all_digits ();
 		bool contains_only (char ch);
-		bool starts_with_prefix (const std::string& prefix) {
-		bool ends_with_suffix (const std::string& suffix) {
+		bool starts_with_prefix (const std::string& prefix);
+		bool ends_with_suffix (const std::string& suffix);
 		std::pair<Token, Token> split_around_pivot (const std::string& pivot, bool include_split_point=false);
 		std::pair<Token, Token> split_at_discontinuity (const char continuity_character);
 
@@ -84,11 +89,7 @@ namespace Atrium {
 		bool is_digit_16 (char ch);
 		bool is_digit_8 (char ch);
 		bool is_digit_2 (char ch);
-		bool is_radix_2 (int& token_vector_index);
-		bool is_radix_8 (int& token_vector_index);
-		bool is_radix_10 (int& token_vector_index);
-		bool is_radix_16 (int& token_vector_index);
-		bool is_exactness (int& token_vector_index);
 		bool is_sign (char ch);
+	};
 }
 #endif

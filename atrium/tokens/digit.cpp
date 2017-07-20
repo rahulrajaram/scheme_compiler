@@ -1,4 +1,4 @@
-#include "parser.h"
+#include "token.h"
 
 namespace Atrium {
 	bool Token::is_digit(char ch) {
@@ -20,11 +20,11 @@ namespace Atrium {
 	}
 
 	bool Token::is_digit_10(char ch) {
-		return digit(ch);
+		return is_digit(ch);
 	}
 
 	bool Token::is_digit_16(char ch) {
-		if (digit(ch)) {
+		if (is_digit(ch)) {
 			return true;
 		}
 		switch (ch) {
@@ -65,29 +65,6 @@ namespace Atrium {
 
 		return true;
 	}
-
-	bool Token::is_radix_2(int& token_vector_index) {
-		return (token_vector[token_vector_index] == "#b");
-	}
-
-	bool Token::is_radix_8(int& token_vector_index) {
-		return (token_vector[token_vector_index] == "#o");
-	}
-	
-	bool Token::is_radix_10(int& token_vector_index) {
-		return (token_vector[token_vector_index] == "#d");
-	}
-
-	bool Token::is_radix_16(int& token_vector_index) {
-		return (token_vector[token_vector_index] == "#x");
-	}
-	
-	bool Token::is_exactness(int& token_vector_index) {
-		return (
-			token_vector[token_vector_index] == "#i"
-			|| token_vector[token_vector_index] == "#e"
-		);
-	}	
 
 	bool Token::is_sign(char ch) {
 		return (
