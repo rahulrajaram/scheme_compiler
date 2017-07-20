@@ -13,7 +13,7 @@ void test_exponent() {
 	};
 	
 	for (auto exponent : sample_exponent_productions) {
-		Atrium::Token exponent_token = Token(exponent);
+		Atrium::Token exponent_token = Atrium::Token(exponent);
 
 		if (exponent_token.is_exponent()) {
 			std::cout << exponent << " --> SUCCESS\n";
@@ -24,5 +24,6 @@ void test_exponent() {
 }
 
 int main () {
+	test_exponent();
 	return 0;
 }

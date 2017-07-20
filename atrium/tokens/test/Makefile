@@ -7,11 +7,11 @@ LFLAGS = -Wall -pthread
 
 all: bin/test_number
 
-bin/test_digit: $(SOBJS) bin/test_digit.o
-	$(CC) $(LFLAGS) $(SOBJS) bin/test_digit.o -o bin/test_digit
+bin/test_number: $(SOBJS) bin/test_number.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_number.o -o bin/test_number
 
-bin/test_digit.o: test_digit.cpp
-	$(CC) $(CFLAGS) test_digit.cpp -o bin/test_digit.o
+bin/test_number.o: test_number.cpp
+	$(CC) $(CFLAGS) test_number.cpp -o bin/test_number.o
 
 bin/complex.o: $(SRC_REL_PATH)/complex.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/complex.cpp -o bin/complex.o
