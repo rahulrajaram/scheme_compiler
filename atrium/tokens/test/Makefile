@@ -5,14 +5,50 @@ DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/test_number
+all: bin/test_exponent bin/test_suffix bin/test_uinteger_2 bin/test_uinteger_8\
+bin/test_uinteger_10 bin/test_uinteger_16
 
-bin/test_number: $(SOBJS) bin/test_number.o
-	$(CC) $(LFLAGS) $(SOBJS) bin/test_number.o -o bin/test_number
 
-bin/test_number.o: test_number.cpp
-	$(CC) $(CFLAGS) test_number.cpp -o bin/test_number.o
 
+# test executables
+bin/test_exponent: $(SOBJS) bin/test_exponent.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_exponent.o -o bin/test_exponent
+
+bin/test_exponent.o: test_exponent.cpp
+	$(CC) $(CFLAGS) test_exponent.cpp -o bin/test_exponent.o
+
+bin/test_suffix: $(SOBJS) bin/test_suffix.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_suffix.o -o bin/test_suffix
+
+bin/test_suffix.o: test_suffix.cpp
+	$(CC) $(CFLAGS) test_suffix.cpp -o bin/test_suffix.o
+
+bin/test_uinteger_2: $(SOBJS) bin/test_uinteger_2.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_uinteger_2.o -o bin/test_uinteger_2
+
+bin/test_uinteger_2.o: test_uinteger_2.cpp
+	$(CC) $(CFLAGS) test_uinteger_2.cpp -o bin/test_uinteger_2.o
+
+bin/test_uinteger_8: $(SOBJS) bin/test_uinteger_8.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_uinteger_8.o -o bin/test_uinteger_8
+
+bin/test_uinteger_8.o: test_uinteger_8.cpp
+	$(CC) $(CFLAGS) test_uinteger_8.cpp -o bin/test_uinteger_8.o
+
+bin/test_uinteger_10: $(SOBJS) bin/test_uinteger_10.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_uinteger_10.o -o bin/test_uinteger_10
+
+bin/test_uinteger_10.o: test_uinteger_10.cpp
+	$(CC) $(CFLAGS) test_uinteger_10.cpp -o bin/test_uinteger_10.o
+
+bin/test_uinteger_16: $(SOBJS) bin/test_uinteger_16.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_uinteger_16.o -o bin/test_uinteger_16
+
+bin/test_uinteger_16.o: test_uinteger_16.cpp
+	$(CC) $(CFLAGS) test_uinteger_16.cpp -o bin/test_uinteger_16.o
+
+
+# Source link objects
 bin/complex.o: $(SRC_REL_PATH)/complex.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/complex.cpp -o bin/complex.o
 

@@ -49,15 +49,11 @@ namespace Atrium {
 			return std::make_pair(Token(token), Token(""));
 		}
 
-		if ((split_location + pivot.length()) == token.length()) {
-			return std::make_pair(Token(token), Token(""));
-		}
-
 		Token first_part_1 = Token(token.substr(0, split_location));
 		Token second_part_1("");
 
 		if (include_split_point) {
-			second_part_1 = Token(token.substr(split_location + 1)); 
+			second_part_1 = Token(token.substr(split_location)); 
 		} else {
 			second_part_1 = Token(token.substr(split_location + 1)); 
 		}

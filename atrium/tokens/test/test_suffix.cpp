@@ -3,8 +3,9 @@
 
 #include "../token.h"
 
-void test_exponent() {
+void test_suffix() {
 	std::vector <std::string> sample_exponent_productions {
+		"",
 		"e0", "e1", "e0123", "e234", "e-0", "e-1", "e-0123", "e-234", "e+0", "e+1", "e+0123", "e+234",
 		"f0", "f1", "f0123", "f234", "f-0", "f-1", "f-0123", "f-234", "f+0", "f+1", "f+0123", "f+234",
 		"d0", "d1", "d0123", "d234", "d-0", "d-1", "d-0123", "d-234", "d+0", "d+1", "d+0123", "d+234",
@@ -13,9 +14,9 @@ void test_exponent() {
 	};
 	
 	for (auto exponent : sample_exponent_productions) {
-		Atrium::Token exponent_token = Token(exponent);
+		Atrium::Token exponent_token = Atrium::Token(exponent);
 
-		if (exponent_token.is_exponent()) {
+		if (exponent_token.is_suffix()) {
 			std::cout << exponent << " --> SUCCESS\n";
 		} else {
 			std::cout << exponent << " --> FAILURE\n";
@@ -24,5 +25,7 @@ void test_exponent() {
 }
 
 int main () {
+	test_suffix();
+
 	return 0;
 }
