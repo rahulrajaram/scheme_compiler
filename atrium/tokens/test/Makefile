@@ -6,7 +6,7 @@ CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
 all: bin/test_exponent bin/test_suffix bin/test_uinteger_2 bin/test_uinteger_8\
-bin/test_uinteger_10 bin/test_uinteger_16
+bin/test_uinteger_10 bin/test_uinteger_16 bin/test_decimal
 
 
 
@@ -46,6 +46,12 @@ bin/test_uinteger_16: $(SOBJS) bin/test_uinteger_16.o
 
 bin/test_uinteger_16.o: test_uinteger_16.cpp
 	$(CC) $(CFLAGS) test_uinteger_16.cpp -o bin/test_uinteger_16.o
+
+bin/test_decimal: $(SOBJS) bin/test_decimal.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_decimal.o -o bin/test_decimal
+
+bin/test_decimal.o: test_decimal.cpp
+	$(CC) $(CFLAGS) test_decimal.cpp -o bin/test_decimal.o
 
 
 # Source link objects

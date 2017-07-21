@@ -83,6 +83,7 @@ namespace Atrium {
 		bool ends_with_suffix (const std::string& suffix);
 		std::pair<Token, Token> split_around_pivot (const std::string& pivot, bool include_split_point=false);
 		std::pair<Token, Token> split_at_discontinuity (const char continuity_character);
+		std::size_t exponent_marker_position();
 
 		bool is_digit (char ch);
 		bool is_digit_10 (char ch);

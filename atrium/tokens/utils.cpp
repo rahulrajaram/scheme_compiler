@@ -79,4 +79,16 @@ namespace Atrium {
 
 		return std::make_pair(first_part_1, second_part_1);
 	}
+
+	std::size_t Token::exponent_marker_position() {
+		std::size_t emp = std::string::npos;
+
+		((emp = token.find("e")) != std::string::npos)
+		|| ((emp = token.find("s")) != std::string::npos)
+		|| ((emp = token.find("f")) != std::string::npos)
+		|| ((emp = token.find("d")) != std::string::npos)
+		|| ((emp = token.find("l")) != std::string::npos);
+
+		return emp;
+	}
 }
