@@ -21,7 +21,7 @@ namespace Atrium {
 		int offset = 0;
 		if (starts_with_prefix_8(offset)) {
 			Token possible_complex_8 = Token(this->token.substr(offset));
-			if (possible_complex_8.is_complex_2()) {
+			if (possible_complex_8.is_complex_8()) {
 				return true;
 			}
 		}
