@@ -10,7 +10,8 @@ bin/test_uinteger_10 bin/test_uinteger_16 bin/test_decimal bin/test_ureal_10\
 bin/test_ureal_2 bin/test_ureal_8 bin/test_ureal_16\
 bin/test_real_10 bin/test_real_2 bin/test_real_8 bin/test_real_16\
 bin/test_imag_10 bin/test_imag_2 bin/test_imag_8 bin/test_imag_16\
-bin/test_complex_2 bin/test_complex_8 bin/test_complex_16 bin/test_complex_10
+bin/test_complex_2 bin/test_complex_8 bin/test_complex_16 bin/test_complex_10\
+bin/test_num_2 bin/test_num_8 bin/test_num_16
 
 # test executables
 bin/test_exponent: $(SOBJS) bin/test_exponent.o
@@ -150,6 +151,24 @@ bin/test_complex_10: $(SOBJS) bin/test_complex_10.o
 
 bin/test_complex_10.o: test_complex_10.cpp
 	$(CC) $(CFLAGS) test_complex_10.cpp -o bin/test_complex_10.o
+
+bin/test_num_2: $(SOBJS) bin/test_num_2.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_num_2.o -o bin/test_num_2
+
+bin/test_num_2.o: test_num_2.cpp
+	$(CC) $(CFLAGS) test_num_2.cpp -o bin/test_num_2.o
+
+bin/test_num_8: $(SOBJS) bin/test_num_8.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_num_8.o -o bin/test_num_8
+
+bin/test_num_8.o: test_num_8.cpp
+	$(CC) $(CFLAGS) test_num_8.cpp -o bin/test_num_8.o
+
+bin/test_num_16: $(SOBJS) bin/test_num_16.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_num_16.o -o bin/test_num_16
+
+bin/test_num_16.o: test_num_16.cpp
+	$(CC) $(CFLAGS) test_num_16.cpp -o bin/test_num_16.o
 
 
 # Source link objects
