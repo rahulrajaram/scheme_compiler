@@ -65,8 +65,8 @@ namespace Atrium {
 		if (token.find("/") != std::string::npos) {
 			std::pair<Token, Token> presumable_uinteger_16_pair = split_around_pivot("/");
 			if (
-				presumable_uinteger_16_pair.first.is_uinteger_10()
-				&& presumable_uinteger_16_pair.second.is_uinteger_10()
+				presumable_uinteger_16_pair.first.is_uinteger_16()
+				&& presumable_uinteger_16_pair.second.is_uinteger_16()
 			) {
 				return true;
 			}
