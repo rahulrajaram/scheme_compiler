@@ -49,6 +49,7 @@ namespace Atrium {
 		bool is_complex_10 ();
 		bool is_complex_16 ();
 
+		bool is_real(bool (Token::*is_ureal_method)());
 		bool is_real_2 ();
 		bool is_real_8 ();
 		bool is_real_10 ();
@@ -59,11 +60,13 @@ namespace Atrium {
 		bool is_imag_10 ();
 		bool is_imag_16 ();
 	
+		bool is_ureal(bool (Token::*is_uinteger_method)() );
 		bool is_ureal_2();
 		bool is_ureal_8();
 		bool is_ureal_10();
 		bool is_ureal_16();
 
+		bool is_uinteger(bool (Token::*is_digit_method)(char) );
 		bool is_uinteger_2 ();
 		bool is_uinteger_8 ();
 		bool is_uinteger_10 ();
