@@ -7,7 +7,8 @@ LFLAGS = -Wall -pthread
 
 all: bin/test_exponent bin/test_suffix bin/test_uinteger_2 bin/test_uinteger_8\
 bin/test_uinteger_10 bin/test_uinteger_16 bin/test_decimal bin/test_ureal_10\
-bin/test_ureal_2 bin/test_ureal_8 bin/test_ureal_16
+bin/test_ureal_2 bin/test_ureal_8 bin/test_ureal_16\
+bin/test_real_10 bin/test_real_2 bin/test_real_8 bin/test_real_16
 
 
 # test executables
@@ -76,6 +77,30 @@ bin/test_ureal_16: $(SOBJS) bin/test_ureal_16.o
 
 bin/test_ureal_16.o: test_ureal_16.cpp
 	$(CC) $(CFLAGS) test_ureal_16.cpp -o bin/test_ureal_16.o
+
+bin/test_real_10: $(SOBJS) bin/test_real_10.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_real_10.o -o bin/test_real_10
+
+bin/test_real_10.o: test_real_10.cpp
+	$(CC) $(CFLAGS) test_real_10.cpp -o bin/test_real_10.o
+
+bin/test_real_2: $(SOBJS) bin/test_real_2.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_real_2.o -o bin/test_real_2
+
+bin/test_real_2.o: test_real_2.cpp
+	$(CC) $(CFLAGS) test_real_2.cpp -o bin/test_real_2.o
+
+bin/test_real_8: $(SOBJS) bin/test_real_8.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_real_8.o -o bin/test_real_8
+
+bin/test_real_8.o: test_real_8.cpp
+	$(CC) $(CFLAGS) test_real_8.cpp -o bin/test_real_8.o
+
+bin/test_real_16: $(SOBJS) bin/test_real_16.o
+	$(CC) $(LFLAGS) $(SOBJS) bin/test_real_16.o -o bin/test_real_16
+
+bin/test_real_16.o: test_real_16.cpp
+	$(CC) $(CFLAGS) test_real_16.cpp -o bin/test_real_16.o
 
 
 
