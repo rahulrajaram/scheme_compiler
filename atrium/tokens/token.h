@@ -35,6 +35,10 @@ namespace Atrium {
 	
 		bool is_number ();
 
+		bool is_num(
+			bool (Token::*is_complex_method)(),
+			bool (Token::*starts_with_prefix_r)(int& offset)
+		);
 		bool is_num_2 ();
 		bool is_num_8 ();
 		bool is_num_10 ();
