@@ -55,6 +55,7 @@ namespace Atrium {
 		bool is_real_10 ();
 		bool is_real_16 ();
 
+		bool is_imag(bool (Token::*is_imag_method)() );
 		bool is_imag_2 ();
 		bool is_imag_8 ();
 		bool is_imag_10 ();

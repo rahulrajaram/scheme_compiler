@@ -1,59 +1,34 @@
 #include "token.h"
 
 namespace Atrium {
-	bool Token::is_imag_2() {
+	bool Token::is_imag(bool (Token::*is_ureal_method)()) {
 		if (token == "i") {
 			return true;
 		}
 
 		if (token[token.size() - 1] == 'i') {
-			if (is_ureal_2()) {
+			Token possibly_ureal = Token(token.substr(0, token.length() - 1));
+			if ((&possibly_ureal->*is_ureal_method)()) {
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	bool Token::is_imag_2() {
+		return is_imag(&Token::is_ureal_2);
 	}
 
 	bool Token::is_imag_8() {
-		if (token == "i") {
-			return true;
-		}
-
-		if (token[token.size() - 1] == 'i') {
-			if (is_ureal_8()) {
-				return true;
-			}
-		}
-
-		return false;
+		return is_imag(&Token::is_ureal_8);
 	}
 
 	bool Token::is_imag_10() {
-		if (token == "i") {
-			return true;
-		}
-
-		if (token[token.size() - 1] == 'i') {
-			if (is_ureal_10()) {
-				return true;
-			}
-		}
-
-		return false;
+		return is_imag(&Token::is_ureal_10);
 	}
 
 	bool Token::is_imag_16() {
-		if (token == "i") {
-			return true;
-		}
-
-		if (token[token.size() - 1] == 'i') {
-			if (is_ureal_16()) {
-				return true;
-			}
-		}
-
-		return false;
+		return is_imag(&Token::is_ureal_16);
 	}
 }
