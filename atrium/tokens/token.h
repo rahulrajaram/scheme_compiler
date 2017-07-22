@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstddef>
+#include <vector>
 
 namespace Atrium {
 	class Token {
@@ -39,6 +40,11 @@ namespace Atrium {
 		bool is_num_10 ();
 		bool is_num_16 ();
 
+		bool starts_with_prefix_r (
+			std::vector <std::string> four_char_prefixes,
+			std::vector <std::string> two_char_prefixes,
+			int& offset
+		);
 		bool starts_with_prefix_2 (int& offset);
 		bool starts_with_prefix_8 (int& offset);
 		bool starts_with_prefix_10 (int& offset);
