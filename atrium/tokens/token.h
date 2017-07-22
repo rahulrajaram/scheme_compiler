@@ -44,6 +44,11 @@ namespace Atrium {
 		bool starts_with_prefix_10 (int& offset);
 		bool starts_with_prefix_16 (int& offset);
 
+		bool is_complex(
+			bool (Token::*is_complex_method)(),
+			bool (Token::*is_real_method)(),
+			bool (Token::*is_imag_method)()
+		);
 		bool is_complex_2 ();
 		bool is_complex_8 ();
 		bool is_complex_10 ();

@@ -5,10 +5,11 @@
 #include "token.h"
 
 namespace Atrium {
-	/*
-	 * complex_2
-	 */
-	bool Token::is_complex_2() {
+	bool Token::is_complex(
+		bool (Token::*is_complex_method)(),
+		bool (Token::*is_real_method)(),
+		bool (Token::*is_imag_method)()
+	) {
 		int separator_location = 0;
 
 		// <real 2> @ <real 2>
@@ -16,11 +17,30 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_2() && second_part.is_real_2()) {
-				return true;
-			}
+			return (
+				(&first_part->*is_real_method)()
+				&& (&second_part->*is_real_method)()
+			); 
+		}
 
-			return false;
+		// + <imag 2>
+		if (starts_with_prefix("+")) {
+			Token possibly_imag_method = Token(token.substr(1));
+
+			return (
+				(&possibly_imag_method->*is_imag_method)()
+				|| (&possibly_imag_method->*is_complex_method)()
+			);
+		}
+
+		// - <imag 2>
+		if (starts_with_prefix("-")) {
+			Token possibly_imag_method = Token(token.substr(1));
+
+			return (
+				(&possibly_imag_method->*is_imag_method)()
+				|| (&possibly_imag_method->*is_complex_method)()
+			);
 		}
 
 		// <real 2> - <imag 2>
@@ -28,11 +48,10 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_2() && second_part.is_imag_2()) {
-				return true;
-			}
-
-			return false;
+			return (
+				(&first_part->*is_real_method)()
+				&& (&second_part->*is_imag_method)()
+			);
 		}
 
 		// <real 2> + <imag 2>
@@ -40,41 +59,26 @@ namespace Atrium {
 			Token first_part = Token(token.substr(0, separator_location));
 			Token second_part = Token(token.substr(separator_location + 1));
 
-			if (first_part.is_real_2() && second_part.is_imag_2()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// + <imag 2>
-		if ((separator_location = position_of_plus_sign()) == 0) {
-			Token possibly_imag_2 = Token(token.substr(1));
-
-			if (possibly_imag_2.is_imag_2()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// - <imag 2>
-		if ((separator_location = position_of_minus_sign()) == 0) {
-			Token possibly_imag_2 = Token(token.substr(1));
-
-			if (possibly_imag_2.is_imag_2()) {
-				return true;
-			}
-
-			return false;
+			return (
+				(&first_part->*is_real_method)()
+				&& (&second_part->*is_imag_method)()
+			);
 		}
 
 		// <real 2>
-		if (is_real_2()) {
-			return true;
-		}
+		return (this->*is_real_method)();
+	}
 
-		return false;
+
+	/*
+	 * complex_2
+	 */
+	bool Token::is_complex_2() {
+		return is_complex(
+			&Token::is_complex_2,
+			&Token::is_real_2,
+			&Token::is_imag_2
+		);
 	}
 
 
@@ -82,216 +86,33 @@ namespace Atrium {
 	 * complex 8
 	 */
 	bool Token::is_complex_8() {
-		int separator_location = 0;
-
-		// <real 8> @ <real 8>
-		if ((separator_location = position_of_at_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_8() && second_part.is_real_8()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 8> - <imag 8>
-		if ((separator_location = position_of_minus_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_8() && second_part.is_imag_8()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 8> + <imag 8>
-		if ((separator_location = position_of_plus_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_8() && second_part.is_imag_8()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// + <imag 8>
-		if ((separator_location = position_of_plus_sign()) == 0) {
-			Token possibly_imag_8 = Token(token.substr(1));
-
-			if (possibly_imag_8.is_imag_8()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// - <imag 8>
-		if ((separator_location = position_of_minus_sign()) == 0) {
-			Token possibly_imag_8 = Token(token.substr(1));
-
-			if (possibly_imag_8.is_imag_2()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 8>
-		if (is_real_8()) {
-			return true;
-		}
-
-		return false;
+		return is_complex(
+			&Token::is_complex_8,
+			&Token::is_real_8,
+			&Token::is_imag_8
+		);
 	}
 
 	/*
 	 * complex 10
 	 */
 	bool Token::is_complex_10() {
-		int separator_location = 0;
-
-		// <real 10> @ <real 10>
-		if ((separator_location = position_of_at_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_10() && second_part.is_real_10()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 10> - <imag 10>
-		if ((separator_location = position_of_minus_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_10() && second_part.is_imag_10()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 10> + <imag 10>
-		if ((separator_location = position_of_plus_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_10() && second_part.is_imag_10()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// + <imag 10>
-		if ((separator_location = position_of_plus_sign()) == 0) {
-			Token possibly_imag_10 = Token(token.substr(1));
-
-			if (possibly_imag_10.is_imag_10()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// - <imag 10>
-		if ((separator_location = position_of_minus_sign()) == 0) {
-			Token possibly_imag_10 = Token(token.substr(1));
-
-			if (possibly_imag_10.is_imag_10()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 8>
-		if (is_real_10()) {
-			return true;
-		}
-
-		return false;
+		return is_complex(
+			&Token::is_complex_10,
+			&Token::is_real_10,
+			&Token::is_imag_10
+		);
 	}
 
 	/*
 	 * complex 16
 	 */
 	bool Token::is_complex_16() {
-		int separator_location = 0;
-
-		// <real 16> @ <real 16>
-		if ((separator_location = position_of_at_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_16() && second_part.is_real_16()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 16> - <imag 16>
-		if ((separator_location = position_of_minus_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_16() && second_part.is_imag_16()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 16> + <imag 16>
-		if ((separator_location = position_of_plus_sign()) != std::string::npos) {
-			Token first_part = Token(token.substr(0, separator_location));
-			Token second_part = Token(token.substr(separator_location + 1));
-
-			if (first_part.is_real_16() && second_part.is_imag_16()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// + <imag 16>
-		if ((separator_location = position_of_plus_sign()) == 0) {
-			Token possibly_imag_16 = Token(token.substr(1));
-
-			if (possibly_imag_16.is_imag_16()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// - <imag 16>
-		if ((separator_location = position_of_minus_sign()) == 0) {
-			Token possibly_imag_16 = Token(token.substr(1));
-
-			if (possibly_imag_16.is_imag_16()) {
-				return true;
-			}
-
-			return false;
-		}
-
-		// <real 16>
-		if (is_real_16()) {
-			return true;
-		}
-
-		return false;
+		return is_complex(
+			&Token::is_complex_16,
+			&Token::is_real_16,
+			&Token::is_imag_16
+		);
 	}
 
 	std::size_t Token::position_of_at_sign() {
