@@ -7,15 +7,13 @@
 
 namespace Atrium {
 	class Token {
-
-	std::size_t position_of_at_sign();
-	std::size_t position_of_minus_sign();
-	std::size_t position_of_plus_sign();
-
 	public:
 		std::string token;
 		std::string type;
 
+		/***************************************
+		 * Constructors
+		 ***************************************/
 		Token(
 			const std::string& token
 		) : token { token }
@@ -27,12 +25,18 @@ namespace Atrium {
 		) : token { token }, type { type }
 				{ }
 
+		/***************************************
+		 * Token Comparators
+		 ***************************************/
 		inline bool operator!=(const Token& other_token) const {
 			return (
 				token != other_token.token
 			);
 		}
 	
+		/***************************************
+		 * Number
+		 ***************************************/
 		bool is_number ();
 
 		bool is_num(
@@ -110,6 +114,20 @@ namespace Atrium {
 		bool is_digit_8 (char ch);
 		bool is_digit_2 (char ch);
 		bool is_sign (char ch);
+
+		std::size_t position_of_at_sign();
+		std::size_t position_of_minus_sign();
+		std::size_t position_of_plus_sign();
+
+
+		/****************************************************
+		 * Datum
+		 ****************************************************/
+		bool is_identifier();
+
+		bool is_letter(const char c);
+		bool is_initial(const char c);
+		bool is_subsequent(const char c);
 	};
 }
 #endif
