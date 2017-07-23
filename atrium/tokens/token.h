@@ -4,9 +4,13 @@
 #include <iostream>
 #include <cstddef>
 #include <vector>
+#include <unordered_map>
 
 namespace Atrium {
 	class Token {
+
+		const static std::unordered_map <std::string, std::string> non_printing_characters_map;
+
 	public:
 		std::string token;
 		std::string type;
@@ -128,6 +132,11 @@ namespace Atrium {
 		bool is_letter(const char c);
 		bool is_initial(const char c);
 		bool is_subsequent(const char c);
+
+		/****************************************************
+		 * Strings
+		 * **************************************************/
+		bool is_string ();
 	};
 }
 #endif

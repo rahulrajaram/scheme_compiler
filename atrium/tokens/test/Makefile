@@ -1,6 +1,8 @@
 SRC_REL_PATH = ..
-NUMBER_SOBJS = bin/complex.o	bin/decimal.o	bin/digit.o bin/exponent.o bin/exponent_marker.o bin/imag.o bin/num.o	bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/utils.o bin/token_vector.o bin/uinteger.o bin/ureal.o
-IDENTIFIER_SOBJS = bin/digit.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o
+UTIL_SOBJS = bin/utils.o bin/digit.o 
+NUMBER_SOBJS = bin/complex.o	bin/decimal.o	bin/exponent.o bin/exponent_marker.o bin/imag.o bin/num.o	bin/number.o bin/prefix.o bin/real.o bin/suffix.o  bin/token_vector.o bin/uinteger.o bin/ureal.o $(UTIL_SOBJS)
+IDENTIFIER_SOBJS = bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o $(UTIL_SOBJS)
+STRING_SOBJS = bin/string.o $(UTIL_SOBJS)
 CC = g++
 DEBUG = -g
 BOOST_FLAGS = -pedantic
@@ -8,7 +10,7 @@ CFLAGS = -Wall -c  -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread 
 BOOST_LFLAGS = -lboost_system -lboost_filesystem
 
-all: numbers_tests bin/test_identifier
+all: numbers_tests bin/test_identifier bin/test_string
 
 numbers_tests: bin/test_exponent bin/test_suffix bin/test_uinteger_2 bin/test_uinteger_8\
 bin/test_uinteger_10 bin/test_uinteger_16 bin/test_decimal bin/test_ureal_10\
@@ -182,6 +184,17 @@ bin/test_num_10.o: test_num_10.cpp
 	$(CC) $(CFLAGS) $(BOOST_FLAGS) test_num_10.cpp -o bin/test_num_10.o
 
 
+# ****************************
+# Util source
+# ****************************
+bin/utils.o: $(SRC_REL_PATH)/utils.cpp
+	$(CC) $(CFLAGS) $(SRC_REL_PATH)/utils.cpp -o bin/utils.o
+
+bin/digit.o: $(SRC_REL_PATH)/digit.cpp
+	$(CC) $(CFLAGS) $(SRC_REL_PATH)/digit.cpp -o bin/digit.o
+
+
+
 # **************************** 
 # Number Source link objects
 # ****************************
@@ -190,9 +203,6 @@ bin/complex.o: $(SRC_REL_PATH)/complex.cpp
 
 bin/decimal.o: $(SRC_REL_PATH)/decimal.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/decimal.cpp -o bin/decimal.o
-
-bin/digit.o: $(SRC_REL_PATH)/digit.cpp
-	$(CC) $(CFLAGS) $(SRC_REL_PATH)/digit.cpp -o bin/digit.o
 
 bin/exponent.o: $(SRC_REL_PATH)/exponent.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/exponent.cpp -o bin/exponent.o
@@ -227,9 +237,6 @@ bin/uinteger.o: $(SRC_REL_PATH)/uinteger.cpp
 bin/ureal.o: $(SRC_REL_PATH)/ureal.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/ureal.cpp -o bin/ureal.o
 
-bin/utils.o: $(SRC_REL_PATH)/utils.cpp
-	$(CC) $(CFLAGS) $(SRC_REL_PATH)/utils.cpp -o bin/utils.o
-
 
 
 # **************************** 
@@ -240,6 +247,12 @@ bin/test_identifier: $(IDENTIFIER_SOBJS) bin/test_identifier.o
 
 bin/test_identifier.o: test_identifier.cpp
 	$(CC) $(CFLAGS) test_identifier.cpp -o bin/test_identifier.o
+
+bin/test_string: $(STRING_SOBJS) bin/test_string.o
+	$(CC) $(LFLAGS) $(STRING_SOBJS) bin/test_string.o -o bin/test_string
+
+bin/test_string.o: test_string.cpp
+	$(CC) $(CFLAGS) test_string.cpp -o bin/test_string.o
 
 
 # **************************** 
@@ -256,6 +269,16 @@ bin/subsequent.o: $(SRC_REL_PATH)/subsequent.cpp
 
 bin/identifier.o: $(SRC_REL_PATH)/identifier.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/identifier.cpp -o bin/identifier.o
+
+bin/symbol.o: $(SRC_REL_PATH)/symbol.cpp
+	$(CC) $(CFLAGS) $(SRC_REL_PATH)/symbol.cpp -o bin/symbol.o
+
+bin/character.o: $(SRC_REL_PATH)/character.cpp
+	$(CC) $(CFLAGS) $(SRC_REL_PATH)/character.cpp -o bin/character.o
+
+bin/string.o: $(SRC_REL_PATH)/string.cpp
+	$(CC) $(CFLAGS) $(SRC_REL_PATH)/string.cpp -o bin/string.o
+
 
 clean:
 	rm bin/*
