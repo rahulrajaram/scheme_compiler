@@ -2,7 +2,7 @@ SRC_REL_PATH = ..
 UTIL_SOBJS = bin/utils.o bin/digit.o 
 NUMBER_SOBJS = bin/complex.o	bin/decimal.o	bin/exponent.o bin/exponent_marker.o bin/imag.o bin/num.o	bin/number.o bin/prefix.o bin/real.o bin/suffix.o  bin/token_vector.o bin/uinteger.o bin/ureal.o $(UTIL_SOBJS)
 IDENTIFIER_SOBJS = bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o $(UTIL_SOBJS)
-STRING_SOBJS = bin/string.o $(UTIL_SOBJS)
+DATUM_SOBJS = bin/boolean.o bin/string.o $(UTIL_SOBJS)
 CC = g++
 DEBUG = -g
 BOOST_FLAGS = -pedantic
@@ -248,8 +248,8 @@ bin/test_identifier: $(IDENTIFIER_SOBJS) bin/test_identifier.o
 bin/test_identifier.o: test_identifier.cpp
 	$(CC) $(CFLAGS) test_identifier.cpp -o bin/test_identifier.o
 
-bin/test_string: $(STRING_SOBJS) bin/test_string.o
-	$(CC) $(LFLAGS) $(STRING_SOBJS) bin/test_string.o -o bin/test_string
+bin/test_string: $(DATUM_SOBJS) bin/test_string.o
+	$(CC) $(LFLAGS) $(DATUM_SOBJS) bin/test_string.o -o bin/test_string
 
 bin/test_string.o: test_string.cpp
 	$(CC) $(CFLAGS) test_string.cpp -o bin/test_string.o
@@ -278,6 +278,10 @@ bin/character.o: $(SRC_REL_PATH)/character.cpp
 
 bin/string.o: $(SRC_REL_PATH)/string.cpp
 	$(CC) $(CFLAGS) $(SRC_REL_PATH)/string.cpp -o bin/string.o
+
+bin/boolean.o: $(SRC_REL_PATH)/boolean.cpp
+	$(CC) $(CFLAGS) $(SRC_REL_PATH)/boolean.cpp -o bin/boolean.o
+
 
 
 clean:

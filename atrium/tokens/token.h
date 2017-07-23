@@ -136,7 +136,11 @@ namespace Atrium {
 		/****************************************************
 		 * Strings
 		 * **************************************************/
+		bool is_character ();
+		bool is_printing_character ();
+		bool is_nonprinting_character ();
 		bool is_string ();
+		bool is_boolean ();
 	};
 }
 #endif
