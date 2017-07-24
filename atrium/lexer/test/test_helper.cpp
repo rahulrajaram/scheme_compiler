@@ -129,6 +129,10 @@ namespace Atrium {
 				std::cout << actual_vector[j].token;
 			}
 
+			if (expected_vector[j] != actual_vector[j]) {
+				print_colorized_error_message (" * ");
+			}
+
 			std::cout << "\n";
 		}
 	}
