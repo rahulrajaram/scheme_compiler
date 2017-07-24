@@ -15,7 +15,7 @@ namespace Atrium {
 
 	void TokenVector::print_token_strings() {
 		for (auto token : token_vector) {
-			std::cout << token.token << "\n";
+			std::cout << token.token << " --> " << token.type << "\n" ;
 		}
 	}
 }
