@@ -82,6 +82,10 @@ void test_non_printing_character() {
 		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
 }
 
+void test_standalone_string() {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+}
+
 int main () {
 	test_case = Atrium::TestCase();
 
@@ -132,6 +136,10 @@ int main () {
 	test_case.test_name = "test_non_printing_character";
 	test_case.source_file = "non_printing_character";
 	test_case.run(test_non_printing_character);
+
+	test_case.test_name = "test_standalone_string";
+	test_case.source_file = "standalone_string";
+	test_case.run(test_standalone_string);
 
 	return 0;
 }

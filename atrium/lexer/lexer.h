@@ -34,6 +34,7 @@ namespace Atrium {
 			bool suppress_output {true};
 
 
+			bool inside_character {false};
 			bool inside_string {false};
 			bool inside_quoted_expression {false};
 			bool inside_single_line_comment {false};
@@ -50,6 +51,7 @@ namespace Atrium {
 			TokenVector tokenize ();
 
 			bool inside_comment();
+			bool previous_character_was_backslash();
 			bool previous_character_was_hash();
 			bool previous_character_was_vertical_dash();
 			void handle_commented_code();

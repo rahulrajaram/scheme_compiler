@@ -98,14 +98,23 @@ namespace Atrium {
 
 					break;
 				case ' ':
+					if (inside_character) {
+						inside_character = false;
+					}
 					push_back_and_clear_present_token();
 
 					break;
 				case '\t':
 					push_back_and_clear_present_token();
+
 					break;
 				case '#':
-					present_token = std::string(1, present_character);
+					if (previous_character_was_backslash()) {
+						inside_character = true;
+						present_token += present_character;
+					} else {
+						present_token = std::string(1, present_character);
+					}
 
 					break;
 				case ';':
@@ -117,6 +126,11 @@ namespace Atrium {
 					push_back_and_clear_present_token();
 
 					break;
+				case '\\':
+					present_token = std::string(1, present_character);
+
+					break;
+
 				case '|':
 					if (previous_character_was_hash()) {
 						present_token.clear();
@@ -134,6 +148,10 @@ namespace Atrium {
 				default:
 					present_token += present_character;
 			}
+		}
+
+		bool Lexer::previous_character_was_backslash() {
+			return (previous_char == '\\');
 		}
 
 		bool Lexer::previous_character_was_hash() {
