@@ -163,6 +163,8 @@ namespace Atrium {
 		 * **************************************************/
 		bool is_left_paren ();
 		bool is_right_paren ();
+		bool is_left_bracket ();
+		bool is_right_bracket ();
 		bool is_separator ();
 		bool is_hash ();
 		

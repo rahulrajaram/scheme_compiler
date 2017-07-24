@@ -54,6 +54,18 @@ namespace Atrium {
 			return;
 		}
 
+		if (is_left_bracket()) {
+			type = "LEFT_BRACKET";
+
+			return;
+		}
+
+		if (is_right_bracket()) {
+			type = "RIGHT_BRACKET";
+
+			return;
+		}
+
 		if (is_separator()) {
 			type = "SEPARATOR";
 
