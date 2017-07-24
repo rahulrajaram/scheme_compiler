@@ -12,7 +12,8 @@ namespace Atrium {
 	public:
 		const static std::unordered_map <std::string, std::string> non_printing_characters_map;
 		const static std::unordered_set <std::string> syntactic_keywords;
-
+		const static std::unordered_set <std::string> procedures;
+	
 		std::string token;
 		std::string type;
 
@@ -49,6 +50,13 @@ namespace Atrium {
 		 * Syntactic keyword
 		 ***************************************/
 		bool is_syntactic_keyword ();
+
+
+		/***************************************
+		 * Procedures
+		 ***************************************/
+		bool is_procedure ();
+
 
 		/***************************************
 		 * Number

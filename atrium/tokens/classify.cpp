@@ -12,6 +12,12 @@ namespace Atrium {
 			return;
 		}
 
+		if (is_procedure()) {
+			type = "PROCEDURE";
+
+			return;
+		}
+
 		if (is_number()) {
 			type = "NUMBER";
 

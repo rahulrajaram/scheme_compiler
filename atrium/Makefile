@@ -13,7 +13,7 @@ bin/decimal.o bin/exponent.o bin/exponent_marker.o bin/imag.o\
 bin/num.o bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/uinteger.o\
 bin/ureal.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o\
 bin/symbol.o bin/character.o bin/string.o bin/boolean.o\
-bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o
+bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o bin/procedures.o
 
 
 CC = g++
@@ -128,6 +128,18 @@ bin/delimiters.o: $(TOKENS_SRC)/delimiters.cpp
 
 bin/syntactic_keywords.o: $(TOKENS_SRC)/syntactic_keywords.cpp
 	$(CC) $(CFLAGS) $(TOKENS_SRC)/syntactic_keywords.cpp -o bin/syntactic_keywords.o
+
+
+
+
+# *****************************
+# Token files
+# *****************************
+#bin/parser.o: global_aliases.h parser/parser.h
+	#$(CC) $(CFLAGS) parser/parser.cpp -o bin/parser.o
+
+bin/procedures.o: $(TOKENS_SRC)/procedures.cpp
+	$(CC) $(CFLAGS) $(TOKENS_SRC)/procedures.cpp -o bin/procedures.o
 
 
 
