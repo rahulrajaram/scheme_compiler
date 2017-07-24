@@ -21,7 +21,7 @@ namespace Atrium {
 
 	void TestCase::run (void (*test_method)()) {
 		print_test_details();
-		Atrium::SourceFile source_file1("../../../config/sample_applications/" + source_file + ".scm");
+		Atrium::SourceFile source_file1(sample_applications_path + source_file + ".scm");
 
 		test_method();
 
@@ -31,9 +31,9 @@ namespace Atrium {
 		test_failed = false;
 	}
 
-const Atrium::TokenVector TestCase::load_expected_token_vector (
+	const Atrium::TokenVector TestCase::load_expected_token_vector (
 		const std::string& tokens_file_path
-		) {
+	) {
 		std::ifstream tokens_file(tokens_file_path);
 		Atrium::TokenVector token_vector;
 		std::string token;

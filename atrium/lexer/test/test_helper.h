@@ -19,10 +19,16 @@ namespace Atrium {
 		);
 		void print_test_details ();
 	public:
+		std::string sample_applications_path; 
 		bool test_failed {0};
 		int test_number {1};
 		std::string source_file;
 		std::string test_name;
+
+		// constructor
+		TestCase() {
+			sample_applications_path = "../../../config/sample_applications/";
+		}
 
 		// test run-related methods
 		const Atrium::TokenVector load_expected_token_vector (const std::string& tokens_file_path);
