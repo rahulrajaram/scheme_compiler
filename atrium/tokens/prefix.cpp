@@ -16,14 +16,15 @@ namespace Atrium {
 				}
 			}
 		}
-		for (auto prefix : two_char_prefixes) {
-			std::string token_prefix = prefix.substr(0, 2);
-			if (prefix == token_prefix) {
-				offset += 2;
-				return true;
+		if (token.length() >= 2) {
+			for (auto prefix : two_char_prefixes) {
+				std::string token_prefix = prefix.substr(0, 2);
+				if (prefix == token_prefix) {
+					offset += 2;
+					return true;
+				}
 			}
 		}
-
 		return false;
 	}
 
