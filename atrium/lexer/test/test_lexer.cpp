@@ -94,6 +94,10 @@ void test_datum_1() {
 		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
 }
 
+void test_characters() {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+}
+
 int main () {
 	test_case = Atrium::TestCase();
 
@@ -157,6 +161,9 @@ int main () {
 	test_case.source_file = "datum_1";
 	test_case.run(test_datum_1);
 
+	test_case.test_name = "test_characters";
+	test_case.source_file = "characters";
+	test_case.run(test_characters);
 
 	return 0;
 }
