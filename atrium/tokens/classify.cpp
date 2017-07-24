@@ -2,6 +2,10 @@
 
 namespace Atrium {
 	void Token::classify () {
+		if (token.empty()) {
+			return;
+		}
+
 		if (is_syntactic_keyword()) {
 			type = "SYNTACTIC_KEYWORD";
 
