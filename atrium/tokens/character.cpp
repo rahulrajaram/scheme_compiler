@@ -51,7 +51,9 @@ namespace Atrium {
 				non_printing_characters_map.find(token.substr(3))
 				!= non_printing_characters_map.end()
 			);
-		}	
+		}
+
+		return false;
 	}
 
 	bool Token::is_printing_character	() {
@@ -68,7 +70,9 @@ namespace Atrium {
 				non_printing_characters_map.find(token.substr(3))
 				!= non_printing_characters_map.end()
 			);
-		}	
+		}
+
+		return false;
 	}
 
 	bool Token::is_character() {
