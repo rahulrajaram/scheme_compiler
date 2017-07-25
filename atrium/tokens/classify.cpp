@@ -72,6 +72,13 @@ namespace Atrium {
 			return;
 		}
 
+		if (is_hash()) {
+			type = "HASH";
+
+			return;
+		}
+
+
 		if (is_separator()) {
 			type = "SEPARATOR";
 
