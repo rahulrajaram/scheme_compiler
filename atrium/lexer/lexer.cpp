@@ -3,6 +3,7 @@
 #include <spdlog/spdlog.h>
 
 #include "lexer.h"
+#include "../tokens/token.h"
 
 namespace Atrium {
 	namespace LexicalAnalysis {
@@ -163,13 +164,23 @@ namespace Atrium {
 		}
 
 		void Lexer::push_back_current_token_and_tokenize_present_character() {
-			token_vector.push_back(present_token);
+			classify_and_push_token();
+
 			present_token = std::string(1, present_character);
 		}
 
 		void Lexer::push_back_and_clear_present_token() {
-			token_vector.push_back(present_token);
+			classify_and_push_token();
+
 			present_token.clear();
 		}
+
+
+		void Lexer::classify_and_push_token () {
+			Token new_token = Token(present_token);	
+			new_token.classify();
+
+			token_vector.push_back(new_token);
+		};
 	}
 }

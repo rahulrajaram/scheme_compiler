@@ -1,7 +1,10 @@
 #include "token.h"
 
 namespace Atrium {
-	Token::non_printing_characters_map = {
+	const
+	std::unordered_map
+	<std::string, std::string>
+	Atrium::Token::non_printing_characters_map = {
 			{"altmode", 				"ESC"},
 			{"acknowledge",			"ACK"},
 			{"backnext", 				"US"},
@@ -38,41 +41,39 @@ namespace Atrium {
 			{"verticaltab",	 		"VT"}
 		};
 
-	bool Token::is_non_printing_char() {
+	bool Token::is_non_printing_character () {
 		if (token.length() < 4) {
 			return false;
 		}
 
-		if (starts_with_prefix("#\\")) {
+		if (starts_with_prefix("\\#")) {
 			return(
-				non_printing_characters_map.find([token.substr(3)])
+				non_printing_characters_map.find(token.substr(2))
 				!= non_printing_characters_map.end()
 			);
-		}	
+		}
+
+		return false;
 	}
-	bool Token::is_non_printing_char() {
+
+	bool Token::is_printing_character	() {
 		if (token.length() != 3) {
 			return false;
 		}
 
-		if (
-			starts_with_prefix("#\\")
+		return (
+			starts_with_prefix("\\#")
 			&& token[2] >= 33
 		 	&& token[2] <= 128
-		) {
-			return(
-				non_printing_characters_map.find([token.substr(3)])
-				!= non_printing_characters_map.end()
-			);
-		}	
+		);
 	}
 
 	bool Token::is_character() {
-		if (is_non_printing_char()) {
+		if (is_non_printing_character()) {
 			return true;
 		}
 
-		if (is_printing_char()) {
+		if (is_printing_character()) {
 			return true;
 		}
 

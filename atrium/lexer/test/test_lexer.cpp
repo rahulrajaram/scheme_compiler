@@ -2,7 +2,6 @@
 
 #include "../../global_aliases.h"
 
-#include "../lexer_input.h"
 #include "../lexer.h"
 #include "test_helper.h"
 

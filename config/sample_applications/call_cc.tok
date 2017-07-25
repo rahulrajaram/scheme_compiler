@@ -1,14 +1,14 @@
-(
-call/cc
-(
-lambda
-(
-k
-)
-(
-*
-5
-4
-)
-)
-)
+( --> LEFT_PAREN
+call/cc --> PROCEDURE
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+k --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+* --> IDENTIFIER
+5 --> NUMBER
+4 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

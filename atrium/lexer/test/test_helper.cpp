@@ -36,10 +36,14 @@ namespace Atrium {
 	) {
 		std::ifstream tokens_file(tokens_file_path);
 		Atrium::TokenVector token_vector;
-		std::string token;
+		std::string line;
 
-		while (getline(tokens_file, token)) {
-			token_vector.push_back(token);	
+		while (getline(tokens_file, line)) {
+			std::size_t separator = line.find(" --> ");
+			std::string token = line.substr(0, separator);
+			std::string type = line.substr(separator + 6);
+
+			token_vector.push_back(Token(token, type));
 		}
 
 		return token_vector;

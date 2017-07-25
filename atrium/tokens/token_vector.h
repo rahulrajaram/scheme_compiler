@@ -11,6 +11,7 @@ namespace Atrium {
 		public:
 		std::vector<Atrium::Token> token_vector;
 		void push_back(const std::string& token);
+		void push_back(const Token& token);
 		void print_token_strings();
 	};
 }
