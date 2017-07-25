@@ -1,16 +1,16 @@
-#
-(
-12
-(
-5
-)
-(
-10
-.
-10
-)
-`
-6
-,@
-9
-)
+# --> HASH
+( --> LEFT_PAREN
+12 --> NUMBER
+( --> LEFT_PAREN
+5 --> NUMBER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+10 --> NUMBER
+. --> NUMBER
+10 --> NUMBER
+) --> RIGHT_PAREN
+` --> ABBREVIATION_PREFIX
+6 --> NUMBER
+,@ --> ABBREVIATION_PREFIX
+9 --> NUMBER
+) --> RIGHT_PAREN

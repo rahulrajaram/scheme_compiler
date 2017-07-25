@@ -1,18 +1,18 @@
-(
-pair?
-'
-(
-a
-.
-c
-)
-)
-(
-pair?
-'
-(
-a
-b
-c
-)
-)
+( --> LEFT_PAREN
+pair? --> IDENTIFIER
+' --> SINGLE_QUOTE
+( --> LEFT_PAREN
+a --> NUMBER
+. --> NUMBER
+c --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+pair? --> IDENTIFIER
+' --> SINGLE_QUOTE
+( --> LEFT_PAREN
+a --> NUMBER
+b --> NUMBER
+c --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

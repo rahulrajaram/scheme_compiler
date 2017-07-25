@@ -1,39 +1,39 @@
-(
-define
-reciprocal
-(
-lambda
-(
-n
-)
-(
-if
-(
-and
-(
-number?
-n
-)
-(
-not
-(
-=
-n
-0
-)
-)
-)
-(
-/
-1
-n
-)
-(
-assertion-violation
-'
-reciprocal
-"improper argument"
-n
-)
-)
-)
+( --> LEFT_PAREN
+define --> SYNTACTIC_KEYWORD
+reciprocal --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+n --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+if --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+and --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+number? --> IDENTIFIER
+n --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+not --> IDENTIFIER
+( --> LEFT_PAREN
+= --> IDENTIFIER
+n --> IDENTIFIER
+0 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+/ --> IDENTIFIER
+1 --> NUMBER
+n --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+assertion-violation --> IDENTIFIER
+' --> SINGLE_QUOTE
+reciprocal --> IDENTIFIER
+"improper argument" --> STRING
+n --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

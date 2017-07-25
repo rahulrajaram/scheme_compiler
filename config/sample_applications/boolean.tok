@@ -1,97 +1,97 @@
-(
-define
-checkbook
-(
-lambda
-(
-)
-(
-letrec
-(
-(
-IB
-"Enter initial balance: "
-)
-(
-AT
-"Enter transaction (- for withdrawal): "
-)
-(
-FB
-"Your final balance is: "
-)
-(
-prompt-read
-(
-lambda
-(
-Prompt
-)
-(
-display
-Prompt
-)
-(
-read
-)
-)
-)
-(
-newbal
-(
-lambda
-(
-Init
-t
-)
-(
-if
-(
-=
-t
-#t
-)
-(
-list
-FB
-Init
-)
-(
-transaction
-(
-+
-Init
-t
-)
-)
-)
-)
-)
-(
-transaction
-(
-lambda
-(
-Init
-)
-(
-newbal
-Init
-(
-prompt-read
-AT
-)
-)
-)
-)
-)
-(
-transaction
-(
-prompt-read
-IB
-)
-)
-)
-)
-)
+( --> LEFT_PAREN
+define --> SYNTACTIC_KEYWORD
+checkbook --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+letrec --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+( --> LEFT_PAREN
+IB --> IDENTIFIER
+"Enter initial balance: " --> STRING
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+AT --> IDENTIFIER
+"Enter transaction (- for withdrawal): " --> STRING
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+FB --> IDENTIFIER
+"Your final balance is: " --> STRING
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+prompt-read --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+Prompt --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+display --> IDENTIFIER
+Prompt --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+read --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+newbal --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+Init --> IDENTIFIER
+t --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+if --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+= --> IDENTIFIER
+t --> IDENTIFIER
+#t --> BOOLEAN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+list --> IDENTIFIER
+FB --> IDENTIFIER
+Init --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+transaction --> IDENTIFIER
+( --> LEFT_PAREN
++ --> IDENTIFIER
+Init --> IDENTIFIER
+t --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+transaction --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+Init --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+newbal --> IDENTIFIER
+Init --> IDENTIFIER
+( --> LEFT_PAREN
+prompt-read --> IDENTIFIER
+AT --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+transaction --> IDENTIFIER
+( --> LEFT_PAREN
+prompt-read --> IDENTIFIER
+IB --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

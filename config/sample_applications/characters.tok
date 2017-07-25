@@ -1,28 +1,28 @@
-(
-define
-hello-world
-(
-lambda
-(
-)
-(
-begin
-(
-=
-a
-\#newline
-)
-(
-=
-b
-\#c
-)
-(
-newline
-)
-(
-hello-world
-)
-)
-)
-)
+( --> LEFT_PAREN
+define --> SYNTACTIC_KEYWORD
+hello-world --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+begin --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+= --> IDENTIFIER
+a --> NUMBER
+\#newline --> CHARACTER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+= --> IDENTIFIER
+b --> NUMBER
+\#c --> CHARACTER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+newline --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+hello-world --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

@@ -1,48 +1,48 @@
-(
-let
-(
-[
-f
-(
-let
-(
-[
-x
-'
-sam
-]
-)
-(
-lambda
-(
-y
-z
-)
-(
-list
-x
-y
-z
-)
-)
-)
-]
-)
-(
-let
-(
-[
-x
-'
-not-sam
-]
-)
-(
-f
-'
-i
-'
-am
-)
-)
-)
+( --> LEFT_PAREN
+let --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+[ --> LEFT_BRACKET
+f --> NUMBER
+( --> LEFT_PAREN
+let --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+[ --> LEFT_BRACKET
+x --> IDENTIFIER
+' --> SINGLE_QUOTE
+sam --> IDENTIFIER
+] --> RIGHT_BRACKET
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+y --> IDENTIFIER
+z --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+list --> IDENTIFIER
+x --> IDENTIFIER
+y --> IDENTIFIER
+z --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+] --> RIGHT_BRACKET
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+let --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+[ --> LEFT_BRACKET
+x --> IDENTIFIER
+' --> SINGLE_QUOTE
+not-sam --> IDENTIFIER
+] --> RIGHT_BRACKET
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+f --> NUMBER
+' --> SINGLE_QUOTE
+i --> IDENTIFIER
+' --> SINGLE_QUOTE
+am --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

@@ -1,69 +1,69 @@
-(
-letrec
-(
-[
-even?
-(
-lambda
-(
-x
-)
-(
-or
-(
-=
-x
-0
-)
-(
-odd?
-(
--
-x
-1
-)
-)
-)
-)
-]
-[
-odd?
-(
-lambda
-(
-x
-)
-(
-and
-(
-not
-(
-=
-x
-0
-)
-)
-(
-even?
-(
--
-x
-1
-)
-)
-)
-)
-]
-)
-(
-list
-(
-even?
-20
-)
-(
-odd?
-20
-)
-)
-)
+( --> LEFT_PAREN
+letrec --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+[ --> LEFT_BRACKET
+even? --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+x --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+or --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+= --> IDENTIFIER
+x --> IDENTIFIER
+0 --> NUMBER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+odd? --> IDENTIFIER
+( --> LEFT_PAREN
+- --> IDENTIFIER
+x --> IDENTIFIER
+1 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+] --> RIGHT_BRACKET
+[ --> LEFT_BRACKET
+odd? --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+x --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+and --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+not --> IDENTIFIER
+( --> LEFT_PAREN
+= --> IDENTIFIER
+x --> IDENTIFIER
+0 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+even? --> IDENTIFIER
+( --> LEFT_PAREN
+- --> IDENTIFIER
+x --> IDENTIFIER
+1 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+] --> RIGHT_BRACKET
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+list --> IDENTIFIER
+( --> LEFT_PAREN
+even? --> IDENTIFIER
+20 --> NUMBER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+odd? --> IDENTIFIER
+20 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
