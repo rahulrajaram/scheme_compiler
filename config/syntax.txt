@@ -3,10 +3,10 @@
 
 <definition>		<variable definition>
 	|	<syntax definition>
+	|	<derived definition>
 	|	(begin <definition>*)
 	|	(let-syntax (<syntax binding>*) <definition>*)
 	|	(letrec-syntax (<syntax binding>*) <definition>*)
-	|	<derived definition>
 <variable definition>		(define <variable> <expression>)
 	|	(define (<variable> <variable>*) <body>)
 	|	(define (<variable> <variable>* . <variable>) <body>)
@@ -18,14 +18,16 @@
 
 <expression>		<constant>
 	|	<variable>
-	|	(quote <datum>) | ' <datum>
-	|	(lambda <formals> <body>)
-	|	(if <expression> <expression> <expression>) | (if <expression> <expression>)
-	|	(set! <variable> <expression>)
 	|	<application>
+	|	<derived expression>
+	| ' <datum>
+	|	(quote <datum>) 
+	|	(lambda <formals> <body>)
+	|	(if <expression> <expression> <expression>) 
+	| (if <expression> <expression>)
+	|	(set! <variable> <expression>)
 	|	(let-syntax (<syntax binding>*) <expression>+)
 	|	(letrec-syntax (<syntax binding>*) <expression>+)
-	|	<derived expression>
 <constant>		<boolean> | <number> | <character> | <string>
 <formals>		<variable> | (<variable>*) | (<variable>+ . <variable>)
 <application>		(<expression> <expression>*)
