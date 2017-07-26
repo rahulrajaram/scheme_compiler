@@ -3,6 +3,7 @@
 # **************
 TOKENS_SRC = tokens
 LEXER_SRC = lexer
+PARSER_SRC = lexer
 
 # **************
 # SRC OBJECTS
@@ -14,7 +15,7 @@ bin/num.o bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/uinteger.o\
 bin/ureal.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o\
 bin/symbol.o bin/character.o bin/string.o bin/boolean.o\
 bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o bin/procedures.o
-
+PARSER_OBJS = bin/parser.o
 
 CC = g++
 DEBUG = -g
@@ -23,7 +24,7 @@ LFLAGS = -Wall -pthread
 
 all: bin/main
 
-bin/main: $(LEXER_OBJS) $(TOKENS_OBJS) #$(PARSER_OBJS)
+bin/main: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS)
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) -o bin/main
 
 bin/main.o: main.cpp
@@ -129,26 +130,15 @@ bin/delimiters.o: $(TOKENS_SRC)/delimiters.cpp
 bin/syntactic_keywords.o: $(TOKENS_SRC)/syntactic_keywords.cpp
 	$(CC) $(CFLAGS) $(TOKENS_SRC)/syntactic_keywords.cpp -o bin/syntactic_keywords.o
 
-
-
-
-# *****************************
-# Token files
-# *****************************
-#bin/parser.o: global_aliases.h parser/parser.h
-	#$(CC) $(CFLAGS) parser/parser.cpp -o bin/parser.o
-
 bin/procedures.o: $(TOKENS_SRC)/procedures.cpp
 	$(CC) $(CFLAGS) $(TOKENS_SRC)/procedures.cpp -o bin/procedures.o
 
 
-
-
 # *****************************
 # Token files
 # *****************************
-#bin/parser.o: global_aliases.h parser/parser.h
-	#$(CC) $(CFLAGS) parser/parser.cpp -o bin/parser.o
+bin/parser.o: global_aliases.h parser/parser.h
+	$(CC) $(CFLAGS) parser/parser.cpp -o bin/parser.o
 
 clean:
 	rm bin/*
