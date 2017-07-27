@@ -36,12 +36,12 @@
     (syntax-rules (<identifier>*) <syntax rule>*)
 <syntax rule> --> (<pattern> <template>)
 <pattern> --> <pattern identifier>
+     | <constant>
      | (<pattern>*)
      | (<pattern>+ . <pattern>)
      | (<pattern>* <pattern> <ellipsis>)
      | #(<pattern>*)
      | #(<pattern>* <pattern> <ellipsis>)
-     | <constant>
 <template> --> <pattern identifier>
      | (<template element>*)
      | (<template element>+ . <template>)
