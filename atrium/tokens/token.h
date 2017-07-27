@@ -5,13 +5,15 @@
 #include <cstddef>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace Atrium {
 	class Token {
-
-		const static std::unordered_map <std::string, std::string> non_printing_characters_map;
-
 	public:
+		const static std::unordered_map <std::string, std::string> non_printing_characters_map;
+		const static std::unordered_set <std::string> syntactic_keywords;
+		const static std::unordered_set <std::string> procedures;
+	
 		std::string token;
 		std::string type;
 
@@ -38,6 +40,24 @@ namespace Atrium {
 			);
 		}
 	
+		/***************************************
+		 * Classifier methods
+		 ***************************************/
+		void classify ();
+
+
+		/***************************************
+		 * Syntactic keyword
+		 ***************************************/
+		bool is_syntactic_keyword ();
+
+
+		/***************************************
+		 * Procedures
+		 ***************************************/
+		bool is_procedure ();
+
+
 		/***************************************
 		 * Number
 		 ***************************************/
@@ -133,14 +153,39 @@ namespace Atrium {
 		bool is_initial(const char c);
 		bool is_subsequent(const char c);
 
+		bool is_symbol();
+
 		/****************************************************
 		 * Strings
 		 * **************************************************/
 		bool is_character ();
 		bool is_printing_character ();
-		bool is_nonprinting_character ();
+		bool is_non_printing_character ();
+
 		bool is_string ();
 		bool is_boolean ();
+
+
+		/****************************************************
+		 * Delimiters
+		 * **************************************************/
+		bool is_left_paren ();
+		bool is_right_paren ();
+		bool is_left_bracket ();
+		bool is_right_bracket ();
+		bool is_separator ();
+		bool is_hash ();
+		
+		
+		/****************************************************
+		 * Abbreviation prefix
+		 * **************************************************/
+		bool is_abbreviation_prefix ();
+		bool is_backtick();
+		bool is_single_quote ();
+		bool is_comma ();
+		bool is_comma_at ();
+
 	};
 }
 #endif

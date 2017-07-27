@@ -1,47 +1,47 @@
-(
-define
-fib
-(
-lambda
-(
-n
-)
-(
-if
-(
-=
-n
-0
-)
-0
-(
-if
-(
-=
-n
-1
-)
-1
-(
-+
-(
-fib
-(
--
-n
-1
-)
-)
-(
-fib
-(
--
-n
-2
-)
-)
-)
-)
-)
-)
-)
+( --> LEFT_PAREN
+define --> SYNTACTIC_KEYWORD
+fib --> IDENTIFIER
+( --> LEFT_PAREN
+lambda --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+n --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+if --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+= --> IDENTIFIER
+n --> IDENTIFIER
+0 --> NUMBER
+) --> RIGHT_PAREN
+0 --> NUMBER
+( --> LEFT_PAREN
+if --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+= --> IDENTIFIER
+n --> IDENTIFIER
+1 --> NUMBER
+) --> RIGHT_PAREN
+1 --> NUMBER
+( --> LEFT_PAREN
++ --> IDENTIFIER
+( --> LEFT_PAREN
+fib --> IDENTIFIER
+( --> LEFT_PAREN
+- --> IDENTIFIER
+n --> IDENTIFIER
+1 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+fib --> IDENTIFIER
+( --> LEFT_PAREN
+- --> IDENTIFIER
+n --> IDENTIFIER
+2 --> NUMBER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

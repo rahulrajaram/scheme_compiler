@@ -34,6 +34,8 @@ namespace Atrium {
 			bool suppress_output {true};
 
 
+			void classify_and_push_token ();
+
 			bool inside_character {false};
 			bool inside_string {false};
 			bool inside_quoted_expression {false};

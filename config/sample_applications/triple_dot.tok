@@ -1,42 +1,42 @@
-(
-define-syntax
-and
-(
-syntax-rules
-(
-)
-[
-(
-_
-)
-#t
-]
-[
-(
-_
-e
-)
-e
-]
-[
-(
-_
-e1
-e2
-e3
-...
-)
-(
-if
-e1
-(
-and
-e2
-e3
-...
-)
-#f
-)
-]
-)
-)
+( --> LEFT_PAREN
+define-syntax --> IDENTIFIER
+and --> SYNTACTIC_KEYWORD
+( --> LEFT_PAREN
+syntax-rules --> IDENTIFIER
+( --> LEFT_PAREN
+) --> RIGHT_PAREN
+[ --> LEFT_BRACKET
+( --> LEFT_PAREN
+_ --> IDENTIFIER
+) --> RIGHT_PAREN
+#t --> BOOLEAN
+] --> RIGHT_BRACKET
+[ --> LEFT_BRACKET
+( --> LEFT_PAREN
+_ --> IDENTIFIER
+e --> NUMBER
+) --> RIGHT_PAREN
+e --> NUMBER
+] --> RIGHT_BRACKET
+[ --> LEFT_BRACKET
+( --> LEFT_PAREN
+_ --> IDENTIFIER
+e1 --> NUMBER
+e2 --> NUMBER
+e3 --> NUMBER
+... --> IDENTIFIER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+if --> SYNTACTIC_KEYWORD
+e1 --> NUMBER
+( --> LEFT_PAREN
+and --> SYNTACTIC_KEYWORD
+e2 --> NUMBER
+e3 --> NUMBER
+... --> IDENTIFIER
+) --> RIGHT_PAREN
+#f --> BOOLEAN
+) --> RIGHT_PAREN
+] --> RIGHT_BRACKET
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN

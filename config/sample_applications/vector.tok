@@ -1,20 +1,20 @@
-(
-vector-map
-cadr
-'
-#
-(
-(
-a
-b
-)
-(
-d
-e
-)
-(
-g
-h
-)
-)
-)
+( --> LEFT_PAREN
+vector-map --> IDENTIFIER
+cadr --> IDENTIFIER
+' --> SINGLE_QUOTE
+# --> HASH
+( --> LEFT_PAREN
+( --> LEFT_PAREN
+a --> NUMBER
+b --> NUMBER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+d --> NUMBER
+e --> NUMBER
+) --> RIGHT_PAREN
+( --> LEFT_PAREN
+g --> IDENTIFIER
+h --> IDENTIFIER
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
+) --> RIGHT_PAREN
