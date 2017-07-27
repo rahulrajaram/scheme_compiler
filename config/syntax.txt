@@ -32,6 +32,28 @@
 <formals>		<variable> | (<variable>*) | (<variable>+ . <variable>)
 <application>		(<expression> <expression>*)
 
+<transformer expression> -->
+    (syntax-rules (<identifier>*) <syntax rule>*)
+<syntax rule> --> (<pattern> <template>)
+<pattern> --> <pattern identifier>
+     | (<pattern>*)
+     | (<pattern>+ . <pattern>)
+     | (<pattern>* <pattern> <ellipsis>)
+     | #(<pattern>*)
+     | #(<pattern>* <pattern> <ellipsis>)
+     | <constant>
+<template> --> <pattern identifier>
+     | (<template element>*)
+     | (<template element>+ . <template>)
+     | #(<template element>*)
+     | <template datum>
+<template element> --> <template>
+     | <template> <ellipsis>
+<template datum> --> <constant>
+<pattern identifier> --> <any identifier except `...'>
+<ellipsis> --> <the identifier `...'>
+
+
 <identifier>		<initial> <subsequent>* | + | - | ...
 <initial>		<letter> | ! | $ | % | & | * | / | : | < | = | > | ? | ~ | _ | ^
 <subsequent>		<initial> | <digit> | . | + | -
