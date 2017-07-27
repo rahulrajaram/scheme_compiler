@@ -63,3 +63,4 @@ namespace Atrium {
 
 		return true;
 	}
+}

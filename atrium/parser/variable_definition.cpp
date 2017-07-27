@@ -36,7 +36,7 @@ namespace Atrium {
 				token_vector_index ++;
 			}
 
-			if (current_token () !== ")") {
+			if (current_token () != ")") {
 				token_vector_index = token_vector_index_at_entry;
 				return false;
 			}

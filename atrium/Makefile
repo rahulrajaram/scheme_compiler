@@ -3,7 +3,7 @@
 # **************
 TOKENS_SRC = tokens
 LEXER_SRC = lexer
-PARSER_SRC = lexer
+PARSER_SRC = parser
 
 # **************
 # SRC OBJECTS
@@ -15,7 +15,7 @@ bin/num.o bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/uinteger.o\
 bin/ureal.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o\
 bin/symbol.o bin/character.o bin/string.o bin/boolean.o\
 bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o bin/procedures.o
-PARSER_OBJS = bin/parser.o
+PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/ellipsis.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o
 
 CC = g++
 DEBUG = -g
@@ -137,8 +137,71 @@ bin/procedures.o: $(TOKENS_SRC)/procedures.cpp
 # *****************************
 # Token files
 # *****************************
-bin/parser.o: global_aliases.h parser/parser.h
+bin/abbreviation.o: parser/parser.h
+	$(CC) $(CFLAGS) parser/abbreviation.cpp -o bin/abbreviation.o
+
+bin/body.o: parser/body.cpp
+	$(CC) $(CFLAGS) parser/body.cpp -o bin/body.o
+
+bin/constant.o: parser/constant.cpp
+	$(CC) $(CFLAGS) parser/constant.cpp -o bin/constant.o
+
+bin/datum.o: parser/datum.cpp
+	$(CC) $(CFLAGS) parser/datum.cpp -o bin/datum.o
+
+bin/definition.o: parser/definition.cpp
+	$(CC) $(CFLAGS) parser/definition.cpp -o bin/definition.o
+
+bin/ellipsis.o: parser/ellipsis.cpp
+	$(CC) $(CFLAGS) parser/ellipsis.cpp -o bin/ellipsis.o
+
+bin/form.o: parser/form.cpp
+	$(CC) $(CFLAGS) parser/form.cpp -o bin/form.o
+
+bin/formals.o: parser/formals.cpp
+	$(CC) $(CFLAGS) parser/formals.cpp -o bin/formals.o
+
+bin/keyword.o: parser/keyword.cpp
+	$(CC) $(CFLAGS) parser/keyword.cpp -o bin/keyword.o
+
+bin/list.o: parser/list.cpp
+	$(CC) $(CFLAGS) parser/list.cpp -o bin/list.o
+
+bin/parser.o: parser/parser.cpp
 	$(CC) $(CFLAGS) parser/parser.cpp -o bin/parser.o
+
+bin/pattern.o: parser/pattern.cpp
+	$(CC) $(CFLAGS) parser/pattern.cpp -o bin/pattern.o
+
+bin/pattern_identifier.o: parser/pattern_identifier.cpp
+	$(CC) $(CFLAGS) parser/pattern_identifier.cpp -o bin/pattern_identifier.o
+
+bin/program.o: parser/program.cpp
+	$(CC) $(CFLAGS) parser/program.cpp -o bin/program.o
+
+bin/syntax_binding.o: parser/syntax_binding.cpp
+	$(CC) $(CFLAGS) parser/syntax_binding.cpp -o bin/syntax_binding.o
+
+bin/syntax_definition.o: parser/syntax_definition.cpp
+	$(CC) $(CFLAGS) parser/syntax_definition.cpp -o bin/syntax_definition.o
+
+bin/template.o: parser/template.cpp
+	$(CC) $(CFLAGS) parser/template.cpp -o bin/template.o
+
+bin/template_datum.o: parser/template_datum.cpp
+	$(CC) $(CFLAGS) parser/template_datum.cpp -o bin/template_datum.o
+
+bin/template_element.o: parser/template_element.cpp
+	$(CC) $(CFLAGS) parser/template_element.cpp -o bin/template_element.o
+
+bin/variable.o: parser/variable.cpp
+	$(CC) $(CFLAGS) parser/variable.cpp -o bin/variable.o
+
+bin/variable_definition.o: parser/variable_definition.cpp
+	$(CC) $(CFLAGS) parser/variable_definition.cpp -o bin/variable_definition.o
+
+bin/vector.o: parser/vector.cpp
+	$(CC) $(CFLAGS) parser/vector.cpp -o bin/vector.o
 
 clean:
 	rm bin/*

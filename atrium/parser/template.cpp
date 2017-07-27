@@ -18,7 +18,7 @@ namespace Atrium {
 			if (is_template_element()) {
 				while (is_template_element());
 
-				if (current_token == ".") {
+				if (current_token () == ".") {
 					token_vector_index ++;
 
 					if (!is_template_element()) {

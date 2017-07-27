@@ -1,3 +1,5 @@
+#include "parser.h"
+
 namespace Atrium {
 	bool Parser::is_datum () {
 		std::size_t token_vector_index_at_entry = token_vector_index;

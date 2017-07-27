@@ -18,4 +18,12 @@ namespace Atrium {
 			std::cout << token.token << " --> " << token.type << "\n" ;
 		}
 	}
+
+	std::size_t TokenVector::size() {
+		return token_vector.size();
+	}
+
+	Token TokenVector::operator[](std::size_t index) {
+		return token_vector[index];
+	}
 }
