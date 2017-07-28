@@ -32,6 +32,28 @@
 <formals>		<variable> | (<variable>*) | (<variable>+ . <variable>)
 <application>		(<expression> <expression>*)
 
+<cond clause> --> (<test> <sequence>)
+      | (<test>)
+      | (<test> => <recipient>)
+<case clause> --> ((<datum>*) <sequence>)
+
+<derived expression> -->
+     | (cond <cond clause>+)
+     | (cond <cond clause>* (else <sequence>))
+     | (case <expression> <case clause>+)
+     | (case <expression> <case clause>* (else <sequence>))
+     | (and <test>*)
+     | (or <test>*)
+     | (let (<binding spec>*) <body>)
+     | (let <variable> (<binding spec>*) <body>)
+     | (let* (<binding spec>*) <body>)
+     | (letrec (<binding spec>*) <body>)
+     | (begin <sequence>)
+     | (do (<iteration spec>*)
+           (<test> <do result>)
+         <command>*)
+     | (delay <expression>)
+
 <transformer expression> -->
     (syntax-rules (<identifier>*) <syntax rule>*)
 <syntax rule> --> (<pattern> <template>)
