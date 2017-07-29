@@ -2,7 +2,7 @@
 
 namespace Atrium {
 	// <do result> --> <sequence> | <empty>
-	bool Parser::is_do_result() {
+	bool Parser::is_command() {
 		return is_expression();
 	}
 }

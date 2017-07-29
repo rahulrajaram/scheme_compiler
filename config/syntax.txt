@@ -36,6 +36,8 @@
       | (<test>)
       | (<test> => <recipient>)
 <case clause> --> ((<datum>*) <sequence>)
+<binding spec> --> (<variable> <expression>)
+<do result> --> <sequence> | <empty>
 
 <derived expression> -->
      | (cond <cond clause>+)

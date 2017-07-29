@@ -45,6 +45,7 @@ namespace Atrium {
 		bool is_expression();
 		bool is_form();
 		bool is_formals();
+		bool is_iteration_spec();
 		bool is_keyword();
 		bool is_list();
 		bool is_pattern_identifier();
@@ -53,6 +54,7 @@ namespace Atrium {
 		bool is_sequence();
 		bool is_syntax_definition();
 		bool is_syntax_binding();
+		bool is_syntax_rule();
 		bool is_template ();
 		bool is_template_datum ();
 		bool is_template_element ();
@@ -78,6 +80,10 @@ namespace Atrium {
 		bool is_delay ();
 		bool is_equal_arrow ();
 		bool is_case ();
+		bool is_syntax_rules ();
+		bool is_hash ();
+		bool is_period ();
+		bool is_identifier ();
 	};
 }
 

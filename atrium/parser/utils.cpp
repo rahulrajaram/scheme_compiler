@@ -1,4 +1,4 @@
-#include "token.h"
+#include "parser.h"
 
 namespace Atrium {
 	bool Parser::is_terminal (const std::string& terminal) {
@@ -64,5 +64,21 @@ namespace Atrium {
 
 	bool Parser::is_case () {
 		return is_terminal("case");
+	}
+
+	bool Parser::is_syntax_rules () {
+		return is_terminal("syntax-rules");
+	}
+
+	bool Parser::is_hash () {
+		return is_terminal("#");
+	}
+
+	bool Parser::is_period () {
+		return is_terminal("#");
+	}
+
+	bool Parser::is_identifier () {
+		return is_terminal("#");
 	}
 }

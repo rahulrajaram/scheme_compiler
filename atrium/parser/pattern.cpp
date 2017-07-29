@@ -12,46 +12,48 @@ namespace Atrium {
 			return true;
 		}
 
-		if (current_token () == "(") {
-			token_vector_index ++;
+		/* 	| (<pattern>*)
+     		| (<pattern>+ . <pattern>)
+     		| (<pattern>+ <ellipsis>)
+		*/
+		if (is_left_paren()) {
+			if (is_pattern()) {
+				while (is_pattern());
 
-			if (is_template_element()) {
-				while (is_template_element());
-
-				if (current_token () == ".") {
-					token_vector_index ++;
-
-					if (!is_template_element()) {
+				if (is_period()) {
+					if (!is_pattern()) {
 						token_vector_index = token_vector_index_at_entry;
 						return false;
 					}
-
-					return true;
 				}
 
-				if (current_token () != ")") {
-						token_vector_index = token_vector_index_at_entry;
-						return false;
+				if (is_ellipsis()) {
+					token_vector_index = token_vector_index_at_entry;
+					return false;
 				}
-				token_vector_index ++;
+			}
+		} else if (is_hash()) {
+			// | #(<pattern>*)
+			// | #(<pattern>* <pattern> <ellipsis>)
+			if (!is_left_paren()) {
+				token_vector_index = token_vector_index_at_entry;
+				return false;
 			}
 
-			return true;
-		}
+			while (is_pattern());
 
-		if (current_token() != "#") {
+			if (is_right_paren()) {
+				return true;
+			}
+
+			if (!is_ellipsis()) {
+				token_vector_index = token_vector_index_at_entry;
+				return false;
+			}
+		} else {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
-
-		if (current_token() != "(") {
-			token_vector_index = token_vector_index_at_entry;
-			return false;
-		}
-		token_vector_index ++;
-
-		while(is_template_element());
 
 		if (current_token() != ")") {
 			token_vector_index = token_vector_index_at_entry;

@@ -15,7 +15,7 @@ bin/num.o bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/uinteger.o\
 bin/ureal.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o\
 bin/symbol.o bin/character.o bin/string.o bin/boolean.o\
 bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o bin/procedures.o
-PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/ellipsis.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o
+PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/ellipsis.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o bin/parser_utils.o bin/expression.o bin/transformer_expression.o bin/syntax_rule.o bin/application.o bin/iteration_spec.o
 
 CC = g++
 DEBUG = -g
@@ -25,7 +25,7 @@ LFLAGS = -Wall -pthread
 all: bin/main
 
 bin/main: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS)
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) -o bin/main
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) -o bin/main
 
 bin/main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp -o bin/main.o
@@ -137,6 +137,9 @@ bin/procedures.o: $(TOKENS_SRC)/procedures.cpp
 # *****************************
 # Token files
 # *****************************
+bin/application.o: parser/application.cpp
+	$(CC) $(CFLAGS) parser/application.cpp -o bin/application.o
+
 bin/abbreviation.o: parser/abbreviation.cpp
 	$(CC) $(CFLAGS) parser/abbreviation.cpp -o bin/abbreviation.o
 
@@ -173,11 +176,17 @@ bin/do_result.o: parser/do_result.cpp
 bin/ellipsis.o: parser/ellipsis.cpp
 	$(CC) $(CFLAGS) parser/ellipsis.cpp -o bin/ellipsis.o
 
+bin/expression.o: parser/expression.cpp
+	$(CC) $(CFLAGS) parser/expression.cpp -o bin/expression.o
+
 bin/form.o: parser/form.cpp
 	$(CC) $(CFLAGS) parser/form.cpp -o bin/form.o
 
 bin/formals.o: parser/formals.cpp
 	$(CC) $(CFLAGS) parser/formals.cpp -o bin/formals.o
+
+bin/iteration_spec.o: parser/iteration_spec.cpp
+	$(CC) $(CFLAGS) parser/iteration_spec.cpp -o bin/iteration_spec.o
 
 bin/keyword.o: parser/keyword.cpp
 	$(CC) $(CFLAGS) parser/keyword.cpp -o bin/keyword.o
@@ -206,8 +215,8 @@ bin/sequence.o: parser/sequence.cpp
 bin/syntax_definition.o: parser/syntax_definition.cpp
 	$(CC) $(CFLAGS) parser/syntax_definition.cpp -o bin/syntax_definition.o
 
-bin/syntax_definition.o: parser/syntax_definition.cpp
-	$(CC) $(CFLAGS) parser/syntax_definition.cpp -o bin/syntax_definition.o
+bin/syntax_rule.o: parser/syntax_rule.cpp
+	$(CC) $(CFLAGS) parser/syntax_rule.cpp -o bin/syntax_rule.o
 
 bin/test.o: parser/test.cpp
 	$(CC) $(CFLAGS) parser/test.cpp -o bin/test.o
@@ -220,6 +229,12 @@ bin/template_datum.o: parser/template_datum.cpp
 
 bin/template_element.o: parser/template_element.cpp
 	$(CC) $(CFLAGS) parser/template_element.cpp -o bin/template_element.o
+
+bin/transformer_expression.o: parser/transformer_expression.cpp
+	$(CC) $(CFLAGS) parser/transformer_expression.cpp -o bin/transformer_expression.o
+
+bin/parser_utils.o: parser/utils.cpp
+	$(CC) $(CFLAGS) parser/utils.cpp -o bin/parser_utils.o
 
 bin/variable.o: parser/variable.cpp
 	$(CC) $(CFLAGS) parser/variable.cpp -o bin/variable.o

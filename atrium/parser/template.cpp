@@ -12,47 +12,28 @@ namespace Atrium {
 			return true;
 		}
 
-		if (current_token () != "(") {
-			token_vector_index ++;
-
+		if (is_left_paren()) {
 			if (is_template_element()) {
 				while (is_template_element());
 
-				if (current_token () == ".") {
-					token_vector_index ++;
+				if (is_right_paren()) {
+					return true;
+				}
 
-					if (!is_template_element()) {
-						token_vector_index = token_vector_index_at_entry;
-						return false;
-					}
+				if (!is_period()) {
+					token_vector_index = token_vector_index_at_entry;
+					return false;
+				}
+				if (!is_template()) {
+					token_vector_index = token_vector_index_at_entry;
+					return false;
 				}
 			}
-	
-			if (current_token () != ")") {
-				token_vector_index = token_vector_index_at_entry;
-				return false;
-			}
-
-			token_vector_index ++;
-
-			return true;
+		} else if (is_hash()) {
+			while (is_template_element());
 		}
 
-		if (current_token() != "#") {
-			token_vector_index = token_vector_index_at_entry;
-			return false;
-		}
-		token_vector_index ++;
-
-		if (current_token() != "(") {
-			token_vector_index = token_vector_index_at_entry;
-			return false;
-		}
-		token_vector_index ++;
-
-		while(is_template_element());
-
-		if (current_token() != ")") {
+		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}

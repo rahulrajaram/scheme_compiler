@@ -153,7 +153,7 @@ namespace Atrium {
 				return false;
 			}
 
-			while (is_binding_spec ());
+			while (is_iteration_spec ());
 
 			if (!is_right_paren()) {
 				token_vector_index = token_vector_index_at_entry;
