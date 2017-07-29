@@ -2,6 +2,10 @@
 
 namespace Atrium {
 	bool Parser::is_terminal (const std::string& terminal) {
+		if (token_vector_index >= token_vector.size()) {
+			return false;
+		}
+
 		if ((current_token()) != terminal) {
 			return false;
 		}
@@ -11,6 +15,10 @@ namespace Atrium {
 	}
 
 	bool Parser::is_terminal_type (const std::string& terminal_type) {
+		if (token_vector_index >= token_vector.size()) {
+			return false;
+		}
+
 		if ((current_token_type()) != terminal_type) {
 			return false;
 		}
