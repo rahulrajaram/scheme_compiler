@@ -13,6 +13,7 @@ namespace Atrium {
 
 		while (is_expression ());
 
+		print_production(token_vector_index_at_entry, "body");
 		return true;
 	}
 }

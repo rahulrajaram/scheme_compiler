@@ -41,13 +41,6 @@ namespace Atrium {
 
 			return;
 		}
-
-		if (is_identifier()) {
-			type = "IDENTIFIER";
-
-			return;
-		}
-
 		if (is_left_paren()) {
 			type = "LEFT_PAREN";
 
@@ -96,5 +89,12 @@ namespace Atrium {
 
 			return;
 		}
+		if (is_identifier()) {
+			type = "IDENTIFIER";
+
+			return;
+		}
+
+
 	}
 }

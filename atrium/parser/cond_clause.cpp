@@ -26,6 +26,8 @@ namespace Atrium {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
+
+		print_production(token_vector_index_at_entry, "cond_clause");
 		return true;
 	}
 }

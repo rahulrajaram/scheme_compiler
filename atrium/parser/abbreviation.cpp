@@ -14,6 +14,7 @@ namespace Atrium {
 			return false;
 		}
 
+		print_production(token_vector_index_at_entry, "abbreviation");
 		return true;
 	}
 }

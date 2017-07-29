@@ -5,7 +5,6 @@ namespace Atrium {
 	bool Parser::is_procedure_call() {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
-		std::cout << "start \n";
 		if (!is_left_paren()) {
 			return false;
 		}
@@ -24,7 +23,7 @@ namespace Atrium {
 			return false;
 		}
 
-		std::cout << "okay right paren\n";
+		print_production(token_vector_index_at_entry, "procedure_call");
 		return true;
 	}
 }

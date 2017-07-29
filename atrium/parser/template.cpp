@@ -6,9 +6,11 @@ namespace Atrium {
 
 		if (is_pattern_identifier ()) {
 			return true;
+			print_production(token_vector_index_at_entry, "template::pattern_i9dentifier");
 		}
 
 		if (is_template_datum ()) {
+			print_production(token_vector_index_at_entry, "template::template_datum");
 			return true;
 		}
 
@@ -17,6 +19,7 @@ namespace Atrium {
 				while (is_template_element());
 
 				if (is_right_paren()) {
+					print_production(token_vector_index_at_entry, "template");
 					return true;
 				}
 
@@ -41,6 +44,7 @@ namespace Atrium {
 			return false;
 		}
 
+		print_production(token_vector_index_at_entry, "template");
 		return true;
 	}
 }

@@ -7,6 +7,7 @@ namespace Atrium {
 		}
 
 		if (!is_ellipsis()) {
+			print_production(token_vector_index, "pattern_identifier");
 			return true;
 		}
 

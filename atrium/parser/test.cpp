@@ -2,6 +2,11 @@
 
 namespace Atrium {
 	bool Parser::is_test() {
-		return is_expression();
+		if (!is_expression()) {
+			return false;
+		}
+
+		print_production(token_vector_index, "test");
+		return true;
 	}
 }

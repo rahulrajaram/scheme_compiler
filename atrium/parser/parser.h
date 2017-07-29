@@ -101,8 +101,10 @@ namespace Atrium {
 		bool is_terminal_type (const std::string& type);
 
 		// other utils
-		void print_production(const std::string& prod_type);
-		void update_token_vector_index_prev();
+		void print_production(
+			const int token_vector_index_at_entry,
+			const std::string& prod_type
+		);
 	};
 }
 

@@ -2,6 +2,11 @@
 
 namespace Atrium {
 	bool Parser::is_template_datum () {
-		return is_constant();
+		if (!is_constant()) {
+			return false;
+		}
+
+		print_production(token_vector_index, "template_datum");
+		return true;
 	}
 }

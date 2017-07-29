@@ -5,14 +5,17 @@ namespace Atrium {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
 		if (is_variable_definition ()) {
+			print_production(token_vector_index_at_entry, "definition::variable_definition");
 			return true;
 		}
 
 		if (is_syntax_definition ()) {
+			print_production(token_vector_index_at_entry, "definition::syntax");
 			return true;
 		}
 
 		if (is_derived_expression ()) {
+			print_production(token_vector_index_at_entry, "definition::derived");
 			return true;
 		}
 
@@ -29,6 +32,7 @@ namespace Atrium {
 				return false;
 			}
 
+			print_production(token_vector_index_at_entry, "definition::begin/definition");
 			return true;
 		}
 
@@ -58,6 +62,7 @@ namespace Atrium {
 			return false;
 		}
 
+		print_production(token_vector_index_at_entry, "begin/let-syntax/letrec-syntax");
 		return true;
 	}
 }
