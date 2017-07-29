@@ -3,9 +3,6 @@
 
 #include <vector>
 
-#include <spdlog/logger.h>
-#include <spdlog/spdlog.h>
-
 #include "../global_aliases.h"
 #include "bracket_stack.h"
 #include "../tokens/token_vector.h"
@@ -30,7 +27,6 @@ namespace Atrium {
 		public:
 			// member variables
 			IfStream& source_file;
-			SpdlogLogger& spdlog_console;
 			bool suppress_output {true};
 
 
@@ -43,11 +39,9 @@ namespace Atrium {
 			bool inside_multiline_comment {false};
 
 			Lexer(
-				IfStream& source_file,
-				SpdlogLogger spdlog_console
+				IfStream& source_file
 			) :
-				source_file { source_file },
-		 		spdlog_console { spdlog_console }
+				source_file { source_file }
 				{}
 
 			TokenVector tokenize ();

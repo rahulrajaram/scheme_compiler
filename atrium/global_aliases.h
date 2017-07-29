@@ -6,5 +6,4 @@
 
 using IfStream = std::ifstream;
 using CIfStream = const std::ifstream;
-using SpdlogLogger = std::shared_ptr<spdlog::logger>;
 #endif

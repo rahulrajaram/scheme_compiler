@@ -6,19 +6,18 @@
 #include "lexer/lexer.h"
 #include "parser/parser.h"
 
-void print_welcome_message (SpdlogLogger spdlog_console) {
-	spdlog_console->info("**************************************");
-	spdlog_console->info("                                     *");
-	spdlog_console->info("Welcome the Atrium Scheme compiler!  *");
-	spdlog_console->info("                                     *");
-	spdlog_console->info("**************************************");
-	spdlog_console->info("");
-	spdlog_console->info("");
-}
+/*void print_welcome_message (SpdlogLogger spdlog_console) {*/
+	//spdlog_console->info("**************************************");
+	//spdlog_console->info("                                     *");
+	//spdlog_console->info("Welcome the Atrium Scheme compiler!  *");
+	//spdlog_console->info("                                     *");
+	//spdlog_console->info("**************************************");
+	//spdlog_console->info("");
+	//spdlog_console->info("");
+/*}*/
 
 int main (int argc, char* argv[]) {
-	SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
-	print_welcome_message (spdlog_console);
+	//SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
 
 	IfStream source_file(argv[1]);
 	
@@ -28,7 +27,7 @@ int main (int argc, char* argv[]) {
 		std::exit(1);
 	}
 
-	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file, spdlog_console);
+	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
 	lexer.suppress_output = false;
 
 	Atrium::TokenVector token_vector;
