@@ -2,23 +2,19 @@
 
 namespace Atrium {
 	bool Parser::is_constant() {
-		if (current_token_type() == "BOOLEAN") {
-			token_vector_index ++;
+		if (is_boolean()) {
 			return true;
 		}
 
-		if (current_token_type() == "NUMBER") {
-			token_vector_index ++;
+		if (is_number()) {
 			return true;
 		}
 
-		if (current_token_type() == "CHARACTER") {
-			token_vector_index ++;
+		if (is_character()) {
 			return true;
 		}
 
-		if (current_token_type() == "STRING") {
-			token_vector_index ++;
+		if (is_string()) {
 			return true;
 		}
 

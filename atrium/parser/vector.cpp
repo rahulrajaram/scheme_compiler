@@ -4,25 +4,22 @@ namespace Atrium {
 	bool Parser::is_vector () {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
-		if (current_token() != "#") {
+		if (!is_hash()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
-		if (current_token() != "(") {
+		if (!is_left_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
 		while (is_datum ());
 
-		if (current_token() != ")") {
+		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
 		return true;
 	}

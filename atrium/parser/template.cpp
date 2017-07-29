@@ -31,6 +31,9 @@ namespace Atrium {
 			}
 		} else if (is_hash()) {
 			while (is_template_element());
+		} else {
+			token_vector_index = token_vector_index_at_entry;
+			return false;
 		}
 
 		if (!is_right_paren()) {

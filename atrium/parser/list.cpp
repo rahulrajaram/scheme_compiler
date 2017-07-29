@@ -8,30 +8,32 @@ namespace Atrium {
 			return true;
 		}
 
-		if (current_token() != "(") {
+		if (!is_left_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-
-		token_vector_index ++; 
 
 		if (is_datum()) {
 			while (is_datum());
 
-			if (current_token() == ".") {
-				token_vector_index ++;
+			if (is_right_paren()) {
+				return true;
+			}
 
-				if (!is_datum()) {
-					token_vector_index = token_vector_index_at_entry;
-					return false;
-				}
+			if (!is_period()) {
+				token_vector_index = token_vector_index_at_entry;
+				return false;
+			}
+
+			if (!is_datum()) {
+				token_vector_index = token_vector_index_at_entry;
+				return false;
 			}
 		}
-		if (current_token() != ")") {
+		if (is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
 		return true;
 	}

@@ -9,19 +9,23 @@ namespace Atrium {
 			return false;
 		}
 
-		if (is_sequence()) {
-		} else if (is_test()) {
-			if (is_equal_arrow()) {
-				if (!is_expression()) {
-					token_vector_index = token_vector_index_at_entry;
-					return false;
-				}
-			}
-		} else {
+		if (!is_test()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
 
+		if (is_sequence()) {
+		} else if (is_equal_arrow()) {
+			if (!is_expression()) {
+				token_vector_index = token_vector_index_at_entry;
+				return false;
+			}
+		}
+
+		if (!is_right_paren()) {
+			token_vector_index = token_vector_index_at_entry;
+			return false;
+		}
 		return true;
 	}
 }

@@ -40,22 +40,23 @@ namespace Atrium {
 				return false;
 			}
 
-			while (is_pattern());
+			if (is_pattern()) {
+				while (is_pattern());
 
-			if (is_right_paren()) {
-				return true;
-			}
-
-			if (!is_ellipsis()) {
-				token_vector_index = token_vector_index_at_entry;
-				return false;
+				if (is_right_paren()) {
+					return true;
+				}
+				if (!is_ellipsis()) {
+					token_vector_index = token_vector_index_at_entry;
+					return false;
+				}
 			}
 		} else {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
 
-		if (current_token() != ")") {
+		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}

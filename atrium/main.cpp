@@ -40,8 +40,7 @@ int main (int argc, char* argv[]) {
 		exit(1);
 	}
 
-	Atrium::Parser parser(std::move(token_vector), spdlog_console);
-	parser.parse();
+	Atrium::Parser parser(std::move(token_vector));
 
 	return 0;
 }

@@ -3,7 +3,7 @@
 
 <definition>		<variable definition>
 	|	<syntax definition>
-	|	<derived definition>
+	|	<derived expression>
 	|	(begin <definition>*)
 	|	(let-syntax (<syntax binding>*) <definition>*)
 	|	(letrec-syntax (<syntax binding>*) <definition>*)
@@ -37,6 +37,10 @@
       | (<test> => <recipient>)
 <case clause> --> ((<datum>*) <sequence>)
 <binding spec> --> (<variable> <expression>)
+<iteration spec> --> (<variable> <init> <step>)
+    | (<variable> <init>)
+<init> --> <expression>
+<step> --> <expression>
 <do result> --> <sequence> | <empty>
 
 <derived expression> -->

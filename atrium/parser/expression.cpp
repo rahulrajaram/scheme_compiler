@@ -16,9 +16,7 @@ namespace Atrium {
 			return true;
 		}
 
-		if (current_token() == "'") {
-			token_vector_index ++;
-
+		if (is_single_quote()) {
 			if (!is_datum ()) {
 				token_vector_index = token_vector_index_at_entry;
 				return false;
@@ -27,21 +25,13 @@ namespace Atrium {
 			return true;
 		}
 
-		if (current_token() == "(") {
-			token_vector_index ++;
-
-			if (current_token () == "quote") {
-				token_vector_index ++;
-
+		if (is_left_paren()) {
+			if (is_quote()) {
 				if (! is_datum ()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-			}
-
-			if (current_token () == "lambda") {
-				token_vector_index ++;
-
+			} else if (is_lambda()) {
 				if (! is_formals ()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
@@ -51,11 +41,7 @@ namespace Atrium {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-			}
-
-			if (current_token () == "if") {
-				token_vector_index ++;
-
+			} else if (is_if()) {
 				if (! is_expression ()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
@@ -66,8 +52,7 @@ namespace Atrium {
 					return false;
 				}
 
-				if (current_token () == ")") {
-					token_vector_index ++;
+				if (is_right_paren()) {
 					return true;
 				}
 
@@ -75,11 +60,7 @@ namespace Atrium {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-			}
-
-			if (current_token () == "set!") {
-				token_vector_index ++;
-
+			} else if (is_set_bang()) {
 				if (! is_variable ()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
@@ -89,79 +70,50 @@ namespace Atrium {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-			}
-
-			if (current_token () == "let-syntax") {
-				token_vector_index ++;
-
-				if (current_token () != "(") {
+			} else if (is_let_syntax()) {
+				if (!is_left_paren()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-				token_vector_index ++;
 
-				std::size_t token_vector_index_at_start_of_loop = token_vector_index;
-				while ( is_syntax_binding ()) {
-					token_vector_index_at_start_of_loop = token_vector_index;
-				}
-				token_vector_index = token_vector_index_at_start_of_loop;
+				while (is_syntax_binding ());
 
-				if (current_token () != ")") {
+				if (!is_right_paren()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-				token_vector_index ++;
 
 				if (! is_expression ()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
 
-				token_vector_index_at_start_of_loop = token_vector_index;
-				while ( is_expression ()) {
-					token_vector_index_at_start_of_loop = token_vector_index;
-				}
-				token_vector_index = token_vector_index_at_start_of_loop;
-			}
-
-			if (current_token () == "letrec-syntax") {
-				token_vector_index ++;
-
-				if (current_token () != "(") {
-					token_vector_index = token_vector_index_at_entry;
-					return false;
-				}
-				token_vector_index ++;
-
-				std::size_t token_vector_index_at_start_of_loop = token_vector_index;
-				while ( is_syntax_binding ()) {
-					token_vector_index_at_start_of_loop = token_vector_index;
-				}
-				token_vector_index = token_vector_index_at_start_of_loop;
-
-				if (current_token () != ")") {
-					token_vector_index = token_vector_index_at_entry;
-					return false;
-				}
-				token_vector_index ++;
-
-				if (! is_expression ()) {
+				while ( is_expression ());
+			} else if (is_letrec_syntax()) {
+				if (!is_left_paren()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
 
-				token_vector_index_at_start_of_loop = token_vector_index;
-				while ( is_expression ()) {
-					token_vector_index_at_start_of_loop = token_vector_index;
-				}
-				token_vector_index = token_vector_index_at_start_of_loop;
-			}
+				while (is_syntax_binding ());
 
-			if (current_token () != ")") {
+				if (!is_right_paren()) {
+					token_vector_index = token_vector_index_at_entry;
+					return false;
+				}
+
+				if (!is_expression ()) {
+					token_vector_index = token_vector_index_at_entry;
+					return false;
+				}
+
+				while ( is_expression ());
+			} 
+
+			if (!is_right_paren()) {
 				token_vector_index = token_vector_index_at_entry;
 				return false;
 			}
-			token_vector_index ++;
 
 			return true;
 		}

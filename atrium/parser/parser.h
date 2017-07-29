@@ -36,7 +36,6 @@ namespace Atrium {
 		bool is_definition();
 		bool is_derived_expression();
 		bool is_do_result();
-		bool is_ellipsis ();
 		bool is_expression();
 		bool is_form();
 		bool is_formals();
@@ -60,25 +59,42 @@ namespace Atrium {
 		bool is_vector();
 
 		// Terminal symbols	
-		bool is_terminal (const std::string& type);
-		bool is_left_paren ();
-		bool is_right_paren ();
-		bool is_cond ();
-		bool is_else ();
+		bool is_abbreviation_prefix ();
 		bool is_and ();
-		bool is_or ();
+		bool is_begin ();
+		bool is_boolean ();
+		bool is_case ();
+		bool is_character ();
+		bool is_cond ();
+		bool is_define ();
+		bool is_define_syntax ();
+		bool is_delay ();
+		bool is_do ();
+		bool is_ellipsis ();
+		bool is_else ();
+		bool is_equal_arrow ();
+		bool is_hash ();
+		bool is_identifier ();
+		bool is_if ();
+		bool is_lambda ();
+		bool is_left_paren ();
 		bool is_let ();
 		bool is_let_star ();
 		bool is_letrec ();
-		bool is_begin ();
-		bool is_do ();
-		bool is_delay ();
-		bool is_equal_arrow ();
-		bool is_case ();
-		bool is_syntax_rules ();
-		bool is_hash ();
+		bool is_let_syntax ();
+		bool is_letrec_syntax ();
+		bool is_number ();
+		bool is_or ();
 		bool is_period ();
-		bool is_identifier ();
+		bool is_quote ();
+		bool is_right_paren ();
+		bool is_set_bang ();
+		bool is_single_quote ();
+		bool is_string ();
+		bool is_symbol ();
+		bool is_syntax_rules ();
+		bool is_terminal (const std::string& type);
+		bool is_terminal_type (const std::string& type);
 	};
 }
 

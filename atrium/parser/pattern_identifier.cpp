@@ -2,11 +2,12 @@
 
 namespace Atrium {
 	bool Parser::is_pattern_identifier () {
-		if (current_token_type() == "IDENTIFIER") {
-			if (current_token() != "...") {
-				token_vector_index ++;
-				return true;
-			}
+		if (!is_identifier()) {
+			return false;
+		}
+
+		if (!is_ellipsis()) {
+			return true;
 		}
 
 		return false;

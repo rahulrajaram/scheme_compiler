@@ -15,7 +15,7 @@ bin/num.o bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/uinteger.o\
 bin/ureal.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o\
 bin/symbol.o bin/character.o bin/string.o bin/boolean.o\
 bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o bin/procedures.o
-PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/ellipsis.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o bin/parser_utils.o bin/expression.o bin/transformer_expression.o bin/syntax_rule.o bin/application.o bin/iteration_spec.o
+PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o bin/parser_utils.o bin/expression.o bin/transformer_expression.o bin/syntax_rule.o bin/application.o bin/iteration_spec.o
 
 CC = g++
 DEBUG = -g
@@ -172,9 +172,6 @@ bin/derived_expression.o: parser/derived_expression.cpp
 
 bin/do_result.o: parser/do_result.cpp
 	$(CC) $(CFLAGS) parser/do_result.cpp -o bin/do_result.o
-
-bin/ellipsis.o: parser/ellipsis.cpp
-	$(CC) $(CFLAGS) parser/ellipsis.cpp -o bin/ellipsis.o
 
 bin/expression.o: parser/expression.cpp
 	$(CC) $(CFLAGS) parser/expression.cpp -o bin/expression.o

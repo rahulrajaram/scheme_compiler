@@ -4,11 +4,10 @@ namespace Atrium {
 	bool Parser::is_application() {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 		
-		if (current_token() != "(") {
+		if (!is_left_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++; 
 
 		if (! is_expression ()) {
 			token_vector_index = token_vector_index_at_entry;
@@ -17,11 +16,10 @@ namespace Atrium {
 
 		while ( is_expression ());
 
-		if (current_token() != ")") {
+		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++; 
 
 		return true;
 	}

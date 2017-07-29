@@ -12,54 +12,51 @@ namespace Atrium {
 			return true;
 		}
 
-		if (current_token () != "(") {
+		if (is_derived_expression ()) {
+			return true;
+		}
+
+		if (!is_left_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
-		if (current_token() == "begin") {
+		if (is_begin()) {
 			while (is_definition());
 
-			if (current_token () != ")") {
+			if (!is_right_paren()) {
 				token_vector_index = token_vector_index_at_entry;
 				return false;
 			}
-			token_vector_index ++;
 
 			return true;
 		}
 
-		if (current_token() == "let-syntax") {
-			token_vector_index ++;
-		} else if (current_token() == "letrec-syntax") {
-			token_vector_index ++;
+		if (is_let_syntax()) {
+		} else if (is_letrec_syntax()) {
 		} else {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
 
-		if (current_token () != "(") {
+		if (!is_left_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
 		while (is_syntax_binding());
 
-		if (current_token () != ")") {
+		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
 		while (is_definition());
 
-		if (current_token () != ")") {
+		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
-		token_vector_index ++;
 
 		return true;
 	}
