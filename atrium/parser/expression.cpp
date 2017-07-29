@@ -4,6 +4,10 @@ namespace Atrium {
 	bool Parser::is_expression() {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
+		if (is_procedure_call ()) {
+			return true;
+		}
+
 		if (is_constant ()) {
 			return true;
 		}

@@ -42,8 +42,11 @@ namespace Atrium {
 		bool is_iteration_spec();
 		bool is_keyword();
 		bool is_list();
+		bool is_operand();
+		bool is_operator();
 		bool is_pattern_identifier();
 		bool is_pattern();
+		bool is_procedure_call();
 		bool is_program();
 		bool is_sequence();
 		bool is_syntax_definition();

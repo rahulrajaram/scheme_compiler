@@ -15,7 +15,7 @@ bin/num.o bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/uinteger.o\
 bin/ureal.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o\
 bin/symbol.o bin/character.o bin/string.o bin/boolean.o\
 bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o bin/procedures.o
-PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o bin/parser_utils.o bin/expression.o bin/transformer_expression.o bin/syntax_rule.o bin/application.o bin/iteration_spec.o
+PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o bin/parser_utils.o bin/expression.o bin/transformer_expression.o bin/syntax_rule.o bin/application.o bin/iteration_spec.o bin/procedure_call.o bin/operand.o bin/operator.o
 
 CC = g++
 DEBUG = -g
@@ -191,6 +191,12 @@ bin/keyword.o: parser/keyword.cpp
 bin/list.o: parser/list.cpp
 	$(CC) $(CFLAGS) parser/list.cpp -o bin/list.o
 
+bin/operand.o: parser/operand.cpp
+	$(CC) $(CFLAGS) parser/operand.cpp -o bin/operand.o
+
+bin/operator.o: parser/operator.cpp
+	$(CC) $(CFLAGS) parser/operator.cpp -o bin/operator.o
+
 bin/parser.o: parser/parser.cpp
 	$(CC) $(CFLAGS) parser/parser.cpp -o bin/parser.o
 
@@ -199,6 +205,9 @@ bin/pattern.o: parser/pattern.cpp
 
 bin/pattern_identifier.o: parser/pattern_identifier.cpp
 	$(CC) $(CFLAGS) parser/pattern_identifier.cpp -o bin/pattern_identifier.o
+
+bin/procedure_call.o: parser/procedure_call.cpp
+	$(CC) $(CFLAGS) parser/procedure_call.cpp -o bin/procedure_call.o
 
 bin/program.o: parser/program.cpp
 	$(CC) $(CFLAGS) parser/program.cpp -o bin/program.o

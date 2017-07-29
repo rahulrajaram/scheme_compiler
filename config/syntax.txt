@@ -20,6 +20,7 @@
 	|	<variable>
 	|	<application>
 	|	<derived expression>
+	| <procedure call>
 	| ' <datum>
 	|	(quote <datum>) 
 	|	(lambda <formals> <body>)
@@ -32,6 +33,9 @@
 <formals>		<variable> | (<variable>*) | (<variable>+ . <variable>)
 <application>		(<expression> <expression>*)
 
+<procedure call> --> (<operator> <operand>*)
+<operator> --> <expression>
+<operand> --> <expression>
 <cond clause> --> (<test> <sequence>)
       | (<test>)
       | (<test> => <recipient>)
