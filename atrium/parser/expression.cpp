@@ -4,15 +4,23 @@ namespace Atrium {
 	bool Parser::is_expression() {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
+		if (is_procedure_call ()) {
+			print_production(token_vector_index_at_entry, "expression::procedure_call");
+			return true;
+		}
+
 		if (is_constant ()) {
+			print_production(token_vector_index_at_entry, "expression::constant");
 			return true;
 		}
 
 		if (is_variable ()) {
+			print_production(token_vector_index_at_entry, "expression::variable");
 			return true;
 		}
 
 		if (is_application ()) {
+			print_production(token_vector_index_at_entry, "expression::application");
 			return true;
 		}
 
@@ -22,6 +30,7 @@ namespace Atrium {
 				return false;
 			}
 
+			print_production(token_vector_index_at_entry, "expression::single-quote");
 			return true;
 		}
 
@@ -53,6 +62,7 @@ namespace Atrium {
 				}
 
 				if (is_right_paren()) {
+					print_production(token_vector_index_at_entry, "expression::if");
 					return true;
 				}
 
@@ -115,6 +125,7 @@ namespace Atrium {
 				return false;
 			}
 
+			print_production(token_vector_index_at_entry, "expression");
 			return true;
 		}
 	}

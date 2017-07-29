@@ -5,10 +5,12 @@ namespace Atrium {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
 		if (is_pattern_identifier ()) {
+			print_production(token_vector_index_at_entry, "pattern::pattern_identifier");
 			return true;
 		}
 
 		if (is_constant ()) {
+			print_production(token_vector_index_at_entry, "pattern::constant");
 			return true;
 		}
 
@@ -44,6 +46,7 @@ namespace Atrium {
 				while (is_pattern());
 
 				if (is_right_paren()) {
+					print_production(token_vector_index_at_entry, "pattern::hash pattern");
 					return true;
 				}
 				if (!is_ellipsis()) {
@@ -61,6 +64,7 @@ namespace Atrium {
 			return false;
 		}
 
+		print_production(token_vector_index_at_entry, "pattern");
 		return true;
 	}
 }

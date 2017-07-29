@@ -2,13 +2,9 @@
 
 namespace Atrium {
 	bool Parser::parse () {
-		while (token_vector_index < token_vector.size()) {
-			if (! is_form ()) {
-				return false;
-			}
-		}
+		while (is_form ());
 
-		return false;
+		return (token_vector_index == token_vector.size());
 	}
 
 	std::string Parser::current_token() {

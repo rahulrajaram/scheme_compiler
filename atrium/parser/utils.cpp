@@ -1,19 +1,48 @@
 #include "parser.h"
 
 namespace Atrium {
+	void Parser::print_production(
+		const int token_vector_index_at_entry,
+		const std::string& prod_type
+	) {
+
+		if (token_vector_index >= token_vector.size()) {
+			return;
+		}
+		std::cout << "Start:: " << token_vector_index_at_entry;
+		std::cout << " ; End:: " << token_vector_index << "\n";;
+		std::cout << "Production type:: " << prod_type << " ... ";
+		for (int i = token_vector_index_at_entry; i <= token_vector_index; i ++) {
+			std::cout << token_vector[i].token << " ";
+		}
+
+		std::cout << "\n";
+	}
+
 	bool Parser::is_terminal (const std::string& terminal) {
+		if (token_vector_index >= token_vector.size()) {
+			return false;
+		}
+
 		if ((current_token()) != terminal) {
 			return false;
 		}
+
+		print_production(token_vector_index, current_token());
 		token_vector_index ++;
 
 		return true;
 	}
 
 	bool Parser::is_terminal_type (const std::string& terminal_type) {
+		if (token_vector_index >= token_vector.size()) {
+			return false;
+		}
+
 		if ((current_token_type()) != terminal_type) {
 			return false;
 		}
+		print_production(token_vector_index, current_token());
 		token_vector_index ++;
 
 		return true;

@@ -11,6 +11,7 @@ namespace Atrium {
 	class Parser {
 		Atrium::TokenVector token_vector;
 
+		std::size_t token_vector_index_prev {0};
 		std::size_t token_vector_index {0};
 
 		std::string current_token ();
@@ -42,8 +43,11 @@ namespace Atrium {
 		bool is_iteration_spec();
 		bool is_keyword();
 		bool is_list();
+		bool is_operand();
+		bool is_operator();
 		bool is_pattern_identifier();
 		bool is_pattern();
+		bool is_procedure_call();
 		bool is_program();
 		bool is_sequence();
 		bool is_syntax_definition();
@@ -95,6 +99,12 @@ namespace Atrium {
 		bool is_syntax_rules ();
 		bool is_terminal (const std::string& type);
 		bool is_terminal_type (const std::string& type);
+
+		// other utils
+		void print_production(
+			const int token_vector_index_at_entry,
+			const std::string& prod_type
+		);
 	};
 }
 

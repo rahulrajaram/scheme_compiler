@@ -5,6 +5,7 @@ namespace Atrium {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
 		if (is_variable ()) {
+			print_production(token_vector_index_at_entry, "formals::expression");
 			return true;
 		}
 
@@ -17,6 +18,7 @@ namespace Atrium {
 			while(is_variable());
 
 			if (is_right_paren()) {
+			print_production(token_vector_index_at_entry, "formals::expression");
 				return true;
 			}
 
@@ -36,6 +38,7 @@ namespace Atrium {
 			return false;
 		}
 
+		print_production(token_vector_index_at_entry, "formals");
 		return true;
 	}
 }

@@ -190,6 +190,7 @@ namespace Atrium {
 				return false;
 			}
 
+			print_production(token_vector_index_at_entry, "derived_expression::delay");
 			return true;
 		} else {
 			token_vector_index = token_vector_index_at_entry;
@@ -202,6 +203,7 @@ namespace Atrium {
 			return false;
 		}
 
+		print_production(token_vector_index_at_entry, "derived_expression");
 		return true;
 	}
 }

@@ -41,6 +41,6 @@ int main (int argc, char* argv[]) {
 	}
 
 	Atrium::Parser parser(std::move(token_vector));
-
+	std::cout << parser.parse() << "\n";
 	return 0;
 }
