@@ -136,8 +136,11 @@ namespace Atrium {
 
 					break;
 				case ';':
-					inside_single_line_comment = true;
-
+					if (previous_character_was_whitespace()) {
+						inside_single_line_comment = true;
+					} else {
+						present_token += present_character;
+					}
 					break;
 				case '\'':
 					present_token = std::string(1, present_character);
@@ -178,6 +181,14 @@ namespace Atrium {
 
 		bool Lexer::previous_character_was_vertical_dash() {
 			return (previous_char == '|');
+		}
+
+		bool Lexer::previous_character_was_whitespace() {
+			return (
+				previous_char == '\n'
+				|| previous_char == ' '
+				|| previous_char == '\t'
+			);
 		}
 
 		void Lexer::push_back_current_token_and_tokenize_present_character() {
