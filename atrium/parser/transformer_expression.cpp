@@ -27,7 +27,7 @@ namespace Atrium {
 			return false;
 		}
 
-		while (is_syntax_rules());
+		while (is_syntax_rule());
 
 		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;

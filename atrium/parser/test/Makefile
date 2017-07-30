@@ -23,7 +23,7 @@ DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern bin/test_pattern_identifier bin/test_syntax_rule bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector
+all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern bin/test_pattern_identifier bin/test_syntax_rule bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector bin/test_transformer_expression
 
 bin/test_constant: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o -o bin/test_constant
@@ -96,6 +96,13 @@ bin/test_template_element: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_
 
 bin/test_template_element.o: test_template_element.cpp test_helper.h
 	$(CC) $(CFLAGS) test_template_element.cpp -o bin/test_template_element.o
+
+bin/test_transformer_expression.o: test_transformer_expression.cpp test_helper.h
+	$(CC) $(CFLAGS) test_transformer_expression.cpp -o bin/test_transformer_expression.o
+
+bin/test_transformer_expression: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_transformer_expression.o bin/test_transformer_expression.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_transformer_expression.o -o bin/test_transformer_expression
+
 
 bin/test_vector: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_vector.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_vector.o -o bin/test_vector
