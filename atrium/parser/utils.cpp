@@ -160,6 +160,9 @@ namespace Atrium {
 			|| is_terminal_type("IDENTIFIER")
 		);
 	}
+	bool Parser::is_syntactic_keyword () {
+		return is_terminal_type("SYNTACTIC_KEYWORD");
+	}
 	bool Parser::is_syntax_rules () {
 		return is_terminal("syntax-rules");
 	}

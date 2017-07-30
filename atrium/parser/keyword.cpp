@@ -2,7 +2,7 @@
 
 namespace Atrium {
 	bool Parser::is_keyword() {
-		if (! is_keyword()) {
+		if (!is_syntactic_keyword()) {
 			return false;
 		}
 

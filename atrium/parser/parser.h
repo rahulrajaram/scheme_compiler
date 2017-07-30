@@ -97,6 +97,7 @@ namespace Atrium {
 		bool is_single_quote ();
 		bool is_string ();
 		bool is_symbol ();
+		bool is_syntactic_keyword ();
 		bool is_syntax_rules ();
 		bool is_terminal (const std::string& type);
 		bool is_terminal_type (const std::string& type);
