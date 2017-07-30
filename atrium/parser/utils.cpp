@@ -152,7 +152,10 @@ namespace Atrium {
 		return is_terminal_type("STRING");
 	}
 	bool Parser::is_symbol () {
-		return is_terminal_type("SYMBOL");
+		return(
+			is_terminal_type("SYMBOL")
+			|| is_terminal_type("IDENTIFIER")
+		);
 	}
 	bool Parser::is_syntax_rules () {
 		return is_terminal("syntax-rules");
