@@ -49,7 +49,10 @@ namespace Atrium {
 	}
 
 	bool Parser::is_abbreviation_prefix () {
-		return is_terminal_type("ABBREVIATION_PREFIX");
+		return (
+			is_terminal_type("ABBREVIATION_PREFIX")
+			|| is_single_quote()
+		);
 	}
 	bool Parser::is_and () {
 		return is_terminal("and");
