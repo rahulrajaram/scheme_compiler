@@ -32,7 +32,7 @@ namespace Atrium {
 				return false;
 			}
 		}
-		if (is_right_paren()) {
+		if (!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
