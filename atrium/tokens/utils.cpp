@@ -2,6 +2,10 @@
 
 namespace Atrium {
 	bool Token::is_all_digits() {
+		if (token.empty()) {
+			return false;
+		}
+
 		for (auto c : token) {
 			if (!is_digit(c)) {
 				return false;
@@ -12,6 +16,9 @@ namespace Atrium {
 	}
 
 	bool Token::contains_only(char ch) {
+		if (token.empty()) {
+			return false;
+		}
 		for (auto c : token) {
 			if (c != ch) {
 				return false;
