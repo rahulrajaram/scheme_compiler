@@ -23,7 +23,7 @@ DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_list bin/test_vector bin/test_formals
+all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_vector
 
 bin/test_constant: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_constant.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_constant.o -o bin/test_constant
@@ -48,6 +48,12 @@ bin/test_formals: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_formals.o
 
 bin/test_formals.o: test_formals.cpp
 	$(CC) $(CFLAGS) test_formals.cpp -o bin/test_formals.o
+
+bin/test_identifier: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_identifier.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_identifier.o -o bin/test_identifier
+
+bin/test_identifier.o: test_identifier.cpp
+	$(CC) $(CFLAGS) test_identifier.cpp -o bin/test_identifier.o
 
 bin/test_list: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_list.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_list.o -o bin/test_list
