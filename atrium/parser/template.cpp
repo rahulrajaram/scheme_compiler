@@ -5,14 +5,16 @@ namespace Atrium {
 		std::size_t token_vector_index_at_entry = token_vector_index;
 
 		if (is_pattern_identifier ()) {
+			print_production(token_vector_index_at_entry, "template::pattern_identifier");
 			return true;
-			print_production(token_vector_index_at_entry, "template::pattern_i9dentifier");
 		}
 
 		if (is_template_datum ()) {
 			print_production(token_vector_index_at_entry, "template::template_datum");
 			return true;
 		}
+
+		if (is_hash());
 
 		if (is_left_paren()) {
 			if (is_template_element()) {
@@ -32,8 +34,6 @@ namespace Atrium {
 					return false;
 				}
 			}
-		} else if (is_hash()) {
-			while (is_template_element());
 		} else {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
