@@ -23,7 +23,7 @@ DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_list bin/test_vector
+all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_list bin/test_vector bin/test_formals
 
 bin/test_constant: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_constant.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_constant.o -o bin/test_constant

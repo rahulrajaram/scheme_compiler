@@ -14,7 +14,7 @@ int main() {
 		Atrium::TokenVector token_vector = lexer.tokenize(line + "\n");
 		Atrium::Parser parser(std::move(token_vector));
 
-		std::cout << "\n\nParsing:: " << line << "\n" << parser.is_datum() << "\n";
+		std::cout << "\n\nParsing:: " << line << "\n" << parser.is_formals() << "\n";
 	}
 
 	return 0;

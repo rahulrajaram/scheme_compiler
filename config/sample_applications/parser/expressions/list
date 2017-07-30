@@ -3,11 +3,11 @@
 (#t #f)
 (\#c)
 (\#newline)
-("yolo #t)
-(a b \# 12.34 fea12)
+("yolo" #t)
+(a b \#; 12.34 fea12)
 ((()))
 ((a b) (c d))
-((a) ("yolo") \#)
+((a) ("yolo") \#))
 (() . 123.234)
 (123 . 456)
 (\#newline \#c "yolo" . attr)
@@ -16,5 +16,5 @@
 `()
 , ()
 ,@()
-.@ "yolo"
-.@ yolo
+,@ "yolo"
+,@ yolo
