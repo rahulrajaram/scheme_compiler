@@ -134,7 +134,7 @@ namespace Atrium {
 		return is_terminal("or");
 	}
 	bool Parser::is_period () {
-		return is_terminal("#");
+		return is_terminal(".");
 	}
 	bool Parser::is_quote () {
 		return is_terminal("quote");
