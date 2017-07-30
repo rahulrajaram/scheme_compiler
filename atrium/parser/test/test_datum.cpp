@@ -11,11 +11,10 @@ int main() {
 
 	while (getline(datum_file, line)) {
 		Atrium::LexicalAnalysis::Lexer lexer(datum_file);
-
-		Atrium::TokenVector token_vector = lexer.tokenize(line);
+		Atrium::TokenVector token_vector = lexer.tokenize(line + "\n");
 		Atrium::Parser parser(std::move(token_vector));
 
-		std::cout << "Parsing:: " << line << "\n" << parser.parse() << "\n";
+		std::cout << "\n\nParsing:: " << line << "\n" << parser.is_datum() << "\n";
 	}
 
 	return 0;

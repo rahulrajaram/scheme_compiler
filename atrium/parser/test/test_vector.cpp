@@ -15,7 +15,7 @@ int main() {
 		Atrium::TokenVector token_vector = lexer.tokenize(line);
 		Atrium::Parser parser(std::move(token_vector));
 
-		std::cout << "Parsing:: " << line << "\n" << parser.parse() << "\n";
+		std::cout << "Parsing:: " << line << "\n" << parser.is_vector() << "\n";
 	}
 
 	return 0;
