@@ -8,8 +8,8 @@
 namespace Atrium {
 	namespace LexicalAnalysis {
 		Atrium::TokenVector Lexer::tokenize(const std::string& tokens_string) {
-
-			for(auto present_character : tokens_string) {
+			for(auto pc : tokens_string) {
+				present_character = pc;
 				if (inside_comment()) {
 					handle_commented_code();
 				} else {
