@@ -46,7 +46,7 @@ namespace Atrium {
 			return false;
 		}
 
-		if (starts_with_prefix("\\#")) {
+		if (starts_with_prefix("#\\")) {
 			return(
 				non_printing_characters_map.find(token.substr(2))
 				!= non_printing_characters_map.end()
@@ -62,7 +62,7 @@ namespace Atrium {
 		}
 
 		return (
-			starts_with_prefix("\\#")
+			starts_with_prefix("#\\")
 			&& token[2] >= 33
 		 	&& token[2] <= 128
 		);

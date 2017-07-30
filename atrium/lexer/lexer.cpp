@@ -82,7 +82,7 @@ namespace Atrium {
 					push_back_and_clear_present_token();
 				}
 			}	else if (inside_character) {
-				if (present_token == "\\#") {
+				if (present_token == "#\\") {
 					if (current_character_is_whitespace()) {
 						throw std::exception();
 					}
@@ -144,12 +144,7 @@ namespace Atrium {
 
 					break;
 				case '#':
-					if (previous_character_was_backslash()) {
-						inside_character = true;
-						present_token += present_character;
-					} else {
-						present_token = std::string(1, present_character);
-					}
+					present_token = std::string(1, present_character);
 
 					break;
 				case ';':
@@ -165,10 +160,14 @@ namespace Atrium {
 
 					break;
 				case '\\':
-					present_token = std::string(1, present_character);
+					if (previous_character_was_hash()) {
+						inside_character = true;
+						present_token += present_character;
+					} else {
+						present_token = std::string(1, present_character);
+					}
 
 					break;
-
 				case '|':
 					if (previous_character_was_hash()) {
 						present_token.clear();

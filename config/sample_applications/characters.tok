@@ -10,12 +10,12 @@ begin --> SYNTACTIC_KEYWORD
 ( --> LEFT_PAREN
 = --> IDENTIFIER
 a --> NUMBER
-\#newline --> CHARACTER
+#\newline --> CHARACTER
 ) --> RIGHT_PAREN
 ( --> LEFT_PAREN
 = --> IDENTIFIER
 b --> NUMBER
-\#c --> CHARACTER
+#\c --> CHARACTER
 ) --> RIGHT_PAREN
 ( --> LEFT_PAREN
 newline --> IDENTIFIER
