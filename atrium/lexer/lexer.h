@@ -52,6 +52,8 @@ namespace Atrium {
 			bool previous_character_was_hash();
 			bool previous_character_was_vertical_dash();
 			bool previous_character_was_whitespace();
+			bool current_character_is_whitespace();
+			bool current_character_is_alphabetic();
 			void handle_commented_code();
 			void handle_uncommented_code();
 			void handle_uncommented_and_non_string_code();

@@ -81,7 +81,19 @@ namespace Atrium {
 
 					push_back_and_clear_present_token();
 				}
-			}	else {
+			}	else if (inside_character) {
+				if (previous_character_was_hash()) {
+					if (current_character_is_whitespace()) {
+						throw std::exception();
+					}
+					present_token += present_character;
+				} else if (current_character_is_alphabetic()) {
+					present_token += present_character;
+				} else {
+					inside_character = false;
+					handle_uncommented_and_non_string_code();
+				}
+			} else {
 				handle_uncommented_and_non_string_code();
 			}
 		}
@@ -124,9 +136,6 @@ namespace Atrium {
 
 					break;
 				case ' ':
-					if (inside_character) {
-						inside_character = false;
-					}
 					push_back_and_clear_present_token();
 
 					break;
@@ -196,6 +205,21 @@ namespace Atrium {
 				previous_char == '\n'
 				|| previous_char == ' '
 				|| previous_char == '\t'
+			);
+		}
+
+		bool Lexer::current_character_is_whitespace() {
+			return (
+				present_character == '\n'
+				|| present_character == ' '
+				|| present_character == '\t'
+			);
+		}
+
+		bool Lexer::current_character_is_alphabetic() {
+			return (
+				(present_character >= 65 && present_character <= 90)
+				|| (present_character >= 97 && present_character <= 122)
 			);
 		}
 
