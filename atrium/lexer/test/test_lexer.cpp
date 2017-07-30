@@ -1,5 +1,3 @@
-#include <spdlog/spdlog.h>
-
 #include "../../global_aliases.h"
 
 #include "../lexer.h"
@@ -7,14 +5,12 @@
 
 Atrium::TestCase test_case;
 
-SpdlogLogger spdlog_console = spdlog::stdout_color_mt("console");
-
 using SVector = std::vector <std::string>;
 
 Atrium::TokenVector actual_token_vector() {
 	IfStream source_file(test_case.sample_applications_path + test_case.source_file + ".scm");
 
-	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file, spdlog_console);
+	auto lexer = Atrium::LexicalAnalysis::Lexer(source_file);
 
 	return lexer.tokenize();
 }
