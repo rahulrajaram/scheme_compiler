@@ -7,6 +7,32 @@
 
 namespace Atrium {
 	namespace LexicalAnalysis {
+		Atrium::TokenVector Lexer::tokenize(const std::string& tokens_string) {
+			for(auto pc : tokens_string) {
+				present_character = pc;
+				if (inside_comment()) {
+					handle_commented_code();
+				} else {
+					handle_uncommented_code();
+				}
+				previous_char = present_character;
+			}
+
+			if (!suppress_output) {
+				token_vector.print_token_strings();
+			}
+
+			if (inside_string) {
+				throw std::exception();
+			}
+
+			if (bracket_stack.definitely_unbalanced()) {
+				throw std::exception();
+			}
+
+			return token_vector;
+		}
+
 		Atrium::TokenVector Lexer::tokenize() {
 
 			while ((present_character = source_file.get()) != EOF) {
@@ -55,7 +81,19 @@ namespace Atrium {
 
 					push_back_and_clear_present_token();
 				}
-			}	else {
+			}	else if (inside_character) {
+				if (present_token == "\\#") {
+					if (current_character_is_whitespace()) {
+						throw std::exception();
+					}
+					present_token += present_character;
+				} else if (current_character_is_alphabetic()) {
+					present_token += present_character;
+				} else {
+					inside_character = false;
+					handle_uncommented_and_non_string_code();
+				}
+			} else {
 				handle_uncommented_and_non_string_code();
 			}
 		}
@@ -98,9 +136,6 @@ namespace Atrium {
 
 					break;
 				case ' ':
-					if (inside_character) {
-						inside_character = false;
-					}
 					push_back_and_clear_present_token();
 
 					break;
@@ -118,8 +153,11 @@ namespace Atrium {
 
 					break;
 				case ';':
-					inside_single_line_comment = true;
-
+					if (previous_character_was_whitespace()) {
+						inside_single_line_comment = true;
+					} else {
+						present_token += present_character;
+					}
 					break;
 				case '\'':
 					present_token = std::string(1, present_character);
@@ -160,6 +198,29 @@ namespace Atrium {
 
 		bool Lexer::previous_character_was_vertical_dash() {
 			return (previous_char == '|');
+		}
+
+		bool Lexer::previous_character_was_whitespace() {
+			return (
+				previous_char == '\n'
+				|| previous_char == ' '
+				|| previous_char == '\t'
+			);
+		}
+
+		bool Lexer::current_character_is_whitespace() {
+			return (
+				present_character == '\n'
+				|| present_character == ' '
+				|| present_character == '\t'
+			);
+		}
+
+		bool Lexer::current_character_is_alphabetic() {
+			return (
+				(present_character >= 65 && present_character <= 90)
+				|| (present_character >= 97 && present_character <= 122)
+			);
 		}
 
 		void Lexer::push_back_current_token_and_tokenize_present_character() {

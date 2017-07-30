@@ -5,10 +5,14 @@ namespace Atrium {
 		const int token_vector_index_at_entry,
 		const std::string& prod_type
 	) {
-
 		if (token_vector_index >= token_vector.size()) {
 			return;
 		}
+
+		if (suppress_output) {
+			return;
+		}
+
 		std::cout << "Start:: " << token_vector_index_at_entry;
 		std::cout << " ; End:: " << token_vector_index << "\n";;
 		std::cout << "Production type:: " << prod_type << " ... ";
@@ -49,7 +53,10 @@ namespace Atrium {
 	}
 
 	bool Parser::is_abbreviation_prefix () {
-		return is_terminal_type("ABBREVIATION_PREFIX");
+		return (
+			is_terminal_type("ABBREVIATION_PREFIX")
+			|| is_single_quote()
+		);
 	}
 	bool Parser::is_and () {
 		return is_terminal("and");
@@ -127,7 +134,7 @@ namespace Atrium {
 		return is_terminal("or");
 	}
 	bool Parser::is_period () {
-		return is_terminal("#");
+		return is_terminal(".");
 	}
 	bool Parser::is_quote () {
 		return is_terminal("quote");
@@ -145,7 +152,10 @@ namespace Atrium {
 		return is_terminal_type("STRING");
 	}
 	bool Parser::is_symbol () {
-		return is_terminal_type("SYMBOL");
+		return(
+			is_terminal_type("SYMBOL")
+			|| is_terminal_type("IDENTIFIER")
+		);
 	}
 	bool Parser::is_syntax_rules () {
 		return is_terminal("syntax-rules");

@@ -18,7 +18,7 @@ namespace Atrium {
 			while(is_variable());
 
 			if (is_right_paren()) {
-			print_production(token_vector_index_at_entry, "formals::expression");
+				print_production(token_vector_index_at_entry, "formals::expression");
 				return true;
 			}
 

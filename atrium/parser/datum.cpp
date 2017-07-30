@@ -12,6 +12,12 @@ namespace Atrium {
 			return true;
 		}
 
+		// symbols are essentially identifiers
+		if (is_identifier()) {
+			print_production(token_vector_index, "identifier");
+			return true;
+		}
+
 		if (is_list ()) {
 			print_production(token_vector_index, "list");
 			return true;

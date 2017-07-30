@@ -36,9 +36,7 @@
 <procedure call> --> (<operator> <operand>*)
 <operator> --> <expression>
 <operand> --> <expression>
-<cond clause> --> (<test> <sequence>)
-      | (<test>)
-      | (<test> => <recipient>)
+
 <case clause> --> ((<datum>*) <sequence>)
 <binding spec> --> (<variable> <expression>)
 <iteration spec> --> (<variable> <init> <step>)
@@ -63,6 +61,13 @@
            (<test> <do result>)
          <command>*)
      | (delay <expression>)
+<cond clause> --> (<test> <sequence>)
+      | (<test>)
+      | (<test> => <recipient>)
+<test> --> <expression>
+<sequence> --> <command>* <expression>
+<command> --> <expression>
+<recipient> --> <expression>
 
 <transformer expression> -->
     (syntax-rules (<identifier>*) <syntax rule>*)
