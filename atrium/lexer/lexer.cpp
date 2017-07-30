@@ -7,6 +7,24 @@
 
 namespace Atrium {
 	namespace LexicalAnalysis {
+		Atrium::TokenVector Lexer::tokenize(const std::string& tokens_string) {
+
+			for(auto present_character : tokens_string) {
+				if (inside_comment()) {
+					handle_commented_code();
+				} else {
+					handle_uncommented_code();
+				}
+				previous_char = present_character;
+			}
+
+			if (!suppress_output) {
+				token_vector.print_token_strings();
+			}
+
+			return token_vector;
+		}
+
 		Atrium::TokenVector Lexer::tokenize() {
 
 			while ((present_character = source_file.get()) != EOF) {

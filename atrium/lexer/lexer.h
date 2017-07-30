@@ -45,6 +45,7 @@ namespace Atrium {
 				{}
 
 			TokenVector tokenize ();
+			TokenVector tokenize (const std::string& token_string);
 
 			bool inside_comment();
 			bool previous_character_was_backslash();
