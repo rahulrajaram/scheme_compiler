@@ -101,7 +101,10 @@ namespace Atrium {
 		return is_terminal("#");
 	}
 	bool Parser::is_identifier () {
-		return is_terminal_type("IDENTIFIER");
+		return(
+			is_terminal_type("IDENTIFIER")
+			|| is_number()
+		);
 	}
 	bool Parser::is_if () {
 		return is_terminal("if");
