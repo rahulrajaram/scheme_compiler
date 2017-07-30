@@ -25,54 +25,56 @@ LFLAGS = -Wall -pthread
 
 all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern_identifier bin/test_vector
 
-bin/test_constant: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_constant.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_constant.o -o bin/test_constant
+bin/test_constant: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o -o bin/test_constant
 
-bin/test_constant.o: test_constant.cpp
+bin/test_constant.o: test_constant.cpp test_helper.h
 	$(CC) $(CFLAGS) test_constant.cpp -o bin/test_constant.o
 
-bin/test_datum: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_datum.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_datum.o -o bin/test_datum
+bin/test_datum: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_datum.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_datum.o -o bin/test_datum
 
-bin/test_datum.o: test_datum.cpp
+bin/test_datum.o: test_datum.cpp test_helper.h
 	$(CC) $(CFLAGS) test_datum.cpp -o bin/test_datum.o
 
-bin/test_expression: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_expression.o
+bin/test_expression: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_expression.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_expression.o -o bin/test_expression
 
-bin/test_expression.o: test_expression.cpp
+bin/test_expression.o: test_expression.cpp test_helper.h
 	$(CC) $(CFLAGS) test_expression.cpp -o bin/test_expression.o
 
 bin/test_formals: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_formals.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_formals.o -o bin/test_formals
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_formals.o -o bin/test_formals
 
-bin/test_formals.o: test_formals.cpp
+bin/test_formals.o: test_formals.cpp test_helper.h
 	$(CC) $(CFLAGS) test_formals.cpp -o bin/test_formals.o
 
-bin/test_identifier: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_identifier.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_identifier.o -o bin/test_identifier
+bin/test_identifier: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_identifier.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_identifier.o -o bin/test_identifier
 
-bin/test_identifier.o: test_identifier.cpp
+bin/test_identifier.o: test_identifier.cpp test_helper.h
 	$(CC) $(CFLAGS) test_identifier.cpp -o bin/test_identifier.o
 
-bin/test_list: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_list.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_list.o -o bin/test_list
+bin/test_list: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_list.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_list.o -o bin/test_list
 
-bin/test_list.o: test_list.cpp
+bin/test_list.o: test_list.cpp test_helper.h
 	$(CC) $(CFLAGS) test_list.cpp -o bin/test_list.o
 
-bin/test_pattern_identifier: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_pattern_identifier.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_pattern_identifier.o -o bin/test_pattern_identifier
+bin/test_pattern_identifier: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_pattern_identifier.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_pattern_identifier.o -o bin/test_pattern_identifier
 
-bin/test_pattern_identifier.o: test_pattern_identifier.cpp
+bin/test_pattern_identifier.o: test_pattern_identifier.cpp test_helper.h
 	$(CC) $(CFLAGS) test_pattern_identifier.cpp -o bin/test_pattern_identifier.o
 
-bin/test_vector: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_vector.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_vector.o -o bin/test_vector
+bin/test_vector: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_vector.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_vector.o -o bin/test_vector
 
-bin/test_vector.o: test_vector.cpp
+bin/test_vector.o: test_vector.cpp test_helper.h
 	$(CC) $(CFLAGS) test_vector.cpp -o bin/test_vector.o
 
+bin/test_helper.o: test_helper.cpp
+	$(CC) $(CFLAGS) test_helper.cpp -o bin/test_helper.o
 
 # *****************************
 # Lexer files
