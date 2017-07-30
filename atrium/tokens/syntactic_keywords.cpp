@@ -18,7 +18,7 @@ namespace Atrium {
 		"define",
 		"define-integrable",
 		"define-macro",
-		"define-structure"
+		"define-structure",
 		"define-syntax",
 		"delay",
 		"do",
