@@ -82,7 +82,7 @@ namespace Atrium {
 					push_back_and_clear_present_token();
 				}
 			}	else if (inside_character) {
-				if (previous_character_was_hash()) {
+				if (present_token == "\\#") {
 					if (current_character_is_whitespace()) {
 						throw std::exception();
 					}
