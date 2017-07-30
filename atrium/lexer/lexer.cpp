@@ -22,6 +22,14 @@ namespace Atrium {
 				token_vector.print_token_strings();
 			}
 
+			if (inside_string) {
+				throw std::exception();
+			}
+
+			if (bracket_stack.definitely_unbalanced()) {
+				throw std::exception();
+			}
+
 			return token_vector;
 		}
 
