@@ -23,7 +23,7 @@ DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern_identifier bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector
+all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern bin/test_pattern_identifier bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector
 
 bin/test_constant: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o -o bin/test_constant
@@ -60,6 +60,12 @@ bin/test_list: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin
 
 bin/test_list.o: test_list.cpp test_helper.h
 	$(CC) $(CFLAGS) test_list.cpp -o bin/test_list.o
+
+bin/test_pattern: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_pattern.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_pattern.o -o bin/test_pattern
+
+bin/test_pattern.o: test_pattern.cpp test_helper.h
+	$(CC) $(CFLAGS) test_pattern.cpp -o bin/test_pattern.o
 
 bin/test_pattern_identifier: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_pattern_identifier.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_pattern_identifier.o -o bin/test_pattern_identifier

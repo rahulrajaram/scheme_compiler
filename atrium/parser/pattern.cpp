@@ -29,10 +29,7 @@ namespace Atrium {
 					}
 				}
 
-				if (is_ellipsis()) {
-					token_vector_index = token_vector_index_at_entry;
-					return false;
-				}
+				if (is_ellipsis());
 			}
 		} else if (is_hash()) {
 			// | #(<pattern>*)
