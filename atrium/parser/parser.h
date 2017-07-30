@@ -17,6 +17,7 @@ namespace Atrium {
 		std::string current_token ();
 		std::string current_token_type ();
 	public:
+		bool suppress_output {true};
 		Parser(
 			const Atrium::TokenVector&& token_vector
 		) :

@@ -5,10 +5,14 @@ namespace Atrium {
 		const int token_vector_index_at_entry,
 		const std::string& prod_type
 	) {
-
 		if (token_vector_index >= token_vector.size()) {
 			return;
 		}
+
+		if (suppress_output) {
+			return;
+		}
+
 		std::cout << "Start:: " << token_vector_index_at_entry;
 		std::cout << " ; End:: " << token_vector_index << "\n";;
 		std::cout << "Production type:: " << prod_type << " ... ";
