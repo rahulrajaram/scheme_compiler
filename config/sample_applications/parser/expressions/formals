@@ -1,4 +1,5 @@
 yolo
+()
 (yolo abc)
 (yolo abc . !!!$)
 (yolo . !!!$)

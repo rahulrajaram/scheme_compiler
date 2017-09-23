@@ -29,6 +29,10 @@ void test_boolean_scm() {
 	test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
 }
 
+void test_boolean_1_scm() {
+	test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+}
+
 void test_digits_scm() {
 	test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
 }
@@ -107,6 +111,10 @@ int main () {
 	test_case.test_name = "test_boolean_scm";
 	test_case.source_file = "boolean";
 	test_case.run(test_boolean_scm);
+
+	test_case.test_name = "test_boolean_1_scm";
+	test_case.source_file = "boolean_1";
+	test_case.run(test_boolean_1_scm);
 
 	test_case.test_name = "test_digits_scm";
 	test_case.source_file = "digits";
