@@ -30,6 +30,8 @@ namespace Atrium {
 				throw std::exception();
 			}
 
+			token_vector.push_back(present_token);
+
 			return token_vector;
 		}
 
