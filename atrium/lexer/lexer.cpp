@@ -23,10 +23,12 @@ namespace Atrium {
 			}
 
 			if (inside_string) {
+				// TODO: Create exception class for this
 				throw std::exception();
 			}
 
 			if (bracket_stack.definitely_unbalanced()) {
+				// TODO: Create exception class for this
 				throw std::exception();
 			}
 
@@ -86,6 +88,7 @@ namespace Atrium {
 			}	else if (inside_character) {
 				if (present_token == "#\\") {
 					if (current_character_is_whitespace()) {
+						// TODO: Make the exception specific: "Expected character, but found whitespace"
 						throw std::exception();
 					}
 					present_token += present_character;
