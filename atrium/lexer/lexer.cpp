@@ -98,6 +98,18 @@ namespace Atrium {
 					inside_character = false;
 					handle_uncommented_and_non_string_code();
 				}
+			} else if (possible_abbreviation_prefix) {
+				possible_abbreviation_prefix = false;
+
+				if (present_character == '@') {
+					present_token += present_character;
+
+					push_back_and_clear_present_token();
+				} else {
+					push_back_and_clear_present_token();
+
+					handle_uncommented_and_non_string_code();
+				}
 			} else {
 				handle_uncommented_and_non_string_code();
 			}
@@ -173,6 +185,16 @@ namespace Atrium {
 					}
 
 					break;
+				case '`':
+					present_token = std::string(1, present_character);
+					push_back_and_clear_present_token();
+
+					break;
+				case ',':
+					possible_abbreviation_prefix = true;
+					present_token = std::string(1, present_character);
+
+					break;
 				case '|':
 					if (previous_character_was_hash()) {
 						present_token.clear();
@@ -202,6 +224,10 @@ namespace Atrium {
 
 		bool Lexer::previous_character_was_vertical_dash() {
 			return (previous_char == '|');
+		}
+
+		bool Lexer::previous_character_was_comma() {
+			return (previous_char == ',');
 		}
 
 		bool Lexer::previous_character_was_whitespace() {

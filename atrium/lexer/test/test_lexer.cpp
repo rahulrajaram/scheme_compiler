@@ -97,6 +97,10 @@ void test_characters() {
 		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
 }
 
+void test_abbreviation() {
+		test_case.assert_vectors_equal(expected_token_vector(), actual_token_vector());
+}
+
 int main () {
 	test_case = Atrium::TestCase();
 
@@ -167,6 +171,10 @@ int main () {
 	test_case.test_name = "test_characters";
 	test_case.source_file = "characters";
 	test_case.run(test_characters);
+
+	test_case.test_name = "test_abbreviation";
+	test_case.source_file = "abbreviation";
+	test_case.run(test_abbreviation);
 
 	return 0;
 }

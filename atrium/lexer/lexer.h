@@ -37,6 +37,7 @@ namespace Atrium {
 			bool inside_quoted_expression {false};
 			bool inside_single_line_comment {false};
 			bool inside_multiline_comment {false};
+			bool possible_abbreviation_prefix {false};
 
 			Lexer(
 				IfStream& source_file
@@ -51,6 +52,7 @@ namespace Atrium {
 			bool previous_character_was_backslash();
 			bool previous_character_was_hash();
 			bool previous_character_was_vertical_dash();
+			bool previous_character_was_comma();
 			bool previous_character_was_whitespace();
 			bool current_character_is_whitespace();
 			bool current_character_is_alphabetic();
