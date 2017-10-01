@@ -48,4 +48,3 @@
 (avon>: '#o#i777+100i)
 (lr$p=+ ((if '(1) "yolo" #f)))
 (avon>: ((if #f #t 12.123123)))
-(define $!7h*/^k~8:3ebipr5>c=dj?v-w%<q2au$6slx.1mzt+n4fy0&9o_g '("yolo" #t))

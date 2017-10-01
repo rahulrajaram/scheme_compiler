@@ -2,7 +2,7 @@
 
 #include "test_helper.h"
 
-int main() {
+int main (int argc, char* argv[]) {
 	std::ifstream pattern_file("../../../config/sample_applications/parser/expressions/pattern");
 
 	std::string line;
@@ -18,7 +18,7 @@ int main() {
 		Atrium::Parser parser(std::move(token_vector));
 		//parser.suppress_output = false;
 
-		print_result(++ test_case_number, line, parser.is_pattern());
+		print_result(++ test_case_number, line, parser.is_pattern(), must_print_success(argc, argv));
 	}
 
 	return 0;

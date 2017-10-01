@@ -9,9 +9,12 @@
 
 const static std::string test_set_base = "../../../config/sample_applications/parser/expressions/";
 
+bool must_print_success(int argc, char* argv[]);
+
 void print_result(
 	int test_case_number,
 	std::string& example_string,
-	bool result
+	bool result,
+	bool print_result=false
 );
 #endif

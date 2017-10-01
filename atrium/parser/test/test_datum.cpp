@@ -2,7 +2,7 @@
 
 #include "test_helper.h"
 
-int main() {
+int main (int argc, char* argv[]) {
 	std::ifstream datum_file(test_set_base + "datum");
 
 	std::string line;
@@ -13,7 +13,7 @@ int main() {
 		Atrium::TokenVector token_vector = lexer.tokenize(line + "\n");
 		Atrium::Parser parser(std::move(token_vector));
 
-		print_result(++ test_case_number, line, parser.is_datum());
+		print_result(++ test_case_number, line, parser.is_datum(), must_print_success(argc, argv));
 	}
 
 	return 0;

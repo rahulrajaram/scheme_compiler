@@ -1,6 +1,38 @@
+#include <cstdio>
+
 #include "parser.h"
 
 namespace Atrium {
+	void Parser::log(
+		char* file,
+		char* method,
+		int line_number
+	) {
+		std::string current_token;
+		std::string current_token_type;
+
+		if (token_vector_index < token_vector.size()) {
+			current_token = token_vector[token_vector_index].token;
+			current_token_type = token_vector[token_vector_index].type;
+		}
+
+		std::cout << "\033[1;35m";
+		std::cout << "DEBUG: "
+			<< file
+			<< "::"
+			<< method
+			<< "::"
+			<< line_number
+			<< " ... "
+			<< token_vector_index
+			<< " ... "
+			<< current_token
+			<< " ... "
+			<< current_token_type
+			<< "\n";
+		std::cout << "\033[0m\n";
+	}
+
 	void Parser::print_production(
 		const int token_vector_index_at_entry,
 		const std::string& prod_type

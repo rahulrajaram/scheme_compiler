@@ -23,7 +23,13 @@ DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/test_body bin/test_iteration_spec bin/test_variable_definition bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern bin/test_pattern_identifier bin/test_syntax_rule bin/test_syntax_binding bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector bin/test_transformer_expression bin/test_case_clause bin/test_sequence bin/test_derived_expression bin/test_cond_clause bin/test_binding_spec
+all: bin/test_body bin/test_iteration_spec bin/test_variable_definition bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern bin/test_pattern_identifier bin/test_syntax_rule bin/test_syntax_binding bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector bin/test_transformer_expression bin/test_case_clause bin/test_sequence bin/test_derived_expression bin/test_cond_clause bin/test_binding_spec bin/test_form
+
+bin/test_form: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_form.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_form.o -o bin/test_form
+
+bin/test_form.o: test_form.cpp test_helper.h
+	$(CC) $(CFLAGS) test_form.cpp -o bin/test_form.o
 
 bin/test_body: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_body.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_body.o -o bin/test_body
@@ -335,7 +341,7 @@ bin/operator.o: $(PARSER_SRC)/operator.cpp
 	$(CC) $(CFLAGS) $(PARSER_SRC)/operator.cpp -o bin/operator.o
 
 bin/parser.o: $(PARSER_SRC)/parser.cpp
-	$(CC) $(CFLAGS) $(PARSER_SRC)/parser.cpp (LEXER_SRC)/token_vector.h -o bin/parser.o
+	$(CC) $(CFLAGS) $(PARSER_SRC)/parser.cpp -o bin/parser.o
 
 bin/pattern.o: $(PARSER_SRC)/pattern.cpp
 	$(CC) $(CFLAGS) $(PARSER_SRC)/pattern.cpp -o bin/pattern.o

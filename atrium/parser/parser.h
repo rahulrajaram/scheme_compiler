@@ -107,6 +107,14 @@ namespace Atrium {
 			const int token_vector_index_at_entry,
 			const std::string& prod_type
 		);
+
+		void log(
+			char* file,
+			char* method,
+			int line_number
+		);
+
+		#define LOG() log((char*)(__FILE__), (char*)(__FUNCTION__), __LINE__);
 	};
 }
 

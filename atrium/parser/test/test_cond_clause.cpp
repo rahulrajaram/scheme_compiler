@@ -2,7 +2,7 @@
 
 #include "test_helper.h"
 
-int main() {
+int main (int argc, char* argv[]) {
 	std::ifstream cond_clause_file("../../../config/sample_applications/parser/expressions/cond_clause");
 
 	std::string line;
@@ -14,7 +14,7 @@ int main() {
 		// Atrium::TokenVector token_vector = lexer.tokenize(line + "(case ((if #t 12.123123 #f))  (else ((if '(1) \"yolo\" #f) 'fsdfsdf)))\n");
 		Atrium::Parser parser(std::move(token_vector));
 
-		print_result(++ test_case_number, line, parser.is_cond_clause());
+		print_result(++ test_case_number, line, parser.is_cond_clause(), must_print_success(argc, argv));
 	}
 
 	return 0;
