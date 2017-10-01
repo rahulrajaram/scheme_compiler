@@ -16,14 +16,50 @@ bin/num.o bin/number.o bin/prefix.o bin/real.o bin/suffix.o bin/uinteger.o\
 bin/ureal.o bin/letter.o bin/initial.o bin/subsequent.o bin/identifier.o\
 bin/symbol.o bin/character.o bin/string.o bin/boolean.o\
 bin/abbreviation_prefixes.o bin/classify.o bin/delimiters.o bin/syntactic_keywords.o bin/procedures.o
-PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o bin/parser_utils.o bin/expression.o bin/transformer_expression.o bin/syntax_rule.o bin/application.o bin/iteration_spec.o bin/procedure_call.o bin/operand.o bin/operator.o
+PARSER_OBJS = bin/parser.o bin/abbreviation.o bin/body.o bin/constant.o bin/datum.o bin/definition.o bin/form.o bin/formals.o bin/keyword.o bin/list.o bin/pattern.o bin/pattern_identifier.o bin/program.o bin/syntax_binding.o bin/syntax_definition.o bin/template.o bin/template_datum.o bin/template_element.o bin/variable.o bin/variable_definition.o bin/vector.o bin/derived_expression.o bin/cond_clause.o bin/sequence.o bin/case_clause.o bin/test.o bin/binding_spec.o bin/do_result.o bin/command.o bin/parser_utils.o bin/expression.o bin/transformer_expression.o bin/syntax_rule.o bin/application.o bin/iteration_spec.o bin/procedure_call.o bin/operand.o bin/operator.o 
 
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c -std=c++11 $(DEBUG)
 LFLAGS = -Wall -pthread
 
-all: bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern bin/test_pattern_identifier bin/test_syntax_rule bin/test_syntax_binding bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector bin/test_transformer_expression
+all: bin/test_body bin/test_iteration_spec bin/test_variable_definition bin/test_constant bin/test_datum bin/test_expression bin/test_formals bin/test_identifier bin/test_list bin/test_pattern bin/test_pattern_identifier bin/test_syntax_rule bin/test_syntax_binding bin/test_template bin/test_template_datum bin/test_template_element bin/test_vector bin/test_transformer_expression bin/test_case_clause bin/test_sequence bin/test_derived_expression bin/test_cond_clause bin/test_binding_spec
+
+bin/test_body: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_body.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_body.o -o bin/test_body
+
+bin/test_body.o: test_body.cpp test_helper.h
+	$(CC) $(CFLAGS) test_body.cpp -o bin/test_body.o
+
+bin/test_case_clause: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_case_clause.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_case_clause.o -o bin/test_case_clause
+
+bin/test_case_clause.o: test_case_clause.cpp test_helper.h
+	$(CC) $(CFLAGS) test_case_clause.cpp -o bin/test_case_clause.o
+
+bin/test_variable_definition: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_variable_definition.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_variable_definition.o -o bin/test_variable_definition
+
+bin/test_variable_definition.o: test_variable_definition.cpp test_helper.h
+	$(CC) $(CFLAGS) test_variable_definition.cpp -o bin/test_variable_definition.o
+
+bin/test_iteration_spec: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_iteration_spec.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_iteration_spec.o -o bin/test_iteration_spec
+
+bin/test_iteration_spec.o: test_iteration_spec.cpp test_helper.h
+	$(CC) $(CFLAGS) test_iteration_spec.cpp -o bin/test_iteration_spec.o
+
+bin/test_binding_spec: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_binding_spec.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_binding_spec.o -o bin/test_binding_spec
+
+bin/test_binding_spec.o: test_binding_spec.cpp test_helper.h
+	$(CC) $(CFLAGS) test_binding_spec.cpp -o bin/test_binding_spec.o
+
+bin/test_cond_clause: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_cond_clause.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_cond_clause.o -o bin/test_cond_clause
+
+bin/test_cond_clause.o: test_cond_clause.cpp test_helper.h
+	$(CC) $(CFLAGS) test_cond_clause.cpp -o bin/test_cond_clause.o
 
 bin/test_constant: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_constant.o -o bin/test_constant
@@ -37,8 +73,14 @@ bin/test_datum: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bi
 bin/test_datum.o: test_datum.cpp test_helper.h
 	$(CC) $(CFLAGS) test_datum.cpp -o bin/test_datum.o
 
+bin/test_derived_expression: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_derived_expression.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_derived_expression.o -o bin/test_derived_expression
+
+bin/test_derived_expression.o: test_derived_expression.cpp test_helper.h
+	$(CC) $(CFLAGS) test_derived_expression.cpp -o bin/test_derived_expression.o
+
 bin/test_expression: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_expression.o
-	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_expression.o -o bin/test_expression
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_expression.o -o bin/test_expression
 
 bin/test_expression.o: test_expression.cpp test_helper.h
 	$(CC) $(CFLAGS) test_expression.cpp -o bin/test_expression.o
@@ -73,12 +115,17 @@ bin/test_pattern_identifier: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/tes
 bin/test_pattern_identifier.o: test_pattern_identifier.cpp test_helper.h
 	$(CC) $(CFLAGS) test_pattern_identifier.cpp -o bin/test_pattern_identifier.o
 
+bin/test_sequence: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_sequence.o
+	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_sequence.o -o bin/test_sequence
+
+bin/test_sequence.o: test_sequence.cpp test_helper.h
+	$(CC) $(CFLAGS) test_sequence.cpp -o bin/test_sequence.o
+
 bin/test_syntax_binding: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_syntax_binding.o bin/test_syntax_binding.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_syntax_binding.o -o bin/test_syntax_binding
 
 bin/test_syntax_binding.o: test_syntax_binding.cpp test_helper.h
 	$(CC) $(CFLAGS) test_syntax_binding.cpp -o bin/test_syntax_binding.o
-
 
 bin/test_syntax_rule: $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_syntax_rule.o bin/test_syntax_rule.o
 	$(CC) $(LFLAGS) $(LEXER_OBJS) $(TOKENS_OBJS) $(PARSER_OBJS) bin/test_helper.o bin/test_syntax_rule.o -o bin/test_syntax_rule
@@ -288,7 +335,7 @@ bin/operator.o: $(PARSER_SRC)/operator.cpp
 	$(CC) $(CFLAGS) $(PARSER_SRC)/operator.cpp -o bin/operator.o
 
 bin/parser.o: $(PARSER_SRC)/parser.cpp
-	$(CC) $(CFLAGS) $(PARSER_SRC)/parser.cpp -o bin/parser.o
+	$(CC) $(CFLAGS) $(PARSER_SRC)/parser.cpp (LEXER_SRC)/token_vector.h -o bin/parser.o
 
 bin/pattern.o: $(PARSER_SRC)/pattern.cpp
 	$(CC) $(CFLAGS) $(PARSER_SRC)/pattern.cpp -o bin/pattern.o

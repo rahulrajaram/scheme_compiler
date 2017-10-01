@@ -2,6 +2,8 @@
 
 namespace Atrium {
 	bool Parser::is_variable() {
+		std::size_t token_vector_index_at_entry = token_vector_index;
+
 		if (is_identifier()) {
 			print_production(token_vector_index, "variable");
 			return true;

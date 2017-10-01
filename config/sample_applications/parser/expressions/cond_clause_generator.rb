@@ -6,7 +6,7 @@ case_clauses = []
 expressions.each do |expression|
 	sequences.each do |sequence|
 		case_clauses << "(#{expression} #{sequence})"
-		case_clauses << "#{expression}"
+		case_clauses << "(#{expression})"
 		case_clauses << "(#{expression} => #{expression})"
 	end
 end

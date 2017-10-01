@@ -38,7 +38,7 @@
 (let-syntax () asdfsa)
 (let-syntax () (if #f #t #f))
 (let-syntax ((scode-quote (syntax-rules (g) ((#(c) ...) (123.45345 ... . yolo))))) (if '() ()))
-(let-syntax () '("yolo #t))
+(let-syntax () '("yolo" #t))
 (let-syntax () (set! abcde (set! abcde "yolo")))
 (let-syntax () (if '(1) '() #f))
 (let-syntax ((using-syntax (syntax-rules (g) (#(#t ...) #(123 ... . yolo))))) (set! abcde #f))

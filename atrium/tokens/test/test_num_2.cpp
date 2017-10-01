@@ -10,7 +10,7 @@ void test_num_2() {
 
 	while(getline(num_2_file, line)) {
 		if (Atrium::Token(line).is_num_2()) {
-			//std::cout << line << " ... is a num_2 --> SUCCESS\n";
+			std::cout << line << " ... is a num_2 --> SUCCESS\n";
 		} else {
 			std::cout << line << " ... is a num_2, but was not found to be --> FAILURE\n";
 		}

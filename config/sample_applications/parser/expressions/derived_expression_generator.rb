@@ -57,17 +57,10 @@ end
 	derived_expressions << "(let #{variables.shuffle.first} (#{binding_specs.shuffle.take(times).join(" ")}) #{bodies.shuffle.first})"
 end
 
-# (let* variable (<binding spec>*) <body>)
+# (letrec (<binding spec>*) <body>)
 100.times do
 	times = Random.rand(2)
-	derived_expressions << "(let* #{variables.shuffle.first} (#{binding_specs.shuffle.take(times).join(" ")}) #{bodies.shuffle.first})"
-end
-
-
-# (letrec variable (<binding spec>*) <body>)
-100.times do
-	times = Random.rand(2)
-	derived_expressions << "(letrec #{variables.shuffle.first} (#{binding_specs.shuffle.take(times).join(" ")}) #{bodies.shuffle.first})"
+	derived_expressions << "(letrec (#{binding_specs.shuffle.take(times).join(" ")}) #{bodies.shuffle.first})"
 end
 
 # (begin <sequence>)
@@ -85,7 +78,7 @@ end
 	derived_expressions << [
 		"(do (#{iteration_specs.shuffle.take(times).join(' ')})",
 		 "(#{expressions.shuffle.first} #{sequences.shuffle.take(times_1)})",
-		"#{expressions.shuffle.take(times_2).join(' ')}"
+		"#{expressions.shuffle.take(times_2).join(' ')})"
 	].join(' ')
 end
 
@@ -98,4 +91,4 @@ end
 	derived_expressions.shuffle!
 end
 
-puts derived_expressions.take(50)
+puts derived_expressions.take(250)
