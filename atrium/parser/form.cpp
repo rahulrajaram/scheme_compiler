@@ -7,6 +7,7 @@ namespace Atrium {
 			return true;
 		}
 
+
 		if (is_expression ()) {
 			print_production(token_vector_index, "form::expression");
 			return true;

@@ -9,6 +9,11 @@ namespace Atrium {
 			return true;
 		}
 
+		if (is_derived_expression ()) {
+			print_production(token_vector_index_at_entry, "expression::derived_expression");
+			return true;
+		}
+
 		if (is_constant ()) {
 			print_production(token_vector_index_at_entry, "expression::constant");
 			return true;
@@ -51,11 +56,6 @@ namespace Atrium {
 					return false;
 				}
 			} else if (is_if()) {
-				if (! is_expression ()) {
-					token_vector_index = token_vector_index_at_entry;
-					return false;
-				}
-
 				if (! is_expression ()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
@@ -128,5 +128,7 @@ namespace Atrium {
 			print_production(token_vector_index_at_entry, "expression");
 			return true;
 		}
+
+		return false;
 	}
 }

@@ -19,15 +19,22 @@ namespace Atrium {
 		if (is_cond())  {
 			// cond <cond clause>+
 			// cond <cond clause>* (else <sequence>)
-			if (is_cond_clause ()) {
-				while (is_cond_clause());
-			} else if (is_cond_clause()) {
-				while (is_cond_clause());
 
+			std::size_t token_vector_index_save = token_vector_index;
+			if (!is_cond_clause ()) {
 				if (!is_left_paren()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
+			}
+			token_vector_index = token_vector_index_save;
+
+			while (is_cond_clause());
+
+			if (is_left_paren()) {
+				token_vector_index = token_vector_index_at_entry;
+				return false;
+
 				if (!is_else ()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
@@ -42,9 +49,6 @@ namespace Atrium {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-			} else {
-				token_vector_index = token_vector_index_at_entry;
-				return false;
 			}
 		} else if (is_case()) {
 			// case <expression> <case clause>+
@@ -54,9 +58,18 @@ namespace Atrium {
 				return false;
 			}
 
-			if (is_case_clause ()) {
-				while (is_case_clause());
-			} else if (is_left_paren ()) {
+			std::size_t token_vector_index_save = token_vector_index;
+			if (!is_case_clause ()) {
+				if (!is_left_paren()) {
+					token_vector_index = token_vector_index_at_entry;
+					return false;
+				}
+			}
+			token_vector_index = token_vector_index_save;
+
+			while (is_case_clause());
+
+			if (is_left_paren ()) {
 				if (!is_else()) {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
@@ -70,9 +83,6 @@ namespace Atrium {
 					token_vector_index = token_vector_index_at_entry;
 					return false;
 				}
-			} else {
-				token_vector_index = token_vector_index_at_entry;
-				return false;
 			}
 		} else if (is_and()) {
 			// (and <test>*)
@@ -190,8 +200,6 @@ namespace Atrium {
 				return false;
 			}
 
-			print_production(token_vector_index_at_entry, "derived_expression::delay");
-			return true;
 		} else {
 			token_vector_index = token_vector_index_at_entry;
 			return false;

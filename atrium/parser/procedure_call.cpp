@@ -8,16 +8,14 @@ namespace Atrium {
 		if (!is_left_paren()) {
 			return false;
 		}
-		std::cout << "okay (\n";
+
 		if (!is_operator()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
 		}
 
-		std::cout << "okay operator\n";
 		while (is_operand());
 
-		std::cout << "okay operand\n";
 		if(!is_right_paren()) {
 			token_vector_index = token_vector_index_at_entry;
 			return false;
