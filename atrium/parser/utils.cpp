@@ -60,11 +60,12 @@ namespace Atrium {
 			return false;
 		}
 
-		if ((current_token()) != terminal) {
+		std::string current_token = token_vector[token_vector_index].token;
+		if (current_token != terminal) {
 			return false;
 		}
 
-		print_production(token_vector_index, current_token());
+		print_production(token_vector_index, current_token);
 		token_vector_index ++;
 
 		return true;
@@ -75,10 +76,11 @@ namespace Atrium {
 			return false;
 		}
 
-		if ((current_token_type()) != terminal_type) {
+		if (token_vector[token_vector_index].type != terminal_type) {
 			return false;
 		}
-		print_production(token_vector_index, current_token());
+		std::string current_token = token_vector[token_vector_index].token;
+		print_production(token_vector_index, current_token);
 		token_vector_index ++;
 
 		return true;
