@@ -11,8 +11,9 @@ int main (int argc, char* argv[]) {
 	while (getline(expression_file, line)) {
 		Atrium::LexicalAnalysis::Lexer lexer(expression_file);
 		Atrium::TokenVector token_vector = lexer.tokenize(line + "\n");
+		Atrium::SyntaxTree* syntax_tree = new Atrium::SyntaxTree();
+		Atrium::Parser parser(std::move(token_vector), syntax_tree);
 
-		Atrium::Parser parser(std::move(token_vector));
 		print_result(++ test_case_number, line, parser.is_case_clause(), must_print_success(argc, argv));
 	}
 

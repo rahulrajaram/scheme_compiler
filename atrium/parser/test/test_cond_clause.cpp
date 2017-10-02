@@ -11,8 +11,8 @@ int main (int argc, char* argv[]) {
 	while (getline(cond_clause_file, line)) {
 		Atrium::LexicalAnalysis::Lexer lexer(cond_clause_file);
 		Atrium::TokenVector token_vector = lexer.tokenize(line + "\n");
-		// Atrium::TokenVector token_vector = lexer.tokenize(line + "(case ((if #t 12.123123 #f))  (else ((if '(1) \"yolo\" #f) 'fsdfsdf)))\n");
-		Atrium::Parser parser(std::move(token_vector));
+		Atrium::SyntaxTree* syntax_tree = new Atrium::SyntaxTree();
+		Atrium::Parser parser(std::move(token_vector), syntax_tree);
 
 		print_result(++ test_case_number, line, parser.is_cond_clause(), must_print_success(argc, argv));
 	}

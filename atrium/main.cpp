@@ -40,7 +40,7 @@ int main (int argc, char* argv[]) {
 		exit(1);
 	}
 
-	Atrium::Parser parser(std::move(token_vector));
+	Atrium::Parser parser(std::move(token_vector), syntax_tree);
 	std::cout << parser.parse() << "\n";
 	return 0;
 }

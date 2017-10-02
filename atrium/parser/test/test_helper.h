@@ -6,6 +6,7 @@
 #include "../parser.h"
 #include "../../lexer/lexer.h"
 #include "../../tokens/token.h"
+#include "../../syntax_tree/syntax_tree.h"
 
 const static std::string test_set_base = "../../../config/sample_applications/parser/expressions/";
 

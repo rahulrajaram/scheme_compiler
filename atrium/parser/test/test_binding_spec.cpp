@@ -11,8 +11,9 @@ int main (int argc, char* argv[]) {
 	while (getline(binding_spec_file, line)) {
 		Atrium::LexicalAnalysis::Lexer lexer(binding_spec_file);
 		Atrium::TokenVector token_vector = lexer.tokenize(line + "\n");
+		Atrium::SyntaxTree* syntax_tree = new Atrium::SyntaxTree();
+		Atrium::Parser parser(std::move(token_vector), syntax_tree);
 
-		Atrium::Parser parser(std::move(token_vector));
 		print_result(++ test_case_number, line, parser.is_binding_spec(), must_print_success(argc, argv));
 	}
 

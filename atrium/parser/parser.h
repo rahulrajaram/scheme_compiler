@@ -5,11 +5,13 @@
 #include <cstddef>
 
 #include "../global_aliases.h"
+#include "../syntax_tree/syntax_tree.h"
 #include "../tokens/token_vector.h"
 
 namespace Atrium {
 	class Parser {
 		Atrium::TokenVector token_vector;
+		Atrium::SyntaxTree* syntax_tree;
 
 		std::size_t token_vector_index_prev {0};
 		std::size_t token_vector_index {0};
@@ -19,9 +21,11 @@ namespace Atrium {
 	public:
 		bool suppress_output {true};
 		Parser(
-			const Atrium::TokenVector&& token_vector
+			const Atrium::TokenVector&& token_vector,
+			SyntaxTree* syntax_tree
 		) :
-			token_vector { token_vector }
+			token_vector { token_vector },
+			syntax_tree { syntax_tree }
 			{}
 
 		bool parse();
